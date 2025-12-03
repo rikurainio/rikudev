@@ -1,0 +1,326 @@
+export const metadata = {
+  title: "Designing RESTful APIs: Best Practices and Patterns",
+  description: "Learn how to design clean, maintainable REST APIs that follow industry best practices.",
+  author: "Riku Rainio",
+  date: "2024-11-15",
+  tags: ["API Design", "Backend", "REST", "Best Practices"],
+  readTime: "13 min read"
+}
+
+# Designing RESTful APIs: Best Practices and Patterns
+
+A well-designed REST API is crucial for building scalable and maintainable applications. In this guide, we'll explore best practices for designing RESTful APIs that are intuitive, consistent, and developer-friendly.
+
+## REST Principles
+
+REST (Representational State Transfer) is an architectural style based on six constraints:
+
+1. **Client-Server**: Separation of concerns
+2. **Stateless**: Each request contains all necessary information
+3. **Cacheable**: Responses should be cacheable when possible
+4. **Uniform Interface**: Consistent way of interacting with resources
+5. **Layered System**: Architecture can be composed of hierarchical layers
+6. **Code on Demand** (optional): Server can extend client functionality
+
+## Resource Naming Conventions
+
+### Use Nouns, Not Verbs
+
+```http
+# Good
+GET /users
+GET /users/123
+POST /users
+
+# Bad
+GET /getUsers
+GET /getUserById/123
+POST /createUser
+```
+
+### Use Plural Nouns
+
+```http
+# Good
+GET /users
+GET /posts
+GET /comments
+
+# Bad
+GET /user
+GET /post
+GET /comment
+```
+
+### Use Hierarchical Structure
+
+```http
+# Good
+GET /users/123/posts
+GET /users/123/posts/456/comments
+
+# Bad
+GET /user-posts?userId=123
+GET /post-comments?postId=456
+```
+
+## HTTP Methods
+
+Use HTTP methods correctly:
+
+- **GET**: Retrieve resources (idempotent, safe)
+- **POST**: Create resources (not idempotent)
+- **PUT**: Update/replace resources (idempotent)
+- **PATCH**: Partial updates (idempotent)
+- **DELETE**: Remove resources (idempotent)
+
+### Example Usage
+
+```http
+# Create a user
+POST /users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+
+# Get a user
+GET /users/123
+
+# Update a user (full replacement)
+PUT /users/123
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+
+# Partial update
+PATCH /users/123
+Content-Type: application/json
+
+{
+  "email": "newemail@example.com"
+}
+
+# Delete a user
+DELETE /users/123
+```
+
+## Status Codes
+
+Use appropriate HTTP status codes:
+
+### Success Codes
+
+- **200 OK**: Successful GET, PUT, PATCH
+- **201 Created**: Successful POST (resource created)
+- **204 No Content**: Successful DELETE
+
+### Client Error Codes
+
+- **400 Bad Request**: Invalid request syntax
+- **401 Unauthorized**: Authentication required
+- **403 Forbidden**: Authenticated but not authorized
+- **404 Not Found**: Resource doesn't exist
+- **409 Conflict**: Resource conflict (e.g., duplicate)
+- **422 Unprocessable Entity**: Valid syntax but semantic errors
+
+### Server Error Codes
+
+- **500 Internal Server Error**: Generic server error
+- **503 Service Unavailable**: Server temporarily unavailable
+
+## Request and Response Formats
+
+### Request Headers
+
+Always specify content type:
+
+```http
+Content-Type: application/json
+Accept: application/json
+```
+
+### Response Structure
+
+Use consistent response structures:
+
+```json
+{
+  "data": {
+    "id": "123",
+    "name": "John Doe",
+    "email": "john@example.com"
+  },
+  "meta": {
+    "timestamp": "2024-11-15T10:00:00Z"
+  }
+}
+```
+
+### Error Response Structure
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Email is required",
+    "details": [
+      {
+        "field": "email",
+        "message": "Email cannot be empty"
+      }
+    ]
+  }
+}
+```
+
+## Pagination
+
+Implement pagination for list endpoints:
+
+```http
+GET /users?page=1&limit=20&sort=name&order=asc
+```
+
+Response:
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 100,
+    "totalPages": 5
+  }
+}
+```
+
+## Filtering and Searching
+
+Allow filtering and searching:
+
+```http
+GET /users?status=active&role=admin&search=john
+```
+
+## Versioning
+
+Version your API:
+
+```http
+# URL versioning
+GET /v1/users
+GET /v2/users
+
+# Header versioning
+GET /users
+Accept: application/vnd.api+json;version=1
+```
+
+## Authentication and Authorization
+
+### Use Standard Headers
+
+```http
+Authorization: Bearer <token>
+```
+
+### Implement Proper Security
+
+- Use HTTPS in production
+- Validate and sanitize all inputs
+- Implement rate limiting
+- Use OAuth 2.0 or JWT for authentication
+
+## Documentation
+
+Good API documentation is essential:
+
+### OpenAPI/Swagger
+
+Document your API using OpenAPI:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: Successful response
+```
+
+### Include Examples
+
+Provide request/response examples for each endpoint.
+
+## Testing Your API
+
+### Unit Tests
+
+Test individual endpoints:
+
+```typescript
+describe('GET /users/:id', () => {
+  it('should return user when found', async () => {
+    const response = await request(app)
+      .get('/users/123')
+      .expect(200)
+    
+    expect(response.body.data.id).toBe('123')
+  })
+})
+```
+
+### Integration Tests
+
+Test complete workflows:
+
+```typescript
+describe('User creation flow', () => {
+  it('should create and retrieve user', async () => {
+    const createResponse = await request(app)
+      .post('/users')
+      .send({ name: 'John', email: 'john@example.com' })
+      .expect(201)
+    
+    const userId = createResponse.body.data.id
+    
+    const getResponse = await request(app)
+      .get(`/users/${userId}`)
+      .expect(200)
+    
+    expect(getResponse.body.data.name).toBe('John')
+  })
+})
+```
+
+## Best Practices Summary
+
+1. ✅ Use nouns for resource names
+2. ✅ Use plural nouns
+3. ✅ Use proper HTTP methods
+4. ✅ Return appropriate status codes
+5. ✅ Use consistent response formats
+6. ✅ Implement pagination
+7. ✅ Version your API
+8. ✅ Document everything
+9. ✅ Handle errors gracefully
+10. ✅ Secure your API
+
+## Conclusion
+
+Designing a good REST API requires attention to detail and consistency. By following these best practices, you'll create APIs that are intuitive, maintainable, and developer-friendly.
+
+Remember: the best API is one that developers can understand and use without constantly referring to documentation. Keep it simple, consistent, and well-documented.
+

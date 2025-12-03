@@ -1,0 +1,251 @@
+export const metadata = {
+  title: "TypeScript Tips and Tricks for Better Code",
+  description: "Discover advanced TypeScript patterns and techniques that will make your code more type-safe and maintainable.",
+  author: "Riku Rainio",
+  date: "2024-12-05",
+  tags: ["TypeScript", "Programming", "Best Practices"],
+  readTime: "10 min read"
+}
+
+# TypeScript Tips and Tricks for Better Code
+
+TypeScript has become the de facto standard for building large-scale JavaScript applications. In this article, we'll explore advanced TypeScript patterns and techniques that will help you write more type-safe, maintainable code.
+
+## Utility Types You Should Know
+
+TypeScript provides several built-in utility types that can save you time and make your code more expressive.
+
+### `Partial<T>`
+
+Makes all properties of a type optional:
+
+```typescript
+interface User {
+  name: string
+  email: string
+  age: number
+}
+
+type PartialUser = Partial<User>
+// { name?: string; email?: string; age?: number }
+```
+
+### `Pick<T, K>`
+
+Select specific properties from a type:
+
+```typescript
+type UserEmail = Pick<User, 'email'>
+// { email: string }
+```
+
+### `Omit<T, K>`
+
+Remove specific properties from a type:
+
+```typescript
+type UserWithoutEmail = Omit<User, 'email'>
+// { name: string; age: number }
+```
+
+### `Record<K, V>`
+
+Create an object type with specific keys and values:
+
+```typescript
+type UserRoles = Record<string, boolean>
+// { [key: string]: boolean }
+```
+
+## Advanced Type Patterns
+
+### Discriminated Unions
+
+Use discriminated unions for type-safe state management:
+
+```typescript
+type LoadingState = {
+  status: 'loading'
+}
+
+type SuccessState = {
+  status: 'success'
+  data: string[]
+}
+
+type ErrorState = {
+  status: 'error'
+  error: string
+}
+
+type AsyncState = LoadingState | SuccessState | ErrorState
+
+function handleState(state: AsyncState) {
+  switch (state.status) {
+    case 'loading':
+      return 'Loading...'
+    case 'success':
+      return state.data.join(', ')
+    case 'error':
+      return state.error
+  }
+}
+```
+
+### Template Literal Types
+
+Create types from string templates:
+
+```typescript
+type EventName<T extends string> = `on${Capitalize<T>}`
+type ClickEvent = EventName<'click'> // 'onClick'
+type ChangeEvent = EventName<'change'> // 'onChange'
+```
+
+### Conditional Types
+
+Create types that depend on conditions:
+
+```typescript
+type NonNullable<T> = T extends null | undefined ? never : T
+
+type ApiResponse<T> = T extends string
+  ? { message: T }
+  : { data: T }
+```
+
+## Type Guards
+
+Type guards help TypeScript narrow types:
+
+```typescript
+function isString(value: unknown): value is string {
+  return typeof value === 'string'
+}
+
+function processValue(value: unknown) {
+  if (isString(value)) {
+    // TypeScript knows value is string here
+    console.log(value.toUpperCase())
+  }
+}
+```
+
+## Generic Constraints
+
+Use constraints to limit what types can be used with generics:
+
+```typescript
+interface Lengthwise {
+  length: number
+}
+
+function logLength<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length)
+  return arg
+}
+
+logLength('hello') // OK
+logLength([1, 2, 3]) // OK
+logLength(123) // Error: number doesn't have length
+```
+
+## Mapped Types
+
+Create new types by transforming existing ones:
+
+```typescript
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P]
+}
+
+type Optional<T> = {
+  [P in keyof T]?: T[P]
+}
+```
+
+## Real-World Examples
+
+### API Response Types
+
+```typescript
+type ApiResponse<T> = {
+  success: true
+  data: T
+} | {
+  success: false
+  error: string
+}
+
+async function fetchUser(id: string): Promise<ApiResponse<User>> {
+  try {
+    const user = await api.getUser(id)
+    return { success: true, data: user }
+  } catch (error) {
+    return { success: false, error: error.message }
+  }
+}
+```
+
+### Form State Management
+
+```typescript
+type FormField<T> = {
+  value: T
+  error?: string
+  touched: boolean
+}
+
+type FormState<T> = {
+  [K in keyof T]: FormField<T[K]>
+}
+
+interface LoginForm {
+  email: string
+  password: string
+}
+
+type LoginFormState = FormState<LoginForm>
+```
+
+## Common Pitfalls and How to Avoid Them
+
+### 1. Using `any` Too Liberally
+
+Instead of `any`, use `unknown`:
+
+```typescript
+// Bad
+function process(data: any) {
+  return data.value
+}
+
+// Good
+function process(data: unknown) {
+  if (typeof data === 'object' && data !== null && 'value' in data) {
+    return (data as { value: string }).value
+  }
+  throw new Error('Invalid data')
+}
+```
+
+### 2. Overusing Type Assertions
+
+Prefer type guards over assertions:
+
+```typescript
+// Bad
+const value = data as string
+
+// Good
+if (typeof data === 'string') {
+  const value = data
+}
+```
+
+## Conclusion
+
+TypeScript's type system is powerful and expressive. By mastering these patterns and techniques, you can write code that's not only type-safe but also more maintainable and self-documenting.
+
+Remember: good TypeScript code is about finding the right balance between type safety and practicality. Don't over-engineer your types, but don't shy away from using advanced features when they add value.
+
