@@ -1,65 +1,160 @@
-import Image from "next/image";
+import Link from "next/link";
+import { DATA } from "./lib/data";
 
-export default function Home() {
+export default function Portfolio() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
+      
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        
+        {/* --- LEFT COLUMN --- */}
+        <header className="lg:col-span-5 lg:sticky lg:top-24 lg:h-fit flex flex-col gap-14 animate-in fade-in slide-in-from-left-4 duration-700">
+          
+          {/* Identity & Status */}
+          <div className="flex flex-col gap-3">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-zinc-900">
+              {DATA.name}
+            </h1>
+            
+            {/* NEW: Availability Indicator */}
+            <div className="flex items-center gap-2 -mt-2 mb-2">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                  Available for new projects
+                </span>
+            </div>
+
+            <p className="text-xl text-zinc-600 leading-relaxed max-w-md font-light">
+              {DATA.about}
+            </p>
+
+            {/* Links */}
+            <div className="flex gap-6 items-center">
+              {Object.entries(DATA.links).map(([key, url]) => (
+                <a 
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
+                >
+                  {key}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Experience */}
+          <section>
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-8">
+              Experience
+            </h2>
+            <div className="flex flex-col gap-8">
+              {DATA.jobs.map((job) => (
+                <div key={job.company} className="flex justify-between items-baseline group">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-xl font-semibold text-zinc-900">
+                      {job.company}
+                    </h3>
+                    <p className="text-base text-zinc-500 font-light">
+                      {job.role}
+                    </p>
+                  </div>
+                  <span className="text-sm text-zinc-400 font-mono tabular-nums">
+                    {job.period}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* NEW: Tech Stack (Essential for "Glanceability") */}
+          <section>
+             <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-6">
+              Toolkit
+            </h2>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-base text-zinc-600 font-light">
+               {DATA.skills.map((skill) => (
+                 <span key={skill} className="hover:text-zinc-900 transition-colors cursor-default">
+                   {skill}
+                 </span>
+               ))}
+            </div>
+          </section>
+
+          {/* Education */}
+          <section>
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-8">
+              Education
+            </h2>
+            <div className="flex flex-col gap-8">
+              {DATA.education.map((edu) => (
+                <div key={`${edu.institution}-${edu.degree}`} className="flex justify-between items-baseline group">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-xl font-semibold text-zinc-900">
+                      {edu.institution}
+                    </h3>
+                    <p className="text-base text-zinc-500 font-light">
+                      {edu.degree}
+                    </p>
+                  </div>
+                  <span className="text-sm text-zinc-400 font-mono tabular-nums">
+                    {edu.period}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Footer inside Left Column for better alignment */}
+          <footer className="pt-8 text-xs text-zinc-400 font-mono">
+            <span>&copy; {new Date().getFullYear()} {DATA.name}.</span>
+          </footer>
+        </header>
+
+
+        {/* --- RIGHT COLUMN: PROJECTS --- */}
+        <section className="lg:col-span-6 lg:col-start-7 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards">
+          <div className="grid grid-cols-1 gap-8">
+            {DATA.projects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
+        </section>
+
+      </div>
+    </main>
+  );
+}
+
+// Project Card
+function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
+  return (
+    <Link 
+      href={`/projects/${project.slug}`}
+      className="group relative block w-full aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-transparent hover:border-zinc-200 transition-colors"
+    >
+        {/* Image */}
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          // TWEAK: Removed grayscale on mobile so users can see the work clearly without hovering
+          className="object-cover w-full h-full grayscale-0 md:grayscale md:transition-all md:duration-500 md:ease-out md:group-hover:grayscale-0 md:group-hover:scale-105"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        
+        {/* Overlay Text */}
+        {/* TWEAK: 'opacity-100' on mobile (default), 'md:opacity-0' on desktop (hover effect) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/40 to-transparent opacity-100 md:opacity-0 md:bg-zinc-900/60 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8">
+            <h3 className="text-white text-2xl font-bold tracking-tight">
+              {project.title}
+            </h3>
+            <p className="text-zinc-300 text-base font-light mt-1">
+              {project.tech.slice(0, 3).join("  •  ")}
+            </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    </Link>
   );
 }
