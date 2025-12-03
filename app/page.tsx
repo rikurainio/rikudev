@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DATA } from "./lib/data";
+import { SpotifyNowPlaying } from "./components/spotify-now-playing";
 
 export default function Portfolio() {
   return (
@@ -26,13 +27,16 @@ export default function Portfolio() {
                   Available for new projects
                 </span>
             </div>
+            {/* Spotify Now Playing */}
+            <SpotifyNowPlaying />
 
-            <p className="text-xl text-zinc-600 leading-relaxed max-w-md font-light">
+            {/* <p className="text-xl text-zinc-600 leading-relaxed max-w-md font-light">
               {DATA.about}
-            </p>
+            </p> */}
+
 
             {/* NAVIGATION AREA: Combined Internal & External Links */}
-            <div className="flex flex-wrap items-center gap-6 mt-2">
+            <div className="flex flex-wrap items-center gap-6 -mt-">
                 
                 {/* 1. INTERNAL ROUTES (Blog, Personal) */}
                 <div className="flex gap-4">
