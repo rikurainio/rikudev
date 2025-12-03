@@ -58,7 +58,7 @@ export default async function ProjectPage({
       {/* Project Image */}
       <div className="mb-12 aspect-video bg-zinc-100 overflow-hidden">
         <img
-          src={project.image}
+          src={`/${project.image}`}
           alt={`Preview of ${project.title}`}
           className="w-full h-full object-cover"
         />

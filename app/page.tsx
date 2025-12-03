@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DATA } from "./lib/data";
 import { SpotifyNowPlaying } from "./components/spotify-now-playing";
+import { LinkPreview } from "./components/link-preview";
 
 export default function Portfolio() {
   return (
@@ -59,17 +60,26 @@ export default function Portfolio() {
 
                 {/* 2. EXTERNAL SOCIALS (Existing) */}
                 <div className="flex gap-4">
-                    {Object.entries(DATA.links).map(([key, url]) => (
-                        <a 
-                        key={key}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
-                        >
-                        {key}
-                        </a>
-                    ))}
+                    {Object.entries(DATA.links).map(([key, url]) => 
+                        url.startsWith('mailto:') || url.endsWith('.pdf') || key.toLowerCase() === 'resume' ? (
+                            <a 
+                                key={key}
+                                href={url}
+                                className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
+                            >
+                                {key}
+                            </a>
+                        ) : (
+                            <LinkPreview 
+                                key={key}
+                                href={url}
+                                className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
+                                previewText={key}
+                            >
+                                {key}
+                            </LinkPreview>
+                        )
+                    )}
                 </div>
             </div>
           </div>
@@ -159,24 +169,24 @@ function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
   return (
     <Link 
       href={`/projects/${project.slug}`}
-      target="_blank"
-      rel="noopener noreferrer"
       className="group relative block w-full aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-transparent hover:border-zinc-200 transition-colors"
     >
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="object-cover w-full h-full md:transition-all md:duration-500 md:ease-out md:group-hover:grayscale-0 md:group-hover:scale-105"
-        />
-        
-        <div className="absolute inset-0 bg-linear-to-t from-zinc-900/90 via-zinc-900/40 to-transparent opacity-100 md:opacity-0 md:bg-zinc-900/60 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8">
-            <h3 className="text-white text-2xl font-bold tracking-tight">
-              {project.title}
-            </h3>
-            <p className="text-zinc-300 text-base font-light mt-1">
-              {project.tech.slice(0, 3).join("  •  ")}
-            </p>
-        </div>
+      <img 
+        key={project.slug}
+        src={`/${project.image}`} 
+        alt={project.title} 
+        loading="lazy"
+        className="object-cover w-full h-full md:transition-all md:duration-500 md:ease-out md:group-hover:grayscale-0 md:group-hover:scale-105"
+      />
+      
+      <div className="absolute inset-0 bg-linear-to-t from-zinc-900/90 via-zinc-900/40 to-transparent opacity-100 md:opacity-0 md:bg-zinc-900/60 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8">
+          <h3 className="text-white text-2xl font-bold tracking-tight">
+            {project.title}
+          </h3>
+          <p className="text-zinc-300 text-base font-light mt-1">
+            {project.tech.slice(0, 3).join("  •  ")}
+          </p>
+      </div>
     </Link>
   );
 }
