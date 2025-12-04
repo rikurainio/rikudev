@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { DATA } from '@/app/lib/data'
+import { CopyButton } from '@/app/components/copy'
 
 export const metadata = {
   title: 'About Me | ' + DATA.name,
@@ -11,7 +12,7 @@ export default function PersonalPage() {
     <main className="min-h-screen bg-white text-zinc-900">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
         {/* Back Link */}
-        <Link 
+        <Link
           href="/"
           className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors mb-8 inline-block"
         >
@@ -35,11 +36,11 @@ export default function PersonalPage() {
             <h2 className="text-2xl font-bold mb-4">Hello, I'm {DATA.name.split(' ')[0]}</h2>
             <div className="prose prose-zinc max-w-none text-zinc-700 leading-relaxed">
               <p>
-                I'm a {DATA.role.toLowerCase()} passionate about building great software and solving complex problems. 
+                I'm a {DATA.role.toLowerCase()} passionate about building great software and solving complex problems.
                 I love working with modern web technologies and creating applications that make a difference.
               </p>
               <p>
-                When I'm not coding, you can find me exploring new technologies, contributing to open source projects, 
+                When I'm not coding, you can find me exploring new technologies, contributing to open source projects,
                 or sharing knowledge with the developer community.
               </p>
             </div>
@@ -50,7 +51,10 @@ export default function PersonalPage() {
             <h2 className="text-2xl font-bold mb-8">Experience</h2>
             <div className="space-y-8">
               {DATA.jobs.map((job) => (
-                <div key={job.company} className="border-l-2 border-zinc-200 pl-6">
+                <div
+                  key={job.company}
+                  className="border-l-2 border-zinc-200 pl-6"
+                >
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-2">
                     <div>
                       <h3 className="text-xl font-semibold text-zinc-900">
@@ -77,7 +81,10 @@ export default function PersonalPage() {
             <h2 className="text-2xl font-bold mb-8">Education</h2>
             <div className="space-y-6">
               {DATA.education.map((edu) => (
-                <div key={`${edu.institution}-${edu.degree}`} className="border-l-2 border-zinc-200 pl-6">
+                <div
+                  key={`${edu.institution}-${edu.degree}`}
+                  className="border-l-2 border-zinc-200 pl-6"
+                >
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
                     <div>
                       <h3 className="text-xl font-semibold text-zinc-900">
@@ -118,17 +125,35 @@ export default function PersonalPage() {
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </p>
             <div className="flex flex-wrap gap-4">
-              {Object.entries(DATA.links).map(([key, url]) => (
-                <a
-                  key={key}
-                  href={url}
-                  target={url.startsWith('http') ? '_blank' : undefined}
-                  rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="text-base font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity capitalize"
-                >
-                  {key}
-                </a>
-              ))}
+              {Object.entries(DATA.links).map(([key, url]) => {
+                const isEmail = url.startsWith('mailto:') || key.toLowerCase() === 'email'
+
+                if (isEmail) {
+                  const emailAddress = url.replace(/^mailto:/, '')
+                  return (
+                    <CopyButton
+                      key={key}
+                      text={emailAddress}
+                      contentName="Email address"
+                      className="text-base font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity capitalize"
+                    >
+                      {key}
+                    </CopyButton>
+                  )
+                }
+
+                return (
+                  <a
+                    key={key}
+                    href={url}
+                    target={url.startsWith('http') ? '_blank' : undefined}
+                    rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="text-base font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity capitalize"
+                  >
+                    {key}
+                  </a>
+                )
+              })}
             </div>
           </section>
         </div>
@@ -137,3 +162,4 @@ export default function PersonalPage() {
   )
 }
 
+ 

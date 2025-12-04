@@ -39,7 +39,7 @@ export function SpotifyNowPlaying() {
 
   if (isLoading) {
     return (
-      <div className="mt-2">
+      <div className="-mt-2">
         <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-100 animate-pulse">
           {/* Album image skeleton */}
           <div className="w-12 h-12 rounded bg-zinc-300"></div>
@@ -55,12 +55,6 @@ export function SpotifyNowPlaying() {
               <div className="w-24 h-[16px] bg-zinc-200 rounded"></div>
             </div>
           </div>
-          {/* Green dot skeleton - matching the exact structure */}
-          <div className="flex items-center gap-1">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-zinc-300"></span>
-            </span>
-          </div>
         </div>
       </div>
     )
@@ -72,7 +66,7 @@ export function SpotifyNowPlaying() {
 
   if (!data.isPlaying) {
     return (
-      <div className="mt-2">
+      <div className="-mt-2">
         <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-100">
           <div className="w-12 h-12 rounded bg-zinc-200 flex items-center justify-center">
             <svg
@@ -91,18 +85,13 @@ export function SpotifyNowPlaying() {
               Not currently playing
             </div>
           </div>
-          <div className="flex items-center gap-1">
-            <span className="relative flex h-2 w-2">
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-400"></span>
-            </span>
-          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="mt-2">
+    <div className="-mt-2">
       <a
         href={data.songUrl}
         target="_blank"
@@ -118,7 +107,7 @@ export function SpotifyNowPlaying() {
         )}
         <div className="flex-1 min-w-0">
           <div className="text-[10px] text-zinc-400 font-light uppercase tracking-wider mb-0.5">
-            Now Playing
+            Listening to Spotify
           </div>
           <div className="text-sm font-semibold text-zinc-900 truncate group-hover:text-zinc-700 transition-colors">
             {data.title}
@@ -126,12 +115,6 @@ export function SpotifyNowPlaying() {
           <div className="text-xs text-zinc-600 truncate">
             {data.artist}
           </div>
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
         </div>
       </a>
     </div>

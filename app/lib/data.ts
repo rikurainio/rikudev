@@ -5,6 +5,7 @@ export const DATA = {
   links: {
     email: "mailto:rainioriku@gmail.com",
     GitHub: "https://github.com/rikurainio",
+    Instagram: "https://www.instagram.com/rikurainio/",
     linkedIn: "https://linkedin.com/in/rikurainio",
     resume: "/cv.pdf", // Place in public folder
   },
@@ -32,6 +33,22 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Drafter.lol",
+      slug: "drafter-lol",
+      description: "Designed, developed, and self-hosted a full-stack SaaS solution as part of a two-person team. Provided a strong alternative to existing market solutions, helping thousands of users.",
+      tech: ["Next.js", "Socket.io", "Polar", "TypeScript", "PostgreSQL"],
+      link: "https://drafter.lol",
+      image: "drafter.png",
+    },
+    {
+      title: "Ideastorm",
+      slug: "ideastorm",
+      description: "A project for brainstorming and organizing ideas.",
+      tech: ["Next.js", "TypeScript", "Openrouter SDK"],
+      link: "https://github.com",
+      image: "ideastorm.png",
+      },
+    {
       title: "Mennää",
       slug: "mennaa",
       description: "A Godot game project.",
@@ -39,35 +56,21 @@ export const DATA = {
       link: "https://github.com",
       image: "mennaa.png",
     },
-    {
-      title: "Drafter.lol",
-      slug: "drafter-lol",
-      description: "Designed, developed, and self-hosted a full-stack SaaS solution as part of a two-person team. Provided a strong alternative to existing market solutions, helping thousands of users.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL"],
-      link: "https://drafter.lol",
-      image: "drafter.png",
-    },
+   
     {
       title: "Sasken CV Database",
       slug: "sasken-cv-database",
       description: "A CV database application for Sasken.",
-      tech: ["Next.js", "TypeScript", "PostgreSQL"],
+      tech: ["React", "Django", "PostgreSQL"],
       link: "https://github.com",
       image: "sasken.png",
     },
-    {
-      title: "Ideastorm",
-      slug: "ideastorm",
-      description: "A project for brainstorming and organizing ideas.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-      link: "https://github.com",
-      image: "ideastorm.png",
-      },
+ 
     {
       title: "LinkedInsanity",
       slug: "linkedinsanity",
       description: "A web application project.",
-      tech: ["React", "TypeScript", "Tailwind CSS"],
+      tech: ["JavaScript", "Browser Automation"],
       link: "https://github.com",
       image: "linkedinsanity.png",
     },

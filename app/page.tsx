@@ -1,23 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
 import { DATA } from "./lib/data";
 import { SpotifyNowPlaying } from "./components/spotify-now-playing";
-import { LinkPreview } from "./components/link-preview";
+import { SocialLinksWithPreviews } from "./components/social-links-with-previews";
 
 export default function Portfolio() {
   return (
     <main className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
-      
-      {/* Scroll-lock on desktop */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 lg:h-screen lg:overflow-hidden">
+      {/* Responsive two-column layout without scroll lock */}
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
         
         {/* --- LEFT COLUMN --- */}
-        <header className="lg:col-span-5 flex flex-col gap-14 py-12 md:py-20 lg:py-24 lg:overflow-y-auto no-scrollbar animate-in fade-in slide-in-from-left-4 duration-700">
+        <header className="lg:col-span-5 flex flex-col gap-14 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-left-4 duration-700">
           
           {/* Identity & Status */}
-          <div className="flex flex-col gap-3">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-zinc-900">
-              {DATA.name}
-            </h1>
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <div className="relative h-16 w-16 rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-100">
+                <img
+                  src="/avatar.png"
+                  alt={DATA.name}
+                  sizes="64px"
+                  className="object-cover"
+                />
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-zinc-900">
+                {DATA.name}
+              </h1>
+            </div>
             
             <div className="flex items-center gap-2 -mt-2 mb-2">
                 <span className="relative flex h-2.5 w-2.5">
@@ -28,6 +38,7 @@ export default function Portfolio() {
                   Available for new projects
                 </span>
             </div>
+            
             {/* Spotify Now Playing */}
             <SpotifyNowPlaying />
 
@@ -60,26 +71,10 @@ export default function Portfolio() {
 
                 {/* 2. EXTERNAL SOCIALS (Existing) */}
                 <div className="flex gap-4">
-                    {Object.entries(DATA.links).map(([key, url]) => 
-                        url.startsWith('mailto:') || url.endsWith('.pdf') || key.toLowerCase() === 'resume' ? (
-                            <a 
-                                key={key}
-                                href={url}
-                                className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
-                            >
-                                {key}
-                            </a>
-                        ) : (
-                            <LinkPreview 
-                                key={key}
-                                href={url}
-                                className="text-sm font-medium text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
-                                previewText={key}
-                            >
-                                {key}
-                            </LinkPreview>
-                        )
-                    )}
+                  <SocialLinksWithPreviews
+                    links={DATA.links}
+                    linkClassName="text-sm font-medium cursor-pointer text-zinc-400 hover:text-zinc-900 transition-colors capitalize border-b border-transparent hover:border-zinc-900 pb-0.5"
+                  />
                 </div>
             </div>
           </div>
@@ -151,7 +146,7 @@ export default function Portfolio() {
 
 
         {/* --- RIGHT COLUMN --- */}
-        <section className="lg:col-span-6 lg:col-start-7 py-12 md:py-20 lg:py-24 lg:h-screen lg:overflow-y-auto no-scrollbar animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+        <section className="lg:col-span-6 lg:col-start-7 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards">
           <div className="grid grid-cols-1 gap-8">
             {DATA.projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
