@@ -20,10 +20,14 @@ export function SmartPopover({
   const popoverRef = useRef<HTMLDivElement | null>(null)
   const [style, setStyle] = useState<React.CSSProperties | undefined>()
   const [placement, setPlacement] = useState<Placement>('top')
+  const [isPositioned, setIsPositioned] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return
     if (typeof window === 'undefined') return
+
+    // Reset positioned flag when (re)opening
+    setIsPositioned(false)
 
     const updatePosition = () => {
       const anchorEl = anchorRef.current
@@ -66,6 +70,7 @@ export function SmartPopover({
         zIndex: 50,
         pointerEvents: 'none',
       })
+      setIsPositioned(true)
     }
 
     // Use rAF to ensure layout has settled before measurement
@@ -84,7 +89,14 @@ export function SmartPopover({
   if (!isOpen) return null
 
   return (
-    <div ref={popoverRef} style={style} className="fixed z-50 pointer-events-none">
+    <div
+      ref={popoverRef}
+      style={{
+        ...style,
+        visibility: isPositioned ? 'visible' : 'hidden',
+      }}
+      className="fixed z-50 pointer-events-none"
+    >
       {children({ placement })}
     </div>
   )
