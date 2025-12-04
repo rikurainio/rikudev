@@ -13,17 +13,17 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "rikudevs",
-  description: "Software engineer building thoughtful, modern web experiences.",
+  description: "software developer",
   openGraph: {
     title: "rikudevs",
-    description: "Software engineer building thoughtful, modern web experiences.",
+    description: "software developer",
     url: "/",
     siteName: "rikudevs",
     images: [
       {
-        url: "/avatar.png",
-        width: 512,
-        height: 512,
+        url: "https://placehold.co/600x200/000000/FFFFFF/png?text=rikudevs",
+        width: 600,
+        height: 200,
         alt: "rikudevs",
       },
     ],
@@ -32,8 +32,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "rikudevs",
-    description: "Software engineer building thoughtful, modern web experiences.",
-    images: ["/avatar.png"],
+    description: "software developer",
+    images: [
+      "https://placehold.co/600x200/000000/FFFFFF/png?text=rikudevs",
+    ],
   },
 };
 
