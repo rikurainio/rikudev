@@ -1,166 +1,243 @@
-import Link from 'next/link'
-import { DATA } from '@/app/lib/data'
-import { CopyButton } from '@/app/components/copy'
+import Link from "next/link";
+import { DATA } from "@/app/lib/data"; // Adjust path as needed based on your project structure
 
 export const metadata = {
-  title: 'About Me | ' + DATA.name,
-  description: `About ${DATA.name} - ${DATA.role}`,
-}
+  title: "Gym & League | " + DATA.name,
+  description: `Gym and League of Legends page for ${DATA.name}.`,
+};
+
+const gymBlocks = {
+  focus: ["Calisthenics", "Strength training", "Cardio"],
+  split: [
+    { day: "Day 1", title: "Push", notes: "push stuff" },
+    { day: "Day 2", title: "Calisthenics skills", notes: "front lever / planche" },
+    { day: "Day 3", title: "Legs", notes: "use legs" },
+    { day: "Day 4", title: "Calisthenics skills", notes: "front lever / planche" },
+  ],
+  goals: [
+    "Front lever hold",
+    "4 plates bench press",
+    "Improve cardio & flexibility",
+    "Strengthen weak points",
+  ],
+};
+
+const leagueBlocks = {
+  role: "Jungle enjoyer",
+  style: "",
+  champs: ["Lee Sin", "Viego", "Nidalee", "Xin Zhao", "Vi"],
+  goals: [
+    "Get more consistent early games.",
+    "Play less champions.",
+  ],
+};
+
+const animeList = [
+  "Attack on Titan",
+  "Vinland Saga",
+  "Death Note",
+  "Demon Slayer",
+  "Chainsaw Man",
+];
+
+const animeStillWatching = ["Monster", "Jujutsu Kaisen"];
 
 export default function PersonalPage() {
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
-        {/* Back Link */}
-        <Link
-          href="/"
-          className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors mb-8 inline-block"
-        >
-          ← Back to home
-        </Link>
+    <main className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
+      {/* Responsive two-column layout */}
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        
+        {/* --- LEFT COLUMN (Header & Nav) --- */}
+        <header className="lg:col-span-5 flex flex-col gap-10 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-left-4 duration-700">
+          
+          {/* Identity */}
+          <div className="flex flex-col gap-6">
+            <Link 
+                href="/" 
+                className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors w-fit group"
+            >
+                <span className="inline-block transition-transform group-hover:-translate-x-1">←</span> Back to home
+            </Link>
 
-        {/* Header */}
-        <header className="mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
-            About Me
-          </h1>
-          <p className="text-xl text-zinc-600 font-light">
-            {DATA.about}
-          </p>
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tighter text-zinc-900 mb-6">
+                Other stuff
+              </h1>
+              <p className="text-xl text-zinc-600 leading-relaxed font-light">
+                What I do when I&apos;m not writing code. 
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Nav / Table of Contents equivalent */}
+          <div className="flex flex-col gap-2">
+            <h2 className="text-xs font-bold text-zinc-900 uppercase tracking-widest mb-2">
+              Contents
+            </h2>
+            <ul className="flex flex-col gap-2 text-sm text-zinc-500 font-medium">
+              <li className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-zinc-300"></span> Gym & Calisthenics
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-zinc-300"></span> League of Legends
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-zinc-300"></span> Anime
+              </li>
+            </ul>
+          </div>
         </header>
 
-        {/* Content Sections */}
-        <div className="space-y-16">
-          {/* Introduction */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Hello, I'm {DATA.name.split(' ')[0]}</h2>
-            <div className="prose prose-zinc max-w-none text-zinc-700 leading-relaxed">
-              <p>
-                I'm a {DATA.role.toLowerCase()} passionate about building great software and solving complex problems.
-                I love working with modern web technologies and creating applications that make a difference.
-              </p>
-              <p>
-                When I'm not coding, you can find me exploring new technologies, contributing to open source projects,
-                or sharing knowledge with the developer community.
-              </p>
+        {/* --- RIGHT COLUMN (Content Blocks) --- */}
+        <section className="lg:col-span-6 lg:col-start-7 py-12 md:py-20 lg:py-24 space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards">
+          
+          {/* GYM SECTION */}
+          <div className="flex flex-col gap-8">
+            <div className="border-b border-zinc-100 pb-4">
+              <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest">
+                Gym & Calisthenics
+              </h2>
             </div>
-          </section>
 
-          {/* Experience */}
-          <section>
-            <h2 className="text-2xl font-bold mb-8">Experience</h2>
-            <div className="space-y-8">
-              {DATA.jobs.map((job) => (
-                <div
-                  key={job.company}
-                  className="border-l-2 border-zinc-200 pl-6"
-                >
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-2">
-                    <div>
-                      <h3 className="text-xl font-semibold text-zinc-900">
-                        {job.role}
-                      </h3>
-                      <p className="text-lg text-zinc-600">
-                        {job.company}
-                      </p>
-                    </div>
-                    <span className="text-sm text-zinc-500 font-mono tabular-nums">
-                      {job.period}
-                    </span>
+            {/* Weekly Split */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-lg font-semibold text-zinc-900">Weekly Split</h3>
+                <span className="text-xs font-mono text-zinc-400">3–4x / week</span>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {gymBlocks.split.map((day) => (
+                  <div key={day.day} className="bg-zinc-50/50 group flex flex-col p-4 rounded-xl border border-zinc-100 transition-colors">
+                    <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-2">{day.day}</span>
+                    <span className="font-medium text-zinc-900">{day.title}</span>
+                    <span className="text-sm text-zinc-500 font-light mt-1">{day.notes}</span>
                   </div>
-                  <p className="text-zinc-600 leading-relaxed mt-2">
-                    {job.description}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </section>
 
-          {/* Education */}
-          <section>
-            <h2 className="text-2xl font-bold mb-8">Education</h2>
-            <div className="space-y-6">
-              {DATA.education.map((edu) => (
-                <div
-                  key={`${edu.institution}-${edu.degree}`}
-                  className="border-l-2 border-zinc-200 pl-6"
-                >
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                    <div>
-                      <h3 className="text-xl font-semibold text-zinc-900">
-                        {edu.institution}
-                      </h3>
-                      <p className="text-lg text-zinc-600">
-                        {edu.degree}
-                      </p>
-                    </div>
-                    <span className="text-sm text-zinc-500 font-mono tabular-nums">
-                      {edu.period}
-                    </span>
-                  </div>
-                </div>
-              ))}
+            {/* Goals */}
+            <div>
+              <h3 className="text-lg font-semibold text-zinc-900 mb-4">Current Goals</h3>
+              <ul className="space-y-3">
+                {gymBlocks.goals.map((goal) => (
+                  <li key={goal} className="flex gap-3 text-zinc-600 font-light">
+                    <span className="mt-2 h-1.5 w-1.5 min-w-[6px] rounded-full bg-zinc-300" />
+                    <span>{goal}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </section>
+          </div>
 
-          {/* Skills */}
-          <section>
-            <h2 className="text-2xl font-bold mb-6">Skills & Technologies</h2>
-            <div className="flex flex-wrap gap-3">
-              {DATA.skills.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-100 transition-colors"
-                  title={skill.category}
-                >
-                  {skill.name}
-                </span>
-              ))}
+
+          {/* LEAGUE SECTION */}
+          <div className="flex flex-col gap-8">
+            <div className="border-b border-zinc-100 pb-4">
+              <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest">
+                League of Legends
+              </h2>
             </div>
-          </section>
 
-          {/* Contact */}
-          <section>
-            <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-            <p className="text-zinc-600 mb-6 leading-relaxed">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              {Object.entries(DATA.links).map(([key, url]) => {
-                const isEmail = url.startsWith('mailto:') || key.toLowerCase() === 'email'
+            {/* Role & Style */}
+            <div className="space-y-4">
+              <div className="flex justify-between items-baseline">
+                <h3 className="text-lg font-semibold text-zinc-900">{leagueBlocks.role}</h3>
+                <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">Solo Queue</span>
+              </div>
+            </div>
 
-                if (isEmail) {
-                  const emailAddress = url.replace(/^mailto:/, '')
-                  return (
-                    <CopyButton
-                      key={key}
-                      text={emailAddress}
-                      contentName="Email address"
-                      className="text-base font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity capitalize"
-                    >
-                      {key}
-                    </CopyButton>
-                  )
-                }
-
-                return (
-                  <a
-                    key={key}
-                    href={url}
-                    target={url.startsWith('http') ? '_blank' : undefined}
-                    rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="text-base font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity capitalize"
+            {/* Champs */}
+            <div className="space-y-3">
+               <h3 className="text-sm font-medium text-zinc-900">Champion Pool</h3>
+               <div className="flex flex-wrap gap-2">
+                {leagueBlocks.champs.map((champ) => (
+                  <span
+                    key={champ}
+                    className="inline-flex items-center rounded-md border border-zinc-100 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600"
                   >
-                    {key}
-                  </a>
-                )
-              })}
+                    {champ}
+                  </span>
+                ))}
+              </div>
             </div>
-          </section>
-        </div>
+
+            {/* Ranked Goals */}
+            <div className="p-5 rounded-2xl bg-zinc-50/50 border border-zinc-100">
+               <h3 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4">Ranked Goals</h3>
+               <ul className="space-y-2">
+                {leagueBlocks.goals.map((goal) => (
+                  <li key={goal} className="flex gap-3 text-sm text-zinc-600">
+                    <span className="text-zinc-300">—</span>
+                    <span>{goal}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+             {/* Coaching / Misc */}
+             <div className="flex flex-col gap-1">
+                <h3 className="text-base font-semibold text-zinc-900">
+                   Coaching
+                </h3>
+                <p className="text-base text-zinc-500 font-light">
+                    Available for players below Master tier.
+                </p>
+            </div>
+
+             {/* Placeholder Section */}
+             <div className="rounded-xl border border-dashed border-zinc-200 p-6 text-center">
+               <p className="text-xs font-mono text-zinc-400 uppercase tracking-widest mb-1">
+                 Future Integration
+               </p>
+               <p className="text-sm text-zinc-500 font-light">
+                 Live stats or match history module coming soon.
+               </p>
+             </div>
+
+          </div>
+
+          {/* ANIME SECTION */}
+          <div className="flex flex-col gap-8">
+            <div className="border-b border-zinc-100 pb-4">
+              <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest">
+                Anime
+              </h2>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-zinc-900">Watched</h3>
+              <div className="flex flex-wrap gap-2">
+                {animeList.map((anime) => (
+                  <span
+                    key={anime}
+                    className="inline-flex items-center rounded-md border border-zinc-100 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600"
+                  >
+                    {anime}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-zinc-900">Watching</h3>
+              <div className="flex flex-wrap gap-2">
+                {animeStillWatching.map((anime) => (
+                  <span
+                    key={anime}
+                    className="inline-flex items-center rounded-md border border-zinc-100 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600"
+                  >
+                    {anime}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </section>
       </div>
     </main>
-  )
+  );
 }
-
- 
