@@ -29,6 +29,13 @@ export default async function BlogPage() {
           </p>
         </header>
 
+        {/* Notice */}
+        <div className="mb-12 p-4 rounded-xl border border-sky-200 bg-sky-50/50">
+          <p className="text-sm text-sky-600 font-light">
+            These are test blogs. The blog section is under works.
+          </p>
+        </div>
+
         {/* Blog Posts List */}
         <div className="space-y-12">
           {posts.length === 0 ? (
