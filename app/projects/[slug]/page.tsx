@@ -182,6 +182,22 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
 
       <section className="space-y-2">
         <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+          Download
+        </h3>
+        <p>
+          <a
+            href="https://drive.google.com/file/d/1O0ektc_0tjkeyghO7lGYMpI8UhmLWCwM/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity"
+          >
+            Download mennää.exe
+          </a>
+        </p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
           Getting started with Godot
         </h3>
         <p>
