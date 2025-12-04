@@ -101,6 +101,18 @@ export default function Portfolio() {
             </div>
           </div>
 
+          {/* Mobile Projects Section - appears after hero, before Experience */}
+          <div className="lg:hidden">
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-6">
+              Projects
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              {DATA.projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+          </div>
+
           {/* ... Rest of the sections (Experience, Toolkit, etc.) ... */}
           <section>
             <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-8">
@@ -121,23 +133,6 @@ export default function Portfolio() {
                     {job.period}
                   </span>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          <section>
-             <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-6">
-              Toolkit
-            </h2>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-base text-zinc-600 font-light">
-              {sortedSkills.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="inline-flex items-center rounded-sm px-3 py-1 text-base font-medium bg-zinc-50 text-zinc-700 hover:bg-zinc-100 transition-colors cursor-default"
-                  title={skill.category}
-                >
-                  {skill.name}
-                </span>
               ))}
             </div>
           </section>
@@ -165,14 +160,33 @@ export default function Portfolio() {
             </div>
           </section>
 
+          <section>
+             <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-6">
+              Toolkit
+            </h2>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-base text-zinc-600 font-light">
+              {sortedSkills.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="inline-flex items-center rounded-sm px-3 py-1 text-base font-medium bg-zinc-50 text-zinc-700 hover:bg-zinc-100 transition-colors cursor-default"
+                  title={skill.category}
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </section>
+
+   
+
           <footer className="pt-8 text-xs text-zinc-400 font-mono">
             <span>&copy; {new Date().getFullYear()} {DATA.name}.</span>
           </footer>
         </header>
 
 
-        {/* --- RIGHT COLUMN --- */}
-        <section className="lg:col-span-6 lg:col-start-7 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards">
+        {/* --- RIGHT COLUMN (Desktop Projects) --- */}
+        <section className="hidden lg:block lg:col-span-6 lg:col-start-7 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 fill-mode-backwards">
           <div className="grid grid-cols-1 gap-8">
             {DATA.projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
@@ -234,7 +248,7 @@ function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
   return (
     <Link 
       href={`/projects/${project.slug}`}
-      className="group relative block w-full aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-transparent hover:border-zinc-200 transition-colors"
+      className="group relative block w-full aspect-video bg-zinc-100 overflow-hidden rounded-xl lg:rounded-2xl border border-transparent hover:border-zinc-200 transition-colors"
     >
       <img 
         key={project.slug}
@@ -245,21 +259,21 @@ function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
       />
       
       <div
-        className="absolute inset-0 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8"
+        className="absolute inset-0 opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-300 lg:group-hover:opacity-100 flex flex-col justify-end p-3 lg:p-8"
         style={{
           background: `linear-gradient(to top, ${fromColor} 0%, ${midColor} 40%, transparent 100%)`,
         }}
       >
           <h3
-            className={`${textColors.title} text-2xl font-bold tracking-tight`}
+            className={`${textColors.title} text-sm lg:text-2xl font-bold tracking-tight`}
           >
             {project.title}
           </h3>
-          <p className={`${textColors.meta} text-base font-light mt-1`}>
+          <p className={`${textColors.meta} text-xs lg:text-base font-light mt-0.5 lg:mt-1 hidden lg:block`}>
             {project.tech.slice(0, 3).join("  •  ")}
           </p>
           <p
-            className={`${textColors.meta} text-sm font-normal mt-3 max-w-xl leading-relaxed`}
+            className={`${textColors.meta} text-xs lg:text-sm font-normal mt-1 lg:mt-3 max-w-xl leading-relaxed hidden lg:block`}
           >
             {project.description}
           </p>
