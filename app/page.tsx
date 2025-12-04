@@ -5,11 +5,33 @@ import { SpotifyNowPlaying } from "./components/spotify-now-playing";
 import { SocialLinksWithPreviews } from "./components/social-links-with-previews";
 
 export default function Portfolio() {
+  const categoryOrder: Record<string, number> = {
+    "programming language": 0,
+    framework: 1,
+    markup: 1,
+    styling: 1,
+    "styling framework": 1,
+    runtime: 1,
+    database: 2,
+    cloud: 2,
+    engine: 2,
+    tool: 3,
+    "design tool": 4,
+    pokemon: 5,
+  };
+
+  const sortedSkills = [...DATA.skills].sort((a, b) => {
+    const aCategoryOrder = categoryOrder[a.category] ?? 99;
+    const bCategoryOrder = categoryOrder[b.category] ?? 99;
+    if (aCategoryOrder !== bCategoryOrder) return aCategoryOrder - bCategoryOrder;
+
+    return a.name.localeCompare(b.name);
+  });
+
   return (
     <main className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white">
       {/* Responsive two-column layout without scroll lock */}
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-        
         {/* --- LEFT COLUMN --- */}
         <header className="lg:col-span-5 flex flex-col gap-14 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-left-4 duration-700">
           
@@ -108,11 +130,15 @@ export default function Portfolio() {
               Toolkit
             </h2>
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-base text-zinc-600 font-light">
-               {DATA.skills.map((skill) => (
-                 <span key={skill} className="hover:text-zinc-900 transition-colors cursor-default">
-                   {skill}
-                 </span>
-               ))}
+              {sortedSkills.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="inline-flex items-center rounded-sm px-3 py-1 text-base font-medium bg-zinc-50 text-zinc-700 hover:bg-zinc-100 transition-colors cursor-default"
+                  title={skill.category}
+                >
+                  {skill.name}
+                </span>
+              ))}
             </div>
           </section>
 
@@ -159,8 +185,52 @@ export default function Portfolio() {
   );
 }
 
-// Project Card (Unchanged)
 function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
+  // Per-project overlay base colors (hex values from your comment above)
+  const projectOverlayColor: Record<string, string> = {
+    "drafter-lol": "#171718",
+    ideastorm: "#e5e5fa",
+    mennaa: "#9cf250",
+    "sasken-cv-database": "#f8f9fa",
+    linkedinsanity: "#212225",
+  };
+
+  const projectTextColor: Record<
+    string,
+    { title: string; meta: string }
+  > = {
+    "drafter-lol": {
+      title: "text-white",
+      meta: "text-zinc-300",
+    },
+    ideastorm: {
+      title: "text-zinc-900",
+      meta: "text-zinc-700",
+    },
+    mennaa: {
+      title: "text-zinc-900",
+      meta: "text-zinc-700",
+    },
+    "sasken-cv-database": {
+      title: "text-zinc-900",
+      meta: "text-zinc-700",
+    },
+    linkedinsanity: {
+      title: "text-white",
+      meta: "text-zinc-300",
+    },
+  };
+
+  const baseColor = projectOverlayColor[project.slug] ?? "#18181b";
+  const fromColor = `${baseColor}E6`; // ~90% opacity
+  const midColor = `${baseColor}99`; // ~60% opacity
+  const textColors =
+    projectTextColor[project.slug] ??
+    {
+      title: "text-white",
+      meta: "text-zinc-300",
+    };
+
   return (
     <Link 
       href={`/projects/${project.slug}`}
@@ -174,12 +244,24 @@ function ProjectCard({ project }: { project: typeof DATA.projects[0] }) {
         className="object-cover w-full h-full md:transition-all md:duration-500 md:ease-out md:group-hover:grayscale-0 md:group-hover:scale-105"
       />
       
-      <div className="absolute inset-0 bg-linear-to-t from-zinc-900/90 via-zinc-900/40 to-transparent opacity-100 md:opacity-0 md:bg-zinc-900/60 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8">
-          <h3 className="text-white text-2xl font-bold tracking-tight">
+      <div
+        className="absolute inset-0 opacity-100 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100 flex flex-col justify-end p-8"
+        style={{
+          background: `linear-gradient(to top, ${fromColor} 0%, ${midColor} 40%, transparent 100%)`,
+        }}
+      >
+          <h3
+            className={`${textColors.title} text-2xl font-bold tracking-tight`}
+          >
             {project.title}
           </h3>
-          <p className="text-zinc-300 text-base font-light mt-1">
+          <p className={`${textColors.meta} text-base font-light mt-1`}>
             {project.tech.slice(0, 3).join("  •  ")}
+          </p>
+          <p
+            className={`${textColors.meta} text-sm font-normal mt-3 max-w-xl leading-relaxed`}
+          >
+            {project.description}
           </p>
       </div>
     </Link>

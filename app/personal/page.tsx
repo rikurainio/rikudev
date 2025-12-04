@@ -109,10 +109,11 @@ export default function PersonalPage() {
             <div className="flex flex-wrap gap-3">
               {DATA.skills.map((skill) => (
                 <span
-                  key={skill}
-                  className="text-base text-zinc-700 bg-zinc-100 px-4 py-2 rounded-lg hover:bg-zinc-200 transition-colors"
+                  key={skill.name}
+                  className="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-700 hover:border-zinc-300 hover:bg-zinc-100 transition-colors"
+                  title={skill.category}
                 >
-                  {skill}
+                  {skill.name}
                 </span>
               ))}
             </div>
