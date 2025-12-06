@@ -44,7 +44,7 @@ body {
   background-color: rgb(244 244 245);
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
-  font-size: 0.875em;
+  font-size: 1em;
 }
 
 .prose pre {
@@ -60,4 +60,40 @@ body {
   background-color: transparent;
   padding: 0;
   color: inherit;
+}
+
+/* Syntax highlighting styles for rehype-pretty-code */
+/* The plugin adds inline styles for colors, we just need to handle structure */
+
+/* Line highlighting */
+pre code .line.highlighted {
+  background-color: rgba(101, 117, 133, 0.16);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 2px solid rgba(101, 117, 133, 0.5);
+}
+
+/* Word highlighting */
+pre code .word {
+  background-color: rgba(101, 117, 133, 0.3);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+}
+
+/* Ensure code blocks have proper structure */
+pre code {
+  display: grid;
+  min-width: 100%;
+  overflow-wrap: break-word;
+  border-radius: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: 1.75;
+}
+
+pre code .line {
+  width: 100%;
+  display: inline-block;
 }

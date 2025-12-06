@@ -1,0 +1,155 @@
+export const metadata = {
+  title: "Securing Your VPS and Essential Docker Tools",
+  description: "Quick guide to VPS security basics and setting up Adminer and Dozzle with htpasswd authentication in Docker Compose.",
+  author: "Riku Rainio",
+  date: "2024-11-20",
+  tags: ["VPS", "Docker", "Security", "DevOps"],
+  readTime: "5 min read"
+}
+
+# Securing Your VPS and Essential Docker Tools
+
+Essential security steps and helpful Docker containers for managing your VPS.
+
+## VPS Security Basics
+
+### Firewall Setup
+
+```bash
+# UFW (Ubuntu/Debian)
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+
+# Check status
+sudo ufw status
+```
+
+### SSH Hardening
+
+```bash
+# Edit SSH config
+sudo nano /etc/ssh/sshd_config
+
+# Recommended settings:
+# PermitRootLogin no
+# PasswordAuthentication no  # Use keys only
+# Port 2222  # Change default port
+# MaxAuthTries 3
+
+# Restart SSH
+sudo systemctl restart sshd
+```
+
+### Fail2Ban
+
+```bash
+sudo apt install fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban
+```
+
+## Essential Docker Containers
+
+### Adminer (Database Management)
+
+Web-based database client supporting MySQL, PostgreSQL, SQLite, and more.
+
+### Dozzle (Log Viewer)
+
+Real-time log viewer for Docker containers.
+
+## Docker Compose Setup
+
+### Create htpasswd File
+
+```bash
+# Install htpasswd (Apache utils)
+sudo apt install apache2-utils
+
+# Create password file
+htpasswd -c ./auth/adminer.htpasswd admin
+htpasswd ./auth/adminer.htpasswd user2
+
+# For Dozzle
+htpasswd -c ./auth/dozzle.htpasswd admin
+```
+
+### docker-compose.yml
+
+```yaml
+services:
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer.rule=Host(`adminer.yourdomain.com`)"
+      - "traefik.http.routers.adminer.entrypoints=websecure"
+      - "traefik.http.routers.adminer.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.adminer-auth.basicauth.usersfile=/auth/adminer.htpasswd"
+      - "traefik.http.routers.adminer.middlewares=adminer-auth"
+    volumes:
+      - ./auth/adminer.htpasswd:/auth/adminer.htpasswd:ro
+    networks:
+      - web
+
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./auth/dozzle.htpasswd:/auth/dozzle.htpasswd:ro
+    environment:
+      DOZZLE_AUTH_PROVIDER: simple
+      DOZZLE_AUTH_USERNAME: admin
+      DOZZLE_AUTH_PASSWORD: your_secure_password
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.yourdomain.com`)"
+      - "traefik.http.routers.dozzle.entrypoints=websecure"
+      - "traefik.http.routers.dozzle.tls.certresolver=letsencrypt"
+      - "traefik.http.middlewares.dozzle-auth.basicauth.usersfile=/auth/dozzle.htpasswd"
+      - "traefik.http.routers.dozzle.middlewares=dozzle-auth"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+```
+
+## Quick Start
+
+```bash
+# Create auth directory
+mkdir -p auth
+
+# Generate passwords
+htpasswd -c ./auth/adminer.htpasswd admin
+htpasswd -c ./auth/dozzle.htpasswd admin
+
+# Start services
+docker-compose up -d
+
+# Access:
+# Adminer: http://your-server:8080
+```
+
+## Security Tips
+
+- Use strong passwords for htpasswd
+- Restrict access by IP in firewall if possible
+- Use HTTPS/TLS for all services
+- Regularly update containers: `docker-compose pull && docker-compose up -d`
+- Monitor logs with Dozzle for suspicious activity
+- Keep SSH keys secure and rotate regularly

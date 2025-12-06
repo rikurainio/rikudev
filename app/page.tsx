@@ -33,7 +33,7 @@ export default function Portfolio() {
       {/* Responsive two-column layout without scroll lock */}
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
         {/* --- LEFT COLUMN --- */}
-        <header className="lg:col-span-5 flex flex-col gap-14 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-left-4 duration-700">
+        <header className="lg:col-span-5 flex flex-col gap-12 py-12 md:py-20 lg:py-24 animate-in fade-in slide-in-from-left-4 duration-700">
           
           {/* Identity & Status */}
           <div className="flex flex-col gap-4">
@@ -175,7 +175,7 @@ export default function Portfolio() {
                 {sortedSkills.map((skill) => (
                   <span
                     key={skill.name}
-                    className="inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition-all cursor-default"
+                    className="inline-flex items-center rounded-md text-[0.95rem] px-3 py-1.5 font-medium transition-all cursor-default"
                     title={skill.category}
                   >
                     {skill.name}
