@@ -40,7 +40,7 @@ export function SpotifyNowPlaying() {
   if (isLoading) {
     return (
       <div className="-mt-2">
-        <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-100 animate-pulse">
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 animate-pulse">
           {/* Album image skeleton */}
           <div className="w-12 h-12 rounded bg-zinc-300"></div>
           {/* Text content skeleton - exact same structure as real component */}
@@ -74,7 +74,7 @@ export function SpotifyNowPlaying() {
         href={data.songUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-3 p-3 rounded-lg bg-zinc-100 hover:bg-zinc-200 transition-colors"
+        className="group flex items-center gap-3 p-3 rounded-lg bg-zinc-50 hover:bg-zinc-100 transition-colors"
       >
         {data.albumImageUrl && (
           <img

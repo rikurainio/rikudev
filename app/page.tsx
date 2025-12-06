@@ -114,66 +114,74 @@ export default function Portfolio() {
           </div>
 
           {/* ... Rest of the sections (Experience, Toolkit, etc.) ... */}
+          {/* EXPERIENCE SECTION */}
           <section>
-            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-8">
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4 ml-1">
               Experience
             </h2>
-            <div className="flex flex-col gap-8">
+            {/* The Container Card */}
+            <div className="flex flex-col gap-6 bg-zinc-50/50 rounded-2xl p-6">
               {DATA.jobs.map((job) => (
-                <div key={job.company} className="flex justify-between items-baseline group">
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-xl font-semibold text-zinc-900">
+                <div key={job.company} className="flex flex-col gap-1 group">
+                  <div className="flex justify-between items-baseline">
+                    <h3 className="text-base font-semibold text-zinc-900">
                       {job.company}
                     </h3>
-                    <p className="text-base text-zinc-500 font-light">
-                      {job.role}
-                    </p>
+                    <span className="text-xs text-zinc-400 font-mono tabular-nums">
+                      {job.period}
+                    </span>
                   </div>
-                  <span className="text-sm text-zinc-400 font-mono tabular-nums">
-                    {job.period}
-                  </span>
+                  <p className="text-sm text-zinc-500 font-normal">
+                    {job.role}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
 
+          {/* EDUCATION SECTION */}
           <section>
-            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-8">
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4 ml-1">
               Education
             </h2>
-            <div className="flex flex-col gap-8">
+            {/* The Container Card */}
+            <div className="flex flex-col gap-6 bg-zinc-50/50 rounded-2xl p-6">
               {DATA.education.map((edu) => (
-                <div key={`${edu.institution}-${edu.degree}`} className="flex justify-between items-baseline group">
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-xl font-semibold text-zinc-900">
+                <div key={`${edu.institution}-${edu.degree}`} className="flex flex-col gap-1 group">
+                  <div className="flex justify-between items-baseline">
+                    <h3 className="text-base font-semibold text-zinc-900">
                       {edu.institution}
                     </h3>
-                    <p className="text-base text-zinc-500 font-light">
-                      {edu.degree}
-                    </p>
+                    <span className="text-xs text-zinc-400 font-mono tabular-nums">
+                      {edu.period}
+                    </span>
                   </div>
-                  <span className="text-sm text-zinc-400 font-mono tabular-nums">
-                    {edu.period}
-                  </span>
+                  <p className="text-sm text-zinc-500 font-normal">
+                    {edu.degree}
+                  </p>
                 </div>
               ))}
             </div>
           </section>
 
           <section>
-             <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-6">
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4 ml-1 mt-8">
               Toolkit
             </h2>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-base text-zinc-600 font-light">
-              {sortedSkills.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="inline-flex items-center rounded-sm px-3 py-1 text-base font-medium bg-zinc-50 text-zinc-700 hover:bg-zinc-100 transition-colors cursor-default"
-                  title={skill.category}
-                >
-                  {skill.name}
-                </span>
-              ))}
+            
+            {/* The Container Card */}
+            <div className="bg-zinc-50/50 rounded-2xl p-6">
+              <div className="flex flex-wrap gap-2">
+                {sortedSkills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition-all cursor-default"
+                    title={skill.category}
+                  >
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </section>
 
