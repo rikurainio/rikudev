@@ -165,7 +165,7 @@ export default function Portfolio() {
           </section>
 
           <section>
-            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4 ml-1 mt-8">
+            <h2 className="text-sm font-bold text-zinc-900 uppercase tracking-widest mb-4 ml-1">
               Toolkit
             </h2>
             
