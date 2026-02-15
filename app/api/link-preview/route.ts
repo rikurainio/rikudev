@@ -44,9 +44,10 @@ export async function GET(request: Request) {
     clearTimeout(timeoutId)
 
     if (!response.ok) {
+      const status = response.status >= 200 && response.status <= 599 ? response.status : 502;
       return NextResponse.json(
-        { error: `Failed to fetch: ${response.statusText}` },
-        { status: response.status }
+        { error: `Failed to fetch: ${response.statusText} (${response.status})` },
+        { status }
       )
     }
 

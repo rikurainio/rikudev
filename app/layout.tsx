@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Background } from "./components/background";
 
 // Clean sans-serif for reading
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -47,8 +48,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${mono.variable} antialiased bg-white text-zinc-900 selection:bg-zinc-900 selection:text-white`}
+        className={`${inter.variable} ${mono.variable} antialiased bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white relative`}
       >
+        <Background />
         {children}
       </body>
     </html>

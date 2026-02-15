@@ -40,20 +40,20 @@ export const DATA = {
       description: "A real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
       tech: ["Next.js", "Socket.io", "Polar", "TypeScript", "PostgreSQL"],
       link: "https://drafter.lol",
-      image: "drafter.png",
+      image: "drafter.jpg",
       accentColor: "emerald",
     },
     {
-      title: "Ideastorm",
-      slug: "ideastorm",
-      description: "A SaaS idea database, real problems collected and analyzed",
-      tech: ["Next.js", "TypeScript", "Openrouter SDK"],
-      link: "",
-      image: "ideastorm.png",
+      title: "Warehouse Jiu Jitsu app",
+      slug: "warehousejiujitsu",
+      description: "A mobile application for warehouse jiu-jitsu betting with fake credits",
+      tech: ["Next.js", "Socket.io", "Oauth", "TypeScript"],
+      link: "https://definitelynotgambling.online",
+      image: "warehousejj.png",
       accentColor: "violet",
     },
     {
-      title: "Mennää",
+      title: "Mennää Game",
       slug: "mennaa",
       description: "A Godot game project",
       tech: ["Godot", "GDScript"],
@@ -61,7 +61,7 @@ export const DATA = {
       image: "mennaa.png",
       accentColor: "sky",
     },
-   
+
     {
       title: "Sasken CV Database",
       slug: "sasken-cv-database",
@@ -71,9 +71,9 @@ export const DATA = {
       image: "sasken.png",
       accentColor: "amber",
     },
- 
+
     {
-      title: "LinkedInsanity",
+      title: "LinkedInsanity job applier",
       slug: "linkedinsanity",
       description: "Automated LinkedIn Easy Applier with customazible settings",
       tech: ["JavaScript", "Browser Automation"],

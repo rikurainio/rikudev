@@ -1,0 +1,90 @@
+export const metadata = {
+  title: "Longest Consecutive Sequence",
+  date: "2026-02-15",
+  difficulty: "Medium",
+  description: "Given an unsorted array of integers, find the length of the longest consecutive elements sequence in O(n) time.",
+  tags: ["Array", "Hash Table", "Set"]
+}
+
+# Longest Consecutive Sequence
+
+**Question:** [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/description/)
+
+Given an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence. The algorithm must run in **O(n)** time.
+
+---
+
+### Initial Thought: Sorting
+
+My first instinct was to sort the array and then iterate through it to find the longest streak.
+
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int current = 0;
+        int next = 0;
+        int length = 1;
+        int size = nums.size();
+        sort(nums.begin(), nums.end());
+        for(int i=0; i<size; i++){
+            if(i == size-1){
+                return length;
+            }
+
+            current = nums[i];
+            next = nums[i+1];
+
+            if(next == current+1){
+                std::cout << "Next:" << next << "Current:" << current << std::endl;
+                length += 1;
+            }
+        }
+        return length;
+    }
+};
+```
+
+### The Speed Bump
+While this works, `std::sort` yields **O(n log n)** time complexity. The problem specifically asks for an **O(n)** solution, so we need a more efficient way to track consecutive numbers without sorting.
+
+---
+
+### Optimized Approach: Hash Set
+
+`std::unordered_set`, gives constant time $O(1)$ lookups.
+
+1. Insert all numbers into a `unordered_set`.
+2. Iterate through the set.
+3. For each number, check if it's the end of the sequence (or start if you want to) (if `num+1/num-1` exists).
+4. If it's the end, keep checking for consecutive lesser numbers, if start, go to the other direction.
+5. Update the maximum length found so far.
+
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums){
+        std::unordered_set<int> unums(nums.begin(), nums.end());
+        int longest_consecutive = 1;
+
+        for(int num : unums){
+            if(unums.find(num+1) == unums.end()){
+                int currentNum = num;
+                int currentStreak = 1;
+
+                // try finding minus ones (consecutive)
+                while(unums.find(currentNum -1) != unums.end()){
+                    currentNum -= 1;
+                    currentStreak += 1;
+                }
+
+                longest_consecutive = max(longest_consecutive, currentStreak);
+            }
+        }
+
+        return longest_consecutive;
+    }
+};
+```
+
+What opened this problem for me was understanding that basically we can for each integer inspect if it's the start or the end of a sequence, if not, then it must be a part of it and it doesn't really matter inspecting them.

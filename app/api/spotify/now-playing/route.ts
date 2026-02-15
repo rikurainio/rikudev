@@ -27,11 +27,7 @@ const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-pla
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
 
 async function getAccessToken() {
-  console.log('[Spotify API] Getting access token...')
-  console.log('[Spotify API] Client ID exists:', !!client_id)
-  console.log('[Spotify API] Client Secret exists:', !!client_secret)
-  console.log('[Spotify API] Refresh Token exists:', !!refresh_token)
-
+  // console.log('[Spotify API] Getting access token...')
   if (!client_id || !client_secret || !refresh_token) {
     console.error('[Spotify API] Missing credentials:', {
       hasClientId: !!client_id,
@@ -42,7 +38,7 @@ async function getAccessToken() {
   }
 
   try {
-    console.log('[Spotify API] Requesting token from:', TOKEN_ENDPOINT)
+    // console.log('[Spotify API] Requesting token...')
     const response = await fetch(TOKEN_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -55,8 +51,7 @@ async function getAccessToken() {
       }),
     })
 
-    console.log('[Spotify API] Token response status:', response.status)
-    console.log('[Spotify API] Token response ok:', response.ok)
+    /* console.log('[Spotify API] Token response status:', response.status) */
 
     if (!response.ok) {
       const errorText = await response.text()
@@ -69,7 +64,7 @@ async function getAccessToken() {
     }
 
     const data = await response.json()
-    console.log('[Spotify API] Token received, has access_token:', !!data.access_token)
+    // console.log('[Spotify API] Token received')
     return data.access_token
   } catch (error) {
     console.error('[Spotify API] Error getting access token:', error)
@@ -78,28 +73,21 @@ async function getAccessToken() {
 }
 
 export async function GET() {
-  console.log('[Spotify API] ===== GET /api/spotify/now-playing =====')
-  
   const accessToken = await getAccessToken()
 
   if (!accessToken) {
-    console.log('[Spotify API] No access token, returning isPlaying: false')
+    // console.log('[Spotify API] No access token')
     return NextResponse.json({ isPlaying: false }, { status: 200 })
   }
 
-  console.log('[Spotify API] Access token obtained, fetching now playing...')
+  // console.log('[Spotify API] Token obtained')
 
   try {
-    console.log('[Spotify API] Fetching from:', NOW_PLAYING_ENDPOINT)
     const response = await fetch(NOW_PLAYING_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     })
-
-    console.log('[Spotify API] Now playing response status:', response.status)
-    console.log('[Spotify API] Now playing response ok:', response.ok)
-    console.log('[Spotify API] Response headers:', Object.fromEntries(response.headers.entries()))
 
     if (response.status === 204) {
       console.log('[Spotify API] Status 204 - No content (not playing)')
@@ -117,10 +105,7 @@ export async function GET() {
     }
 
     const data: SpotifyTrack = await response.json()
-    console.log('[Spotify API] Raw response data:', JSON.stringify(data, null, 2))
-    console.log('[Spotify API] Data has item:', !!data.item)
-    console.log('[Spotify API] Currently playing type:', data.currently_playing_type)
-    console.log('[Spotify API] Is playing:', data.is_playing)
+    // console.log('[Spotify API] Raw response data:', JSON.stringify(data, null, 2))
 
     if (!data.item) {
       console.log('[Spotify API] No item in response, returning isPlaying: false')
@@ -141,7 +126,7 @@ export async function GET() {
       songUrl: data.item.external_urls.spotify,
     }
 
-    console.log('[Spotify API] Returning result:', JSON.stringify(result, null, 2))
+    // console.log('[Spotify API] Returning result')
     return NextResponse.json(result, { status: 200 })
   } catch (error) {
     console.error('[Spotify API] Exception caught:', error)

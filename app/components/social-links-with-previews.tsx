@@ -54,7 +54,10 @@ export function SocialLinksWithPreviews({ links, linkClassName }: Props) {
     const controller = new AbortController()
 
     const externalUrls = Object.values(links).filter(
-      (url) => url.startsWith('http://') || url.startsWith('https://'),
+      (url) => {
+        const isSocialStatic = url.includes('instagram.com') || url.includes('linkedin.com');
+        return (url.startsWith('http://') || url.startsWith('https://')) && !isSocialStatic;
+      }
     )
 
     async function preload() {

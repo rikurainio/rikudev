@@ -472,66 +472,68 @@ export default async function ProjectPage({
   const details = PROJECT_DETAILS[slug];
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-20 md:py-32 bg-white text-zinc-900">
-      {/* Back link */}
-      <Link
-        href="/"
-        className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 mb-12 transition-colors font-sans"
-      >
-        <span className="mr-2">←</span>
-        Back to portfolio
-      </Link>
+    <main className="min-h-screen bg-white text-zinc-900">
+      <article className="max-w-4xl mx-auto px-6 py-20 md:py-32">
+        {/* Back link */}
+        <Link
+          href="/"
+          className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 mb-12 transition-colors font-sans"
+        >
+          <span className="mr-2">←</span>
+          Back to portfolio
+        </Link>
 
-      {/* Project Header */}
-      <header className="mb-12">
-        <h1 className="text-5xl font-extrabold tracking-tighter mb-4 font-sans">
-          {project.title}
-        </h1>
-        <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-sm text-zinc-900 border-b border-zinc-300 pb-0.5 font-mono"
-            >
-              {t}
-            </span>
-          ))}
+        {/* Project Header */}
+        <header className="mb-12">
+          <h1 className="text-5xl font-extrabold tracking-tighter mb-4 font-sans">
+            {project.title}
+          </h1>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="text-sm text-zinc-900 border-b border-zinc-300 pb-0.5 font-mono"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </header>
+
+        {/* Project Image */}
+        <div className="mb-12 aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-zinc-200">
+          <img
+            src={`/${project.image}`}
+            alt={`Preview of ${project.title}`}
+            className="w-full h-full object-cover"
+          />
         </div>
-      </header>
 
-      {/* Project Image */}
-      <div className="mb-12 aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-zinc-200">
-        <img
-          src={`/${project.image}`}
-          alt={`Preview of ${project.title}`}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Short description */}
-      <section className="mb-10">
-        <p className="text-lg leading-relaxed max-w-2xl font-sans text-zinc-800">
-          {project.description}
-        </p>
-      </section>
-
-      {/* Detailed write-up (if available) */}
-      {details && <section className="mb-12">{details}</section>}
-
-      {/* External Link */}
-      {project.link && (
-        <section className="mt-4">
-          <Link
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-sm font-medium text-zinc-900 pb-0.5 transition-colors hover:underline underline-offset-4 decoration-zinc-900 font-sans"
-          >
-            View project
-            <span className="ml-2">→</span>
-          </Link>
+        {/* Short description */}
+        <section className="mb-10">
+          <p className="text-lg leading-relaxed max-w-2xl font-sans text-zinc-800">
+            {project.description}
+          </p>
         </section>
-      )}
+
+        {/* Detailed write-up (if available) */}
+        {details && <section className="mb-12">{details}</section>}
+
+        {/* External Link */}
+        {project.link && (
+          <section className="mt-4">
+            <Link
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-sm font-medium text-zinc-900 pb-0.5 transition-colors hover:underline underline-offset-4 decoration-zinc-900 font-sans"
+            >
+              View project
+              <span className="ml-2">→</span>
+            </Link>
+          </section>
+        )}
+      </article>
     </main>
   );
 }

@@ -1,0 +1,84 @@
+export const metadata = {
+  title: "Template",
+  date: "2026-02-15",
+  difficulty: "Easy",
+  description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+  tags: []
+}
+
+# Two Sum
+
+**Question:** [1. Two Sum](https://leetcode.com/problems/two-sum/description/?envType=problem-list-v2&envId=oizxjoit&)
+
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+
+---
+
+### Initial Thought:
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // empty and 2len
+        if(nums.size() == 0){return {};};
+        if(nums.size() == 2){
+            if(nums[0]+nums[1]==target){return {0,1};}
+            else {return {};}
+        }
+
+        // num is more than target it cant be part of the sum
+        // num is zero, then the other has to be the target
+        // could instantly weed out numbers larger than target
+
+        std::unordered_set unums(nums.begin(), nums.end());
+        for(int num : unums){
+            if(num<=target){
+                if(unums.find(target-num) != unums.end()){
+                    return {/* index pair for num, target-num*/};
+                }
+            }
+        }
+
+        return {};
+    }
+};
+```
+
+### Problems faced?
+std::unordered_set does not store indices. So instead we should probably use a unordered_map.
+
+---
+
+### Changing to unordered_map:
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // empty and 2len
+        if(nums.size() == 0){return {};};
+        if(nums.size() == 2){
+            if(nums[0]+nums[1]==target){return {0,1};}
+            else {return {};}
+        }
+
+        // num is more than target it cant be part of the sum
+        // num is zero, then the other has to be the target
+        // could instantly weed out numbers larger than target
+
+        std::unordered_map<int,int> seen;
+        for(int i=0; i<nums.size(); i++){
+            int complement = target - nums[i];
+
+            if(seen.find(complement) != seen.end()){
+                return { seen[complement], i};
+            }
+
+            seen[nums[i]] = i;
+        }
+
+        return {};
+    }
+};
+```
+this way we only have to check if the complement already exists in the seen map, and if it does, we can just return the indices for the complement and the current integer.
