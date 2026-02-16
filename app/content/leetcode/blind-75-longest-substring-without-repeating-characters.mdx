@@ -1,0 +1,76 @@
+export const metadata = {
+  title: "Longest Substring Without Repeating Characters",
+  date: "2026-02-16",
+  difficulty: "Medium",
+  description: "Given a string s, find the length of the longest substring without repeating characters.",
+  tags: []
+}
+
+# Longest Substring Without Repeating Characters
+
+**Question:** [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/?envType=problem-list-v2&envId=oizxjoit&)
+
+Given a string `s`, find the length of the longest substring without repeating characters.
+
+---
+
+### Initial Thought:
+My initial though was, that for each char, just simply list all the upcoming chars and keep track of used chars and if hit a duplicate, save that streak and move on to the next character.
+
+But my intial solution is this, time complexity
+wise it's horrible, probably O(n^2).
+
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int length = s.length();
+        int best_streak = 0;
+
+        for(int i=0; i<length; i++){
+            std::unordered_set<char> current_substring = {};
+            for(int j=i; j<length; j++){
+                char current = s[j];
+                if(current_substring.find(current) != current_substring.end()){
+                    break;
+                }
+                current_substring.insert(current);
+            }
+
+            if(current_substring.size() >= best_streak){
+                best_streak = current_substring.size();
+            }
+        }
+        return best_streak;
+    }
+};
+```
+
+---
+
+### Optimized Approach:
+```cpp
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        std::unordered_map<char, int> charwindow = {};
+        int left=0; int right=0;
+        int best_streak = 0;
+
+        for(right; right < s.length(); right++){
+            char current = s[right];
+            if(charwindow.count(current) && charwindow[current] >= left){
+                int seen_left_idx = charwindow[current];
+                left = seen_left_idx + 1;
+            }
+            charwindow[current] = right;
+            best_streak = std::max(best_streak, right-left+1);
+        }
+
+        return best_streak;
+    }
+};
+
+```
+
+Using a sliding window and a hashmap gives O(n) running solution, instead of the first naive approach.

@@ -11,7 +11,7 @@ Relevant Coursework: Data Structures & Algorithms, Programming1,2,3, Software Pr
 
 ## EXPERIENCE
 
-**AI Annotator** , DataAnnotation ‑ Freelance **March 2024 – Present**
+**AI Annotator** , DataAnnotation ‑ Freelance **March 2024 – February 2026**
 
 - Improved text‑based language models by rating prompts based on correctness, cohesiveness, verbosity, and con‑
     text, including testing models with complex, carefully crafted prompts

@@ -53,21 +53,21 @@ export default async function LeetCodePostPage({
   }
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900 selection:bg-zinc-900 selection:text-white">
-      <article className="max-w-3xl mx-auto px-6 py-12 md:py-20 animate-in fade-in duration-700">
+    <main className="min-h-screen selection:bg-white selection:text-black">
+      <article className="max-w-3xl mx-auto px-6 py-12 md:py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
         {/* Navigation */}
         <div className="flex items-center justify-between mb-12">
           <Link
             href="/leetcode"
-            className="text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors group"
+            className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors"
           >
-            <span className="inline-block transition-transform group-hover:-translate-x-1">←</span> Back to LeetCode
+            ← Back
           </Link>
 
           <div className="flex items-center gap-2">
-            <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded ${post.metadata.difficulty === 'Easy' ? 'bg-emerald-100 text-emerald-700' :
-                post.metadata.difficulty === 'Medium' ? 'bg-amber-100 text-amber-700' :
-                  'bg-rose-100 text-rose-700'
+            <span className={`text-xs font-bold uppercase tracking-widest ${post.metadata.difficulty === 'Easy' ? 'text-emerald-500' :
+              post.metadata.difficulty === 'Medium' ? 'text-amber-500' :
+                'text-rose-500'
               }`}>
               {post.metadata.difficulty}
             </span>
@@ -75,27 +75,26 @@ export default async function LeetCodePostPage({
         </div>
 
         {/* Header */}
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <header className="mb-16">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-8">
             {post.metadata.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500 mb-6">
-            <time dateTime={post.metadata.date} className="font-mono">
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-tight text-zinc-600 mb-8 pb-8 border-b border-zinc-900">
+            <time dateTime={post.metadata.date}>
               {new Date(post.metadata.date).toLocaleDateString('en-US', {
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric',
               })}
             </time>
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {post.metadata.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-medium text-zinc-600 bg-zinc-50 border border-zinc-100 px-2.5 py-1 rounded-md"
+                className="text-xs font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 px-2 py-0.5 rounded-sm"
               >
                 {tag}
               </span>
@@ -104,20 +103,17 @@ export default async function LeetCodePostPage({
         </header>
 
         {/* Content */}
-        <div className="prose max-w-none">
+        <div className="prose prose-lg prose-invert prose-zinc max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-zinc-200 prose-code:text-zinc-200 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-pre:rounded-sm">
           <PostContent />
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-zinc-100 flex flex-col items-center gap-6">
-          <p className="text-sm text-zinc-400 italic">
-            Solution documented by {DATA.name}
-          </p>
+        <footer className="mt-20 pt-12 border-t border-zinc-900 text-center">
           <Link
             href="/leetcode"
-            className="text-sm font-semibold text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity"
+            className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors inline-block"
           >
-            Explore more solutions
+            ← Back to all solutions
           </Link>
         </footer>
       </article>

@@ -15,7 +15,7 @@ const withMDX = createMDX({
       [
         rehypePrettyCode,
         {
-          theme: 'one-dark-pro', // You can change this to 'dracula', 'github-dark', etc.
+          theme: 'vesper',
           keepBackground: true,
         },
       ],

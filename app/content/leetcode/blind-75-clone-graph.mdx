@@ -1,0 +1,70 @@
+export const metadata = {
+  title: "Clone Graph",
+  date: "2026-02-15",
+  difficulty: "Medium",
+  description: "Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.",
+  tags: ["Hash Table", "Depth-First Search", "Breadth-First Search", "Graph Theory"]
+}
+
+# Clone Graph
+
+**Question:** [133. Clone Graph](https://leetcode.com/problems/clone-graph/?envType=problem-list-v2&envId=oizxjoit&)
+
+Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.
+
+---
+
+### Initial Thought:
+Cloning a graph isn’t just copying values — we must duplicate its entire structure. Since graphs can contain cycles, we need a way to avoid infinite recursion and duplicate nodes. The key idea is to traverse the graph while storing already cloned nodes in a hash map.
+
+```cpp
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+*/
+
+class Solution {
+public:
+    unordered_map<Node*, Node*> visited;
+
+    Node* cloneGraph(Node* node) {
+        if (!node) return nullptr;
+
+        // If already cloned, return it
+        if (visited.count(node)) {
+            return visited[node];
+        }
+
+        // Create clone
+        Node* clone = new Node(node->val);
+
+        // Mark as visited
+        visited[node] = clone;
+
+        // Clone neighbors
+        for (Node* neighbor : node->neighbors) {
+            clone->neighbors.push_back(cloneGraph(neighbor));
+        }
+
+        return clone;
+    }
+};
+```
+
+This solution uses DFS to traverse the graph and an unordered map to ensure each node is cloned exactly once. The map prevents cycles from causing infinite recursion and guarantees that neighbor relationships are correctly rebuilt in the copied graph.

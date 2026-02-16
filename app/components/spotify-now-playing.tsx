@@ -40,62 +40,75 @@ export function SpotifyNowPlaying() {
   if (isLoading) {
     return (
       <div className="-mt-2">
-        <div className="flex items-center gap-3 p-3 rounded-lg bg-zinc-50 animate-pulse">
-          {/* Album image skeleton */}
-          <div className="w-12 h-12 rounded bg-zinc-300"></div>
-          {/* Text content skeleton - exact same structure as real component */}
+        <div className="flex items-center gap-3 p-3 rounded-sm bg-zinc-900/50 border border-zinc-800 animate-pulse">
+          <div className="w-10 h-10 rounded-sm bg-zinc-800"></div>
           <div className="flex-1 min-w-0">
-            <div className="text-[10px] text-zinc-400 font-light uppercase tracking-wider mb-0.5">
-              <div className="w-20 h-[15px] bg-zinc-200 rounded"></div>
-            </div>
-            <div className="text-sm font-semibold text-zinc-900 truncate">
-              <div className="w-32 h-[18px] bg-zinc-200 rounded"></div>
-            </div>
-            <div className="text-xs text-zinc-600 truncate mt-0.5">
-              <div className="w-24 h-[16px] bg-zinc-200 rounded"></div>
-            </div>
+            <div className="w-16 h-2 bg-zinc-800 rounded-full mb-1.5 opacity-50"></div>
+            <div className="w-24 h-2.5 bg-zinc-800 rounded-full mb-1"></div>
+            <div className="w-20 h-2 bg-zinc-800 rounded-full opacity-50"></div>
           </div>
         </div>
       </div>
     )
   }
 
-  if (!data) {
-    return null
-  }
-
-  if (!data.isPlaying) {
+  if (!data || !data.isPlaying) {
     return null
   }
 
   return (
-    <div className="-mt-2">
+    <div className="w-full mt-2">
       <a
         href={data.songUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center gap-3 p-3 rounded-lg bg-zinc-50 hover:bg-zinc-100 transition-colors"
+        className="group relative flex items-center gap-3 p-2 rounded-sm bg-zinc-900/40 border border-zinc-800/40 hover:bg-zinc-800/40 transition-all w-full overflow-hidden"
       >
-        {data.albumImageUrl && (
-          <img
-            src={data.albumImageUrl}
-            alt={data.album || 'Album cover'}
-            className="w-12 h-12 rounded object-cover"
-          />
-        )}
-        <div className="flex-1 min-w-0">
-          <div className="text-[10px] text-zinc-400 font-light uppercase tracking-wider mb-0.5">
-            Listening to Spotify
+        <div className="relative w-10 h-10 shrink-0">
+          {data.albumImageUrl ? (
+            <img
+              src={data.albumImageUrl}
+              alt={data.album || 'Album cover'}
+              className="w-full h-full rounded-xs object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+            />
+          ) : (
+            <div className="w-full h-full bg-zinc-800 rounded-xs" />
+          )}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-end gap-[1.5px] h-3">
+              <div className="w-[1.5px] bg-emerald-500 animate-[music-wave_1s_ease-in-out_infinite]" />
+              <div className="w-[1.5px] bg-emerald-500 animate-[music-wave_0.8s_ease-in-out_infinite_0.1s]" />
+              <div className="w-[1.5px] bg-emerald-500 animate-[music-wave_1.2s_ease-in-out_infinite_0.2s]" />
+            </div>
           </div>
-          <div className="text-sm font-semibold text-zinc-900 truncate group-hover:text-zinc-700 transition-colors">
-            {data.title}
+        </div>
+
+        <div className="flex-1 min-w-0 pr-2">
+          <div className="flex items-center justify-between mb-0.5">
+            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-wider leading-none">
+              Spotify
+            </span>
+            {/* <span className="text-[10px] font-bold text-emerald-500/80 animate-pulse">
+              Listening Now
+            </span> */}
           </div>
-          <div className="text-xs text-zinc-600 truncate">
-            {data.artist}
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-zinc-200 truncate group-hover:text-white transition-colors leading-tight">
+              {data.title}
+            </span>
+            <span className="text-[11px] text-zinc-500 truncate font-medium leading-tight">
+              by {data.artist}
+            </span>
           </div>
         </div>
       </a>
+
+      <style jsx>{`
+        @keyframes music-wave {
+          0%, 100% { height: 3px; }
+          50% { height: 9px; }
+        }
+      `}</style>
     </div>
   )
 }
-

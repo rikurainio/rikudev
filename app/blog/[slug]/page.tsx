@@ -10,14 +10,14 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
   const post = await getPost(slug)
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -53,42 +53,41 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
-      <article className="max-w-3xl mx-auto px-6 py-12 md:py-20">
+    <main className="min-h-screen selection:bg-white selection:text-black">
+      <article className="max-w-3xl mx-auto px-6 py-12 md:py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
         {/* Back Link */}
-        <Link 
+        <Link
           href="/blog"
-          className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors mb-8 inline-block"
+          className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors mb-12 inline-block"
         >
-          ← Back to blog
+          ← Back
         </Link>
 
         {/* Header */}
-        <header className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <header className="mb-16">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-8">
             {post.metadata.title}
           </h1>
-          
-          <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500 mb-6">
+
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-tight text-zinc-600 mb-8 pb-8 border-b border-zinc-900">
             <time dateTime={post.metadata.date}>
               {new Date(post.metadata.date).toLocaleDateString('en-US', {
                 year: 'numeric',
-                month: 'long',
+                month: 'short',
                 day: 'numeric',
               })}
             </time>
             <span>•</span>
             <span>{post.metadata.readTime}</span>
             <span>•</span>
-            <span>By {post.metadata.author}</span>
+            <span>{post.metadata.author}</span>
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {post.metadata.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2.5 py-1 rounded-full"
+                className="text-xs font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 px-2 py-0.5 rounded-sm"
               >
                 {tag}
               </span>
@@ -97,15 +96,15 @@ export default async function BlogPostPage({
         </header>
 
         {/* Content */}
-        <div className="prose prose-zinc max-w-none">
+        <div className="prose prose-lg prose-invert prose-zinc max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-zinc-200 prose-code:text-zinc-200 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-pre:rounded-sm">
           <PostContent />
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-zinc-200">
-          <Link 
+        <footer className="mt-20 pt-12 border-t border-zinc-900">
+          <Link
             href="/blog"
-            className="text-sm font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity inline-block"
+            className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors inline-block"
           >
             ← Back to all posts
           </Link>

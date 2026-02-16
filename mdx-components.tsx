@@ -2,6 +2,18 @@
 import type { MDXComponents } from 'mdx/types'
 import Link from 'next/link'
 
+const YouTube = ({ id }: { id: string }) => (
+  <div className="my-10 aspect-video w-full rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-zinc-200/50">
+    <iframe
+      className="w-full h-full"
+      src={`https://www.youtube.com/embed/${id}`}
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+    />
+  </div>
+)
+
 const components: MDXComponents = {
   // Headings
   h1: ({ children }) => (
@@ -74,7 +86,7 @@ const components: MDXComponents = {
   pre: ({ children, ...props }) => (
     <pre
       {...props}
-      className="p-4 rounded-lg overflow-x-auto mb-4 text-base font-mono border border-zinc-200"
+      className="p-5 rounded-2xl overflow-x-auto my-8 text-sm font-mono border border-zinc-200/50 shadow-sm"
     >
       {children}
     </pre>
@@ -86,7 +98,7 @@ const components: MDXComponents = {
     // injected by plugins. Standard Markdown inline code (e.g. `const a = 1`) usually comes
     // with no className or just `language-text` depending on your setup.
     // If we are inside a <pre>, the <pre> component above handles the wrapper style.
-    
+
     // We check if it is an inline code snippet to apply the small grey box style.
     const isInline = !className && Object.keys(props).length === 0;
 
@@ -173,6 +185,7 @@ const components: MDXComponents = {
       {children}
     </em>
   ),
+  YouTube,
 }
 
 export function useMDXComponents(): MDXComponents {

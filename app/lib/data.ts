@@ -94,7 +94,7 @@ export const DATA = {
     {
       company: "DataAnnotation",
       role: "AI Annotator",
-      period: "March 2024 – Present",
+      period: "March 2024 – February 2026",
       description: "Improved text-based language models by rating prompts based on correctness, cohesiveness, verbosity, and context, including testing models with complex, carefully crafted prompts. Analyzed and corrected code to optimize performance, fix bugs, and enhance overall code quality in various projects.",
     },
     {
@@ -109,17 +109,25 @@ export const DATA = {
       period: "August 2022 – March 2024",
       description: "Led frontend development using React, integrating seamlessly with AWS backend services to deliver a quality user experience in collaborative project. Contributed to an in-house project leveraging Google Cloud Platform's VertexAI and multiple LLMs. Delivered a technical talk on Next.js to share knowledge across the team.",
     },
+    {
+      company: "Teknikum Oy",
+      role: "Production Worker",
+      period: "January 2017 – July 2017",
+      description: "Manufacturing of various rubber parts with machinery. Process work in a factory. Three-shift-work. Helped clients by manufacturing batches of orders for them in time.",
+    },
   ],
   education: [
     {
       institution: "Tampere University of Technology",
       degree: "Master of Science in Computer Science",
-      period: "2025 - Present",
+      period: "Ongoing",
+      description: "Major: Software Development. Completed all required coursework; Currently working on Master's thesis.",
     },
     {
       institution: "Tampere University of Technology",
       degree: "Bachelor of Science in Computer Science",
       period: "2018 - 2023",
+      description: "Major: Software Engineering; Minor: Industrial Engineering and Management.",
     },
   ],
 };

@@ -213,7 +213,7 @@ function SocialStaticPreview({
                 </div>
               )}
 
-              <div className="bg-white rounded-xl shadow-xl border border-zinc-200 w-[240px] overflow-hidden">
+              <div className="bg-white rounded-sm shadow-xl border border-zinc-200 w-[240px] overflow-hidden">
                 <div className="relative w-full h-24 bg-zinc-100">
                   <img
                     src={data.image}
@@ -223,9 +223,9 @@ function SocialStaticPreview({
                   />
                 </div>
                 <div className="p-3 flex flex-col gap-1">
-                  <span className="text-xs font-semibold text-zinc-900 truncate">{data.title}</span>
-                  <span className="text-[11px] text-zinc-500 line-clamp-2">{data.subtitle}</span>
-                  <span className="text-[10px] text-zinc-400 truncate font-mono">{cleanedUrl}</span>
+                  <span className="text-sm font-semibold text-zinc-900 truncate">{data.title}</span>
+                  <span className="text-xs text-zinc-500 line-clamp-2">{data.subtitle}</span>
+                  <span className="text-[11px] text-zinc-400 truncate font-mono">{cleanedUrl}</span>
                 </div>
               </div>
 

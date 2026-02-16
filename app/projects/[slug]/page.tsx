@@ -6,9 +6,9 @@ import { DATA } from "../../lib/data";
 
 const PROJECT_DETAILS: Record<string, ReactNode> = {
   "drafter-lol": (
-    <div className="space-y-8 text-sm leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
-        <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Overview
         </h2>
         <p>
@@ -20,7 +20,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           My role & scope
         </h3>
         <p>
@@ -32,33 +32,33 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium">Next.js 15 + React 19</span> for the main web
+            <span className="font-medium text-zinc-300">Next.js 15 + React 19</span> for the main web
             app, using the app router for SEO-friendly marketing pages and
             room/analytics views.
           </li>
           <li>
-            <span className="font-medium">Socket.IO + Express</span> in a separate
+            <span className="font-medium text-zinc-300">Socket.IO + Express</span> in a separate
             service to handle low-latency draft rooms, user connections and event
             streams.
           </li>
           <li>
-            <span className="font-medium">PostgreSQL + Drizzle</span> as the shared
+            <span className="font-medium text-zinc-300">PostgreSQL + Drizzle</span> as the shared
             relational store for drafts, users and analytics queries.
           </li>
           <li>
-            <span className="font-medium">Redis + rate limiting</span> to protect custom
+            <span className="font-medium text-zinc-300">Redis + rate limiting</span> to protect custom
             analytics endpoints, especially expensive, ad‑hoc queries.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Interesting challenges
         </h3>
         <p>
@@ -71,7 +71,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           What I’d improve next
         </h3>
         <p>
@@ -83,9 +83,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   ideastorm: (
-    <div className="space-y-8 text-sm leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
       <section className="space-y-2">
-        <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
           Overview
         </h2>
         <p>
@@ -97,7 +97,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           My role & scope
         </h3>
         <p>
@@ -108,7 +108,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -135,7 +135,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Interesting challenges
         </h3>
         <p>
@@ -148,7 +148,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           What I’d improve next
         </h3>
         <p>
@@ -162,9 +162,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   mennaa: (
-    <div className="space-y-8 text-sm leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
       <section className="space-y-2">
-        <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
           Overview
         </h2>
         <p>
@@ -181,7 +181,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Download
         </h3>
         <p>
@@ -197,7 +197,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Getting started with Godot
         </h3>
         <p>
@@ -210,7 +210,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Scenes, nodes & modular structure
         </h3>
         <p>
@@ -228,7 +228,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Building the core gameplay
         </h3>
         <p>
@@ -247,7 +247,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Adding polish
         </h3>
         <p>
@@ -264,7 +264,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           What I learned
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -283,7 +283,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Why it&apos;s in my portfolio
         </h3>
         <p>
@@ -297,9 +297,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   linkedinsanity: (
-    <div className="space-y-8 text-sm leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
       <section className="space-y-2">
-        <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
           Overview
         </h2>
         <p>
@@ -311,7 +311,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           My role & scope
         </h3>
         <p>
@@ -322,7 +322,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -344,7 +344,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Interesting challenges
         </h3>
         <p>
@@ -358,7 +358,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           What I’d improve next
         </h3>
         <p>
@@ -370,9 +370,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "sasken-cv-database": (
-    <div className="space-y-8 text-sm leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
       <section className="space-y-2">
-        <h2 className="text-base font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
           Overview
         </h2>
         <p>
@@ -384,7 +384,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           My role & scope
         </h3>
         <p>
@@ -395,7 +395,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -416,7 +416,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           Interesting challenges
         </h3>
         <p>
@@ -430,7 +430,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
           What I’d improve next
         </h3>
         <p>
@@ -472,27 +472,26 @@ export default async function ProjectPage({
   const details = PROJECT_DETAILS[slug];
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
+    <main className="min-h-screen selection:bg-white selection:text-black">
       <article className="max-w-4xl mx-auto px-6 py-20 md:py-32">
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center text-sm text-zinc-600 hover:text-zinc-900 mb-12 transition-colors font-sans"
+          className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors mb-12 inline-block"
         >
-          <span className="mr-2">←</span>
-          Back to portfolio
+          ← Back
         </Link>
 
         {/* Project Header */}
         <header className="mb-12">
-          <h1 className="text-5xl font-extrabold tracking-tighter mb-4 font-sans">
+          <h1 className="text-4xl font-semibold tracking-tighter text-white mb-6">
             {project.title}
           </h1>
           <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8">
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="text-sm text-zinc-900 border-b border-zinc-300 pb-0.5 font-mono"
+                className="text-sm text-zinc-600 border-b border-zinc-900 pb-0.5 font-mono"
               >
                 {t}
               </span>
@@ -501,17 +500,17 @@ export default async function ProjectPage({
         </header>
 
         {/* Project Image */}
-        <div className="mb-12 aspect-video bg-zinc-100 overflow-hidden rounded-2xl border border-zinc-200">
+        <div className="mb-12 aspect-video bg-zinc-900 overflow-hidden rounded-sm border border-zinc-800">
           <img
             src={`/${project.image}`}
             alt={`Preview of ${project.title}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />
         </div>
 
         {/* Short description */}
         <section className="mb-10">
-          <p className="text-lg leading-relaxed max-w-2xl font-sans text-zinc-800">
+          <p className="text-2xl leading-relaxed max-w-2xl text-zinc-400 font-light">
             {project.description}
           </p>
         </section>
@@ -521,15 +520,15 @@ export default async function ProjectPage({
 
         {/* External Link */}
         {project.link && (
-          <section className="mt-4">
+          <section className="mt-8 border-t border-zinc-900 pt-8">
             <Link
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-medium text-zinc-900 pb-0.5 transition-colors hover:underline underline-offset-4 decoration-zinc-900 font-sans"
+              className="text-base font-bold text-white hover:text-zinc-300 transition-colors uppercase tracking-widest flex items-center gap-2"
             >
-              View project
-              <span className="ml-2">→</span>
+              Launch Site
+              <span>→</span>
             </Link>
           </section>
         )}

@@ -160,9 +160,9 @@ export const LinkPreview = ({
                 </div>
               )}
 
-              <div className="bg-white rounded-xl shadow-xl border border-zinc-200 p-2 w-[280px] flex flex-col gap-2">
+              <div className="bg-white rounded-sm shadow-xl border border-zinc-200 p-2 w-[280px] flex flex-col gap-2">
                 {/* Image Preview Area */}
-                <div className="relative w-full aspect-video bg-zinc-100 rounded-lg overflow-hidden border border-zinc-100">
+                <div className="relative w-full aspect-video bg-zinc-100 rounded-sm overflow-hidden border border-zinc-100">
                   {isLoading ? (
                     <div className="w-full h-full bg-zinc-50 flex flex-col items-center justify-center gap-2">
                       <div className="w-6 h-6 border-2 border-zinc-300 border-t-zinc-600 rounded-full animate-spin" />
@@ -193,7 +193,7 @@ export const LinkPreview = ({
                           <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                         </svg>
                       </div>
-                      <span className="text-zinc-400 text-[10px] font-mono">
+                      <span className="text-zinc-400 text-xs font-mono">
                         {href.replace(/^https?:\/\//, '')}
                       </span>
                     </div>
@@ -202,13 +202,13 @@ export const LinkPreview = ({
 
                 {/* Text Meta Data */}
                 <div className="px-1 pb-1">
-                  <p className="text-xs font-bold text-zinc-900 truncate">
+                  <p className="text-sm font-bold text-zinc-900 truncate">
                     {previewData?.title || previewText || children}
                   </p>
                   {previewData?.description && (
-                    <p className="text-[10px] text-zinc-500 line-clamp-2 mt-0.5">{previewData.description}</p>
+                    <p className="text-xs text-zinc-500 line-clamp-2 mt-0.5">{previewData.description}</p>
                   )}
-                  <p className="text-[10px] text-zinc-500 truncate font-mono mt-0.5">{href}</p>
+                  <p className="text-[11px] text-zinc-500 truncate font-mono mt-0.5">{href}</p>
                 </div>
               </div>
 

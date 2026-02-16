@@ -1,0 +1,115 @@
+export const metadata = {
+  title: "Longest Palindromic Substring",
+  date: "2026-02-16",
+  difficulty: "Medium",
+  description: "Given a string s, return the longest palindromic substring in s.",
+  tags: []
+}
+
+# Longest Palindromic Substring
+
+**Question:** [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=oizxjoit&)
+
+Given a string `s`, return the longest palindromic substring in `s`.
+
+---
+
+### Initial Thought:
+
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // empty and 2len
+        if(nums.size() == 0){return {};};
+        if(nums.size() == 2){
+            if(nums[0]+nums[1]==target){return {0,1};}
+            else {return {};}
+        }
+
+        // num is more than target it cant be part of the sum
+        // num is zero, then the other has to be the target
+        // could instantly weed out numbers larger than target
+
+        std::unordered_set unums(nums.begin(), nums.end());
+        for(int num : unums){
+            if(num<=target){
+                if(unums.find(target-num) != unums.end()){
+                    return {/* index pair for num, target-num*/};
+                }
+            }
+        }
+
+        return {};
+    }
+};
+```
+
+### Problems faced?
+std::unordered_set does not store indices. So instead we should probably use a unordered_map.
+
+---
+
+### Changing to unordered_map:
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if (s.empty()) return "";
+
+        // Transform s: insert '#' between chars and add '^' at start and '$' at end
+        string t = "^";
+        for (char c : s) {
+            t += "#" + string(1, c);
+        }
+        t += "#$";
+
+        int n = t.length();
+        vector<int> P(n, 0); // palindrome radius array
+        int center = 0, right = 0;
+
+        for (int i = 1; i < n - 1; i++) {
+            int mirror = 2 * center - i;
+
+            if (i < right)
+                P[i] = min(right - i, P[mirror]);
+
+            // Expand around center i
+            while (t[i + 1 + P[i]] == t[i - 1 - P[i]])
+                P[i]++;
+
+            // Update center and right boundary
+            if (i + P[i] > right) {
+                center = i;
+                right = i + P[i];
+            }
+        }
+
+        // Find the maximum palindrome length
+        int maxLen = 0;
+        int centerIndex = 0;
+        for (int i = 1; i < n - 1; i++) {
+            if (P[i] > maxLen) {
+                maxLen = P[i];
+                centerIndex = i;
+            }
+        }
+
+        int start = (centerIndex - maxLen) / 2; // map back to original string
+        return s.substr(start, maxLen);
+    }
+};
+```
+
+This video helped me understand the Manacher's Algorithm:
+<YouTube id="V-sEwsca1ak" />
+
+
+Honestly this one was hard for me.
+
+This way we only have to check if the complement already exists in the seen map, and if it does, we can just return the indices for the complement and the current integer.

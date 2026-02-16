@@ -11,52 +11,44 @@ export default async function BlogPage() {
   const posts = await getAllPosts()
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
+    <main className="min-h-screen selection:bg-white selection:text-black">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
         {/* Header */}
         <header className="mb-16">
-          <Link 
+          <Link
             href="/"
-            className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors mb-8 inline-block"
+            className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors mb-12 inline-block"
           >
-            ← Back to home
+            ← Back
           </Link>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
-            Blog
+          <h1 className="text-4xl font-semibold tracking-tighter text-white mb-4">
+            Writing
           </h1>
-          <p className="text-xl text-zinc-600 font-light">
-            Thoughts on software development, web technologies, and more.
+          <p className="text-xl text-zinc-500 font-light max-w-xl">
+            Technical articles, project deep-dives, and thoughts on craft.
           </p>
         </header>
 
-        {/* Notice */}
-        <div className="mb-12 p-4 rounded-xl border border-sky-200 bg-sky-50/50">
-          <p className="text-sm text-sky-600 font-light">
-            These are test blogs. The blog section is under works.
-          </p>
-        </div>
-
         {/* Blog Posts List */}
-        <div className="space-y-12">
+        <div className="space-y-16">
           {posts.length === 0 ? (
-            <p className="text-zinc-500">No posts yet. Check back soon!</p>
+            <p className="text-zinc-600">No posts yet. Check back soon!</p>
           ) : (
             posts.map((post) => (
-              <article 
+              <article
                 key={post.slug}
-                className="group border-b border-zinc-200 pb-12 last:border-0"
+                className="group relative"
               >
-                <Link 
+                <Link
                   href={`/blog/${post.slug}`}
                   className="block"
                 >
                   <div className="flex flex-col gap-4">
-                    {/* Date and Read Time */}
-                    <div className="flex items-center gap-4 text-sm text-zinc-500">
+                    <div className="flex items-center gap-4 text-xs font-mono uppercase tracking-tight text-zinc-700">
                       <time dateTime={post.metadata.date}>
                         {new Date(post.metadata.date).toLocaleDateString('en-US', {
                           year: 'numeric',
-                          month: 'long',
+                          month: 'short',
                           day: 'numeric',
                         })}
                       </time>
@@ -64,32 +56,24 @@ export default async function BlogPage() {
                       <span>{post.metadata.readTime}</span>
                     </div>
 
-                    {/* Title */}
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:text-zinc-600 transition-colors">
+                    <h2 className="text-3xl font-semibold text-zinc-200 group-hover:text-white transition-colors tracking-tight">
                       {post.metadata.title}
                     </h2>
 
-                    {/* Description */}
-                    <p className="text-lg text-zinc-600 font-light leading-relaxed">
+                    <p className="text-lg text-zinc-500 font-light leading-relaxed max-w-2xl">
                       {post.metadata.description}
                     </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="flex flex-wrap gap-1.5 mt-2">
                       {post.metadata.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs font-medium text-zinc-500 bg-zinc-100 px-2.5 py-1 rounded-full"
+                          className="text-xs font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 px-2 py-0.5 rounded-sm group-hover:border-zinc-700 transition-colors"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-
-                    {/* Read More */}
-                    <span className="text-sm font-medium text-zinc-900 border-b border-zinc-900 pb-0.5 inline-block w-fit mt-2 group-hover:opacity-70 transition-opacity">
-                      Read more →
-                    </span>
                   </div>
                 </Link>
               </article>

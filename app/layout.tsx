@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { Background } from "./components/background";
 
-// Clean sans-serif for reading
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-// Tech-focused mono for code/headers
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+});
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://rikudev.quest";
@@ -46,9 +46,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${mono.variable} antialiased bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white relative`}
+        className={`${geist.variable} antialiased bg-zinc-950 text-zinc-400 selection:bg-white selection:text-black relative font-sans`}
       >
         <Background />
         {children}
