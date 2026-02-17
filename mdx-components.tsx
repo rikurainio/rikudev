@@ -10,6 +10,7 @@ const YouTube = ({ id }: { id: string }) => (
       title="YouTube video player"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
+      loading="lazy"
     />
   </div>
 )
@@ -137,6 +138,7 @@ const components: MDXComponents = {
       src={src}
       alt={alt}
       className="rounded-lg my-6 w-full"
+      loading="lazy"
     />
   ),
 

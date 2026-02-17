@@ -41,7 +41,7 @@ export default async function Portfolio() {
           {/* DISCORD-STYLE PROFILE CARD */}
           <div className="flex flex-col gap-8">
             {/* CARD TOP INFO */}
-            <div className="flex flex-row items-start gap-5">
+            <div className="flex flex-row items-end gap-5">
               {/* Avatar with Status */}
               <div className="relative shrink-0">
                 <div className="h-20 w-20 rounded-sm overflow-hidden bg-zinc-800 border-2 border-zinc-900 ring-1 ring-zinc-800 transition-all">
@@ -54,7 +54,7 @@ export default async function Portfolio() {
               </div>
 
               {/* Identity Info */}
-              <div className="flex-1 pt-1">
+              <div className="flex-1 h-20">
                 <h1 className="text-2xl font-black tracking-tight text-white leading-none">
                   {DATA.name}
                 </h1>
@@ -76,13 +76,12 @@ export default async function Portfolio() {
                 <div className="space-y-1.5">
                   <h2 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">About Me</h2>
                   <p className="text-sm text-zinc-400 leading-relaxed font-medium">
-                    Designing and building <span className="text-white">minimalist, high-performance</span> interfaces.
-                    Currently focused on Improving through <span className="text-white">LeetCode</span>.
+                    Designing and building <span className="text-white">applications</span>, mostly on web for now.
+                    Currently focused on Improving through <span className="text-white">LeetCode</span> and free courses.
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  <h2 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Currently Playing</h2>
                   <SpotifyNowPlaying />
                 </div>
               </div>
@@ -106,18 +105,17 @@ export default async function Portfolio() {
           {/* EXPERIENCE & EDUCATION SECTION */}
           <div className="flex flex-col gap-10 pt-2">
             <section className="space-y-5">
-              <h2 className="text-[10px] font-bold text-zinc-600 uppercase tracking-[0.3em] flex items-center gap-3">
-                Experience
-                <div className="h-px flex-1 bg-zinc-900" />
-              </h2>
+              <h2 className="text-xs font-bold text-zinc-600 uppercase tracking-[0.3em]">Experience</h2>
               <div className="space-y-8">
                 {DATA.jobs.map((job) => (
                   <div key={job.company} className="flex flex-col gap-1 group">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-zinc-200 group-hover:text-white transition-colors">{job.company}</h3>
-                      <span className="text-sm text-zinc-700 font-mono">{job.period}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                      <div className="flex flex-col">
+                        <h3 className="text-lg font-semibold text-zinc-200 group-hover:text-white transition-colors">{job.company}</h3>
+                        <p className="text-base text-zinc-500 font-medium">{job.role}</p>
+                      </div>
+                      <span className="text-sm text-zinc-700 font-mono sm:mt-1">{job.period}</span>
                     </div>
-                    <p className="text-base text-zinc-500 font-medium">{job.role}</p>
                     <p className="text-base text-zinc-500 leading-relaxed mt-2 font-light">{job.description}</p>
                   </div>
                 ))}
@@ -132,11 +130,13 @@ export default async function Portfolio() {
               <div className="space-y-5">
                 {DATA.education.map((edu) => (
                   <div key={edu.degree} className="flex flex-col gap-1">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-zinc-200">{edu.institution}</h3>
-                      <span className="text-sm text-zinc-700 font-mono">{edu.period}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                      <div className="flex flex-col">
+                        <h3 className="text-lg font-semibold text-zinc-200">{edu.institution}</h3>
+                        <p className="text-base text-zinc-500 font-medium">{edu.degree}</p>
+                      </div>
+                      <span className="text-sm text-zinc-700 font-mono sm:mt-1">{edu.period}</span>
                     </div>
-                    <p className="text-base text-zinc-500 font-medium">{edu.degree}</p>
                     <p className="text-base text-zinc-500 leading-relaxed mt-2 font-light">{edu.description}</p>
                   </div>
                 ))}
@@ -247,7 +247,7 @@ export default async function Portfolio() {
                       </h3>
                     </div>
                     <span className={`text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-xs border border-zinc-900 shrink-0 ${isLeetCode ? 'text-zinc-700 bg-zinc-950' : 'text-zinc-600 bg-zinc-950'}`}>
-                      {isLeetCode ? 'L-Code' : 'Blog'}
+                      {isLeetCode ? 'Leetcode' : 'Blog'}
                     </span>
                   </Link>
                 );
