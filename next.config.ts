@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
-import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeShiki from '@shikijs/rehype';
 
 const nextConfig: NextConfig = {
   // Configure pageExtensions to include md and mdx
@@ -13,10 +13,9 @@ const withMDX = createMDX({
     remarkPlugins: [],
     rehypePlugins: [
       [
-        rehypePrettyCode,
+        rehypeShiki,
         {
-          theme: 'vesper',
-          keepBackground: true,
+          theme: 'vitesse-dark',
         },
       ],
     ],

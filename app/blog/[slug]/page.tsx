@@ -54,7 +54,7 @@ export default async function BlogPostPage({
 
   return (
     <main className="min-h-screen selection:bg-white selection:text-black">
-      <article className="max-w-3xl mx-auto px-6 py-12 md:py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <article className="max-w-4xl mx-auto px-6 py-12 md:py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
         {/* Back Link */}
         <Link
           href="/blog"
@@ -96,7 +96,7 @@ export default async function BlogPostPage({
         </header>
 
         {/* Content */}
-        <div className="prose prose-lg prose-invert prose-zinc max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-zinc-200 prose-code:text-zinc-200 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800 prose-pre:rounded-sm">
+        <div className="prose prose-lg prose-invert prose-zinc max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-zinc-200 prose-code:text-zinc-200">
           <PostContent />
         </div>
 

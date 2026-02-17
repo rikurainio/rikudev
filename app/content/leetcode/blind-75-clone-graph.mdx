@@ -12,7 +12,7 @@ export const metadata = {
 
 Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.
 
----
+
 
 ### Initial Thought:
 Cloning a graph isn’t just copying values — we must duplicate its entire structure. Since graphs can contain cycles, we need a way to avoid infinite recursion and duplicate nodes. The key idea is to traverse the graph while storing already cloned nodes in a hash map.

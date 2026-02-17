@@ -108,7 +108,7 @@ export default async function Portfolio() {
               <h2 className="text-xs font-bold text-zinc-600 uppercase tracking-[0.3em]">Experience</h2>
               <div className="space-y-8">
                 {DATA.jobs.map((job) => (
-                  <div key={job.company} className="flex flex-col gap-1 group">
+                  <div key={job.company} className="flex flex-col gap-1 group transition-all duration-300 hover:brightness-125 cursor-default">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                       <div className="flex flex-col">
                         <h3 className="text-lg font-semibold text-zinc-200 group-hover:text-white transition-colors">{job.company}</h3>
@@ -129,10 +129,10 @@ export default async function Portfolio() {
               </h2>
               <div className="space-y-5">
                 {DATA.education.map((edu) => (
-                  <div key={edu.degree} className="flex flex-col gap-1">
+                  <div key={edu.degree} className="flex flex-col gap-1 group transition-all duration-300 hover:brightness-125 cursor-default">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
                       <div className="flex flex-col">
-                        <h3 className="text-lg font-semibold text-zinc-200">{edu.institution}</h3>
+                        <h3 className="text-lg font-semibold text-zinc-200 group-hover:text-white transition-colors">{edu.institution}</h3>
                         <p className="text-base text-zinc-500 font-medium">{edu.degree}</p>
                       </div>
                       <span className="text-sm text-zinc-700 font-mono sm:mt-1">{edu.period}</span>
@@ -152,7 +152,7 @@ export default async function Portfolio() {
                 {sortedSkills.map((skill) => (
                   <span
                     key={skill.name}
-                    className="px-2 py-1 text-sm font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 rounded-sm hover:text-zinc-300 hover:border-zinc-700 transition-colors"
+                    className="px-2 py-1 text-sm font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 rounded-sm hover:text-zinc-300 hover:border-zinc-700 hover:brightness-125 transition-all duration-300"
                   >
                     {skill.name}
                   </span>

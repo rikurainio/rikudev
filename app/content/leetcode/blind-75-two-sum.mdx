@@ -3,7 +3,7 @@ export const metadata = {
   date: "2026-02-15",
   difficulty: "Easy",
   description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
-  tags: []
+  tags: ["Junior", "Array", "Hash Table"]
 }
 
 # Two Sum
@@ -12,20 +12,40 @@ export const metadata = {
 
 Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
 
----
+### Thoughts
+To solve two sum, we can use a hash map to store the indices of the numbers we have seen so far. Then, for each number in the array, we can check if the complement (target - num) exists in the hash map. If it does, we return the indices of the two numbers. If it doesn't, we add the number to the hash map.
 
-### Initial Thought:
+If the nums array was already sorted, we could use a two-pointer approach to find the two numbers that add up to the target.
 
+### Code
 
 ```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // empty and 2len
+        if(nums.size() == 0){return {};};
+        if(nums.size() == 2){
+            if(nums[0]+nums[1]==target){return {0,1};}
+            else {return {};}
+        }
+
+        // num is more than target it cant be part of the sum
+        // num is zero, then the other has to be the target
+        // could instantly weed out numbers larger than target
+
+        std::unordered_map<int,int> seen;
+        for(int i=0; i<nums.size(); i++){
+            int complement = target - nums[i];
+
+            if(seen.find(complement) != seen.end()){
+                return { seen[complement], i};
+            }
+
+            seen[nums[i]] = i;
+        }
+
+        return {};
+    }
+};
 ```
-
-### Problems faced?
-
----
-
-### Optimized Approach:
-```cpp
-```
-
-reflection

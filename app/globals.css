@@ -34,37 +34,36 @@ body {
 }
 
 .prose code {
-  background-color: #18181b;
-  /* zinc-900 */
+  background-color: #1a1a1e;
   color: #e4e4e7;
-  /* zinc-200 */
   padding: 0.2rem 0.4rem;
-  border-radius: 0.125rem;
-  /* rounded-sm */
+  border-radius: 0.25rem;
   font-size: 0.9em;
   font-family: var(--font-mono);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .prose pre {
-  background-color: #09090b;
-  /* zinc-950 */
-  border: 1px solid #18181b;
-  /* zinc-900 */
-  padding: 1.5rem;
-  border-radius: 0.125rem;
-  /* rounded-sm */
-  overflow-x: auto;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prose pre:hover {
+  border-color: #2a2a2e;
+  box-shadow: 0 15px 45px -5px rgba(0, 0, 0, 0.6);
 }
 
 .prose pre code {
   background-color: transparent;
   padding: 0;
   color: inherit;
-  font-size: 0.85em;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-family: var(--font-mono);
+  border: none;
 }
 
-/* Syntax highlighting styles for rehype-pretty-code */
+/* Syntax highlighting styles for Shiki */
 /* The plugin adds inline styles for colors, we just need to handle structure */
 
 /* Line highlighting */

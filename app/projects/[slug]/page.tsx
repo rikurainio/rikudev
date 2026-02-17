@@ -5,6 +5,179 @@ import type { ReactNode } from "react";
 import { DATA } from "../../lib/data";
 
 const PROJECT_DETAILS: Record<string, ReactNode> = {
+  warehousejiujitsu: (
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
+          Overview
+        </h2>
+        <p>
+          Warehouse Jiu Jitsu is a real-time betting and match companion app built
+          for streamers and communities who want a polished, low-friction way to
+          run live wagers on ongoing matches. Instead of juggling chat commands,
+          spreadsheets, and manual payouts, it gives you a structured, interactive
+          UI where viewers can place bets, track odds, and see results the moment
+          a winner is declared.
+        </p>
+        <p>
+          The core experience lives in a responsive betting panel that updates
+          live via WebSockets: contenders, odds, total pool sizes, and user
+          balances all stay in sync without page reloads. The goal was to feel
+          more like a native overlay or sportsbook widget than a traditional website.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
+          My role & scope
+        </h3>
+        <p>
+          I owned the full vertical slice of the betting experience: from the
+          real‑time data model and Socket.IO events to the React UI and UX details
+          around loading states, confirmations, and error handling.
+        </p>
+        <p>Concretely, this included:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            Designing the betting flow and state machine (idle → placing →
+            confirmed → settled).
+          </li>
+          <li>
+            Implementing the Betting client component, including optimistic UI,
+            confetti/winner visuals, and skeleton states.
+          </li>
+          <li>
+            Wiring the front end to the Socket.IO layer for live game state,
+            user info, and bet submission.
+          </li>
+          <li>
+            Coordinating with the backend schema and endpoints for matches,
+            users, and bets to keep UI state consistent with the database.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
+          Under the hood
+        </h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <span className="font-medium text-zinc-300">
+              Next.js (App Router) + React
+            </span>{" "}
+            for the main application shell and betting UI, using client
+            components where low‑latency interaction is critical.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">Socket.IO</span> as the
+            real-time backbone for broadcasting game state and user info,
+            handling bet submissions and keeping balances and odds in sync.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">TypeScript</span> for
+            strongly-typed UI state, including animated percentage tracking and
+            a dedicated bettingState object.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">PostgreSQL</span> as the
+            relational store for matches, contenders, user accounts, and
+            historical bets.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">UX Polish</span> via
+            skeleton loaders, “no active match” handling, winner banners, and
+            dynamic confetti effects.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
+          Interesting challenges
+        </h3>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-medium text-zinc-200 mb-2">
+              Synchronizing UI with real-time state
+            </h4>
+            <p>
+              The UI listens to live{" "}
+              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+                update-game-state
+              </code>{" "}
+              and{" "}
+              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+                update-user-info
+              </code>{" "}
+              events. I had to ensure the component could mount in several
+              different scenarios (fresh load, reconnect, match already in
+              progress) and always land in a consistent state without flicker or
+              stale data.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-medium text-zinc-200 mb-2">
+              Managing concurrent user actions
+            </h4>
+            <p>
+              I built a{" "}
+              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+                clampAmount
+              </code>{" "}
+              utility and a{" "}
+              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+                bettingState
+              </code>{" "}
+              object to guard against invalid bets on the client before the
+              socket event is even emitted, reducing unnecessary server load.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-medium text-zinc-200 mb-2">
+              Making percentages feel “alive”
+            </h4>
+            <p>
+              To avoid jarring UI jumps as new bets arrive, I implemented simple
+              percentage animations that gradually step the displayed
+              percentage toward the real target value over time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
+          What I’d improve next
+        </h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <span className="font-medium text-zinc-300">
+              Stronger end-to-end typing
+            </span>{" "}
+            between Socket.IO events and the backend payloads using a shared
+            schema (like Zod or DTOs).
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">Deeper analytics</span>{" "}
+            including per‑user win rates and match-level stats.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">
+              Harden risk management
+            </span>{" "}
+            with more sophisticated rate limiting and edge-case constraints on
+            the backend.
+          </li>
+          <li>
+            <span className="font-medium text-zinc-300">Test coverage</span> for
+            critical flows like reconnecting mid‑match and race conditions
+            between concurrent bets.
+          </li>
+        </ul>
+      </section>
+    </div>
+  ),
   "drafter-lol": (
     <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
@@ -83,9 +256,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   ideastorm: (
-    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Overview
         </h2>
         <p>
@@ -97,7 +270,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           My role & scope
         </h3>
         <p>
@@ -108,26 +281,26 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium">Next.js (app router)</span> for the marketing
+            <span className="font-medium text-zinc-300">Next.js (app router)</span> for the marketing
             site and authenticated dashboard, mixing server components for data fetching
             with client components for rich UI and animation.
           </li>
           <li>
-            <span className="font-medium">PostgreSQL + Drizzle ORM</span> to model
+            <span className="font-medium text-zinc-300">PostgreSQL + Drizzle ORM</span> to model
             ideas, scores and metadata as typed schemas with jsonb fields for structured
             AI output.
           </li>
           <li>
-            <span className="font-medium">NextAuth + Drizzle adapter</span> to secure
+            <span className="font-medium text-zinc-300">NextAuth + Drizzle adapter</span> to secure
             the dashboard and keep sessions tied to the same schema the analytics uses.
           </li>
           <li>
-            <span className="font-medium">OpenRouter LLM API</span> in a separate
+            <span className="font-medium text-zinc-300">OpenRouter LLM API</span> in a separate
             scraper project that turns raw community posts into structured business
             intelligence (scores, SWOT, suggested tech stack, MVP features, and more).
           </li>
@@ -135,7 +308,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Interesting challenges
         </h3>
         <p>
@@ -148,7 +321,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           What I’d improve next
         </h3>
         <p>
@@ -162,9 +335,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   mennaa: (
-    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Overview
         </h2>
         <p>
@@ -181,7 +354,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Download
         </h3>
         <p>
@@ -189,7 +362,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             href="https://drive.google.com/file/d/1O0ektc_0tjkeyghO7lGYMpI8UhmLWCwM/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity"
+            className="text-white border-b border-zinc-700 pb-0.5 hover:border-white transition-colors"
           >
             Download mennää.exe
           </a>
@@ -197,7 +370,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Getting started with Godot
         </h3>
         <p>
@@ -210,7 +383,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Scenes, nodes & modular structure
         </h3>
         <p>
@@ -228,7 +401,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Building the core gameplay
         </h3>
         <p>
@@ -247,7 +420,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Adding polish
         </h3>
         <p>
@@ -264,7 +437,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           What I learned
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -283,7 +456,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Why it&apos;s in my portfolio
         </h3>
         <p>
@@ -297,9 +470,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   linkedinsanity: (
-    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Overview
         </h2>
         <p>
@@ -311,7 +484,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           My role & scope
         </h3>
         <p>
@@ -322,21 +495,21 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium">Node.js + Playwright</span> to control a real
+            <span className="font-medium text-zinc-300">Node.js + Playwright</span> to control a real
             Chromium instance, navigate LinkedIn, and behave like a human: scrolling,
             waiting, and interacting with job cards.
           </li>
           <li>
-            <span className="font-medium">Electron + React + TypeScript</span> to ship a
+            <span className="font-medium text-zinc-300">Electron + React + TypeScript</span> to ship a
             cross‑platform desktop app that wraps the automation in a friendly UI.
           </li>
           <li>
-            <span className="font-medium">SQLite</span> for lightweight persistence of
+            <span className="font-medium text-zinc-300">SQLite</span> for lightweight persistence of
             job IDs and application history, making sure the tool never re‑applies to
             the same position twice.
           </li>
@@ -344,7 +517,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Interesting challenges
         </h3>
         <p>
@@ -358,7 +531,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           What I’d improve next
         </h3>
         <p>
@@ -370,9 +543,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "sasken-cv-database": (
-    <div className="space-y-8 text-lg leading-relaxed font-sans text-zinc-800">
+    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Overview
         </h2>
         <p>
@@ -384,7 +557,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           My role & scope
         </h3>
         <p>
@@ -395,28 +568,28 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium">React + TypeScript</span> (with modern
+            <span className="font-medium text-zinc-300">React + TypeScript</span> (with modern
             tooling) for a fast, type‑safe SPA with role‑aware navigation and route
             guards.
           </li>
           <li>
-            <span className="font-medium">Django + Django REST Framework</span> split
+            <span className="font-medium text-zinc-300">Django + Django REST Framework</span> split
             into focused apps for employees, experience, statistics and reminders.
           </li>
           <li>
-            <span className="font-medium">PostgreSQL + Celery</span> for relational data
+            <span className="font-medium text-zinc-300">PostgreSQL + Celery</span> for relational data
             and background jobs that send reminder emails and keep profiles up to date.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           Interesting challenges
         </h3>
         <p>
@@ -430,7 +603,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900">
+        <h3 className="text-lg font-semibold tracking-tight text-white">
           What I’d improve next
         </h3>
         <p>
@@ -525,9 +698,9 @@ export default async function ProjectPage({
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-bold text-white hover:text-zinc-300 transition-colors uppercase tracking-widest flex items-center gap-2"
+              className="text-base font-bold text-zinc-100 hover:text-zinc-300 transition-colors uppercase tracking-widest flex items-center gap-2"
             >
-              Launch Site
+              visit site
               <span>→</span>
             </Link>
           </section>

@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Palindromic Substrings",
-  date: "2026-02-16",
+  date: "2026-02-17",
   difficulty: "Medium",
   description: "Palindromic Substrings",
   tags: ["Senior Staff", "Two Pointers", "String", "Dynamic Programming"]
@@ -11,25 +11,48 @@ export const metadata = {
 **Question:** [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/description/?envType=problem-list-v2&envId=oizxjoit)
 
 Given a string `s`, return the number of palindromic substrings in it.
-
 A string is a palindrome when it reads the same backward as forward.
-
 A substring is a contiguous sequence of characters within the string.
 
----
-
-### Initial Thought:
+### Code
 
 ```cpp
+class Solution {
+public:
+    string stringToOddPalindromeFormat(string s){
+        std::string result = "@";
+        for(char c : s) {
+            result += "#";
+            result += c;
+        }
+        result += "#$";
+        return result;
+    }
+
+    int countSubstrings(string s) {
+        std::string str = stringToOddPalindromeFormat(s);
+        int str_size = str.size();
+        std::vector<int> p(str_size,0);
+        int center = 0, right = 0, result = 0;
+
+        for(int i=1; i<str_size-1; i++){
+            int mirror = 2*center-i;
+
+            if(i<right){
+                p[i] = min(right-i, p[mirror]);
+            }
+            while(str[i+(1+p[i])] == str[i-(1+p[i])]){
+                p[i]++;
+            }
+            if(i+p[i]>right){
+                center = i;
+                right = i+p[i];
+            }
+            result += (p[i] + 1)/2;
+        }
+
+        return result;
+    }
+};
 
 ```
-
-### title
-
----
-
-### better code
-```cpp
-```
-
-### last words

@@ -3,7 +3,7 @@ export const metadata = {
   date: "2026-02-16",
   difficulty: "Medium",
   description: "Given a string s, find the length of the longest substring without repeating characters.",
-  tags: []
+  tags: ["Staff", "Hash Table", "String", "Sliding Window"]
 }
 
 # Longest Substring Without Repeating Characters
@@ -12,7 +12,6 @@ export const metadata = {
 
 Given a string `s`, find the length of the longest substring without repeating characters.
 
----
 
 ### Initial Thought:
 My initial though was, that for each char, just simply list all the upcoming chars and keep track of used chars and if hit a duplicate, save that streak and move on to the next character.
@@ -46,7 +45,6 @@ public:
 };
 ```
 
----
 
 ### Optimized Approach:
 ```cpp

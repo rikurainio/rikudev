@@ -18,29 +18,29 @@ const YouTube = ({ id }: { id: string }) => (
 const components: MDXComponents = {
   // Headings
   h1: ({ children }) => (
-    <h1 className="text-4xl font-bold tracking-tight mt-12 mb-6 first:mt-0">
+    <h1 className="text-4xl font-bold tracking-tight mt-12 mb-6 first:mt-0 text-white">
       {children}
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-3xl font-bold tracking-tight mt-10 mb-4">
+    <h2 className="text-3xl font-bold tracking-tight mt-10 mb-4 text-zinc-100">
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-2xl font-semibold tracking-tight mt-8 mb-3">
+    <h3 className="text-2xl font-semibold tracking-tight mt-8 mb-3 text-zinc-200">
       {children}
     </h3>
   ),
   h4: ({ children }) => (
-    <h4 className="text-xl font-semibold tracking-tight mt-6 mb-2">
+    <h4 className="text-xl font-semibold tracking-tight mt-6 mb-2 text-zinc-200">
       {children}
     </h4>
   ),
 
   // Paragraphs
   p: ({ children }) => (
-    <p className="text-zinc-700 leading-relaxed mb-4">
+    <p className="text-zinc-400 leading-relaxed mb-6 last:mb-0">
       {children}
     </p>
   ),
@@ -55,7 +55,7 @@ const components: MDXComponents = {
         href={href || '#'}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        className="text-zinc-900 border-b border-zinc-900 pb-0.5 hover:opacity-70 transition-opacity"
+        className="text-white border-b border-zinc-700 pb-0.5 hover:border-white transition-colors"
       >
         {children}
       </Component>
@@ -64,12 +64,12 @@ const components: MDXComponents = {
 
   // Lists
   ul: ({ children }) => (
-    <ul className="list-disc list-inside mb-4 space-y-2 text-zinc-700">
+    <ul className="list-disc list-inside mb-4 space-y-2 text-zinc-400">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal list-inside mb-4 space-y-2 text-zinc-700">
+    <ol className="list-decimal list-inside mb-4 space-y-2 text-zinc-400">
       {children}
     </ol>
   ),
@@ -87,49 +87,23 @@ const components: MDXComponents = {
   pre: ({ children, ...props }) => (
     <pre
       {...props}
-      className="p-5 rounded-2xl overflow-x-auto my-8 text-sm font-mono border border-zinc-200/50 shadow-sm"
+      className="p-6 rounded-xl overflow-x-auto my-8 text-base md:text-lg font-mono border border-zinc-800/50 shadow-2xl bg-[#0c0c0e]/50 backdrop-blur-sm"
     >
       {children}
     </pre>
   ),
 
-  // 2. The <code> element (Inline & Block Code)
-  code: ({ children, className, ...props }) => {
-    // A simple heuristic: Block code (inside <pre>) usually has a class or data attributes
-    // injected by plugins. Standard Markdown inline code (e.g. `const a = 1`) usually comes
-    // with no className or just `language-text` depending on your setup.
-    // If we are inside a <pre>, the <pre> component above handles the wrapper style.
-
-    // We check if it is an inline code snippet to apply the small grey box style.
-    const isInline = !className && Object.keys(props).length === 0;
-
-    if (isInline) {
-      return (
-        <code className="bg-zinc-100 text-zinc-900 px-1.5 py-0.5 rounded text-base font-mono">
-          {children}
-        </code>
-      )
-    }
-
-    // If it's block code, we just render it. The parent <pre> takes care of the container,
-    // and rehype-pretty-code has already styled the spans inside `children`.
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    )
-  },
 
   // Blockquotes
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-zinc-300 pl-4 italic text-zinc-600 my-4">
+    <blockquote className="border-l-4 border-zinc-800 pl-4 italic text-zinc-500 my-6">
       {children}
     </blockquote>
   ),
 
   // Horizontal rule
   hr: () => (
-    <hr className="my-8 border-zinc-200" />
+    <hr className="my-12 border-0 h-px bg-linear-to-r from-transparent via-zinc-800/50 to-transparent" />
   ),
 
   // Images
@@ -144,41 +118,41 @@ const components: MDXComponents = {
 
   // Tables
   table: ({ children }) => (
-    <div className="overflow-x-auto my-6">
-      <table className="min-w-full border-collapse border border-zinc-300">
+    <div className="overflow-x-auto my-6 rounded-lg border border-zinc-800">
+      <table className="min-w-full border-collapse">
         {children}
       </table>
     </div>
   ),
   thead: ({ children }) => (
-    <thead className="bg-zinc-100">
+    <thead className="bg-zinc-900/50">
       {children}
     </thead>
   ),
   tbody: ({ children }) => (
-    <tbody>
+    <tbody className="divide-y divide-zinc-900">
       {children}
     </tbody>
   ),
   tr: ({ children }) => (
-    <tr className="border-b border-zinc-200">
+    <tr>
       {children}
     </tr>
   ),
   th: ({ children }) => (
-    <th className="border border-zinc-300 px-4 py-2 text-left font-semibold text-zinc-900">
+    <th className="px-4 py-3 text-left font-semibold text-zinc-200 text-sm">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="border border-zinc-300 px-4 py-2 text-zinc-700">
+    <td className="px-4 py-3 text-zinc-400 text-sm">
       {children}
     </td>
   ),
 
   // Strong and emphasis
   strong: ({ children }) => (
-    <strong className="font-semibold text-zinc-900">
+    <strong className="font-semibold text-zinc-200">
       {children}
     </strong>
   ),

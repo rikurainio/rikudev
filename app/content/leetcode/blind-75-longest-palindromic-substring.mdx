@@ -3,7 +3,7 @@ export const metadata = {
   date: "2026-02-16",
   difficulty: "Medium",
   description: "Given a string s, return the longest palindromic substring in s.",
-  tags: []
+  tags: ["Two Pointers", "String", "Dynamic Programming"]
 }
 
 # Longest Palindromic Substring
@@ -12,45 +12,12 @@ export const metadata = {
 
 Given a string `s`, return the longest palindromic substring in `s`.
 
----
-
 ### Initial Thought:
+I need to find the longest palindromic substring. A common approach is to expand around each character as a potential center.
 
-```cpp
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        // empty and 2len
-        if(nums.size() == 0){return {};};
-        if(nums.size() == 2){
-            if(nums[0]+nums[1]==target){return {0,1};}
-            else {return {};}
-        }
+### Improved Approach: Manacher's Algorithm
+For an even more efficient $O(n)$ solution, we can use Manacher's Algorithm.
 
-        // num is more than target it cant be part of the sum
-        // num is zero, then the other has to be the target
-        // could instantly weed out numbers larger than target
-
-        std::unordered_set unums(nums.begin(), nums.end());
-        for(int num : unums){
-            if(num<=target){
-                if(unums.find(target-num) != unums.end()){
-                    return {/* index pair for num, target-num*/};
-                }
-            }
-        }
-
-        return {};
-    }
-};
-```
-
-### Problems faced?
-std::unordered_set does not store indices. So instead we should probably use a unordered_map.
-
----
-
-### Changing to unordered_map:
 ```cpp
 #include <iostream>
 #include <string>
@@ -110,6 +77,4 @@ This video helped me understand the Manacher's Algorithm:
 <YouTube id="V-sEwsca1ak" />
 
 
-Honestly this one was hard for me.
-
-This way we only have to check if the complement already exists in the seen map, and if it does, we can just return the indices for the complement and the current integer.
+Manacher's Algorithm is definitely tricky to wrap your head around at first, but its efficiency in handling both even and odd length palindromes is fascinating. Once you understand how the mirrored indices work, it becomes much clearer.

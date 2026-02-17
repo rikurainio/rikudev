@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Background } from "./components/background";
 
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 const siteUrl =
@@ -48,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geist.variable} antialiased bg-zinc-950 text-zinc-400 selection:bg-white selection:text-black relative font-sans`}
+        className={`${geist.variable} ${geistMono.variable} antialiased bg-zinc-950 text-zinc-400 selection:bg-white selection:text-black relative font-sans`}
       >
         <Background />
         {children}

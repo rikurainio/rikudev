@@ -3,11 +3,11 @@ export const DATA = {
   role: "Software Developer",
   about: "Building stuff with code",
   links: {
-    email: "mailto:rainioriku@gmail.com",
+    Email: "mailto:rainioriku@gmail.com",
     GitHub: "https://github.com/rikurainio",
     Instagram: "https://www.instagram.com/rikurainio/",
-    linkedIn: "https://linkedin.com/in/rikurainio",
-    resume: "/cv.pdf", // Place in public folder
+    LinkedIn: "https://linkedin.com/in/rikurainio",
+    Resume: "/cv.pdf", // Place in public folder
   },
   skills: [
     { name: "TypeScript", category: "programming language" },
@@ -49,7 +49,7 @@ export const DATA = {
       description: "A mobile application for warehouse jiu-jitsu betting with fake credits",
       tech: ["Next.js", "Socket.io", "Oauth", "TypeScript"],
       link: "https://definitelynotgambling.online",
-      image: "warehousejj.png",
+      image: "warehousejj2.png",
       accentColor: "violet",
     },
     {
@@ -81,14 +81,6 @@ export const DATA = {
       image: "linkedinsanity.png",
       accentColor: "rose",
     },
-    // {
-    //   title: "WarehouseJiuJitsu App",
-    //   slug: "warehouse-jiu-jitsu-app",
-    //   description: "A mobile application for warehouse jiu-jitsu management.",
-    //   tech: ["React Native", "TypeScript", "Node.js"],
-    //   link: "https://github.com",
-    //   image: "https://placehold.co/600x400/000000/FFFFFF/png?text=WarehouseJiuJitsu",
-    // },
   ],
   jobs: [
     {
