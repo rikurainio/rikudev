@@ -84,28 +84,39 @@ export const DATA = {
   ],
   jobs: [
     {
-      company: "DataAnnotation",
-      role: "AI Annotator",
+      company: "Drafter.lol",
+      role: "Founder & Lead Engineer",
+      period: "December 2023 – Present",
+      description:
+        "Scaled self-architected platform to over 14,000 monthly users and 2.5 million ad impressions, maintaining 99.9% uptime on a single VPS. Engineered the end-to-end architecture (frontend, backend, database), slashing operational costs by 80% by deploying self-managed Docker containers. Orchestrated the PostgreSQL and Redis infrastructure within a monorepo, optimizing the CI/CD build pipeline to cut deployment times by 40%.",
+    },
+    {
+      company: "DataAnnotation & Outlier",
+      role: "Technical AI Annotator",
       period: "March 2024 – February 2026",
-      description: "Improved text-based language models by rating prompts based on correctness, cohesiveness, verbosity, and context, including testing models with complex, carefully crafted prompts. Analyzed and corrected code to optimize performance, fix bugs, and enhance overall code quality in various projects.",
+      description:
+        "Enhanced LLM code generation accuracy by 30% through rigorous debugging and validation of TypeScript and Python outputs. Evaluated model outputs across critical axes including truthfulness, safety, and instruction following, contributing directly to RLHF (Reinforcement Learning from Human Feedback) pipelines. Designed complex system prompts and adversarial test cases to rigorously test model capabilities and reduce AI hallucinations.",
     },
     {
       company: "Buutti",
-      role: "Software Developer",
+      role: "Full-Stack Developer",
       period: "April 2024 – October 2024",
-      description: "Developed a full-stack webshop, working closely with the client to design and implement custom features that met their needs. Integrated APIs, optimized backend processes, and improved the frontend for a better user experience.",
+      description:
+        "Maintained and expanded a client e-commerce application using Next.js, implementing responsive UI components based on precise design requirements. Developed 5+ REST API endpoints to handle product data, successfully bridging the frontend client with the backend logic.",
     },
     {
       company: "Knowit",
-      role: "Software Developer",
+      role: "Frontend Developer",
       period: "August 2022 – March 2024",
-      description: "Led frontend development using React, integrating seamlessly with AWS backend services to deliver a quality user experience in collaborative project. Contributed to an in-house project leveraging Google Cloud Platform's VertexAI and multiple LLMs. Delivered a technical talk on Next.js to share knowledge across the team.",
+      description:
+        "Developed core frontend modules for a Media Asset Management (MAM) system using React, enabling users to efficiently upload, organize, and retrieve digital assets. Integrated UI components with a Python backend, utilizing AWS S3 for file storage and DynamoDB for metadata management. Delivered 15+ major feature updates, including advanced search filters and file previewers, ensuring a seamless user experience for managing complex data.",
     },
     {
       company: "Teknikum Oy",
       role: "Production Worker",
       period: "January 2017 – July 2017",
-      description: "Manufacturing of various rubber parts with machinery. Process work in a factory. Three-shift-work. Helped clients by manufacturing batches of orders for them in time.",
+      description:
+        "Manufacturing of various rubber parts with machinery. Process work in a factory. Three-shift-work. Helped clients by manufacturing batches of orders for them in time.",
     },
   ],
   education: [
