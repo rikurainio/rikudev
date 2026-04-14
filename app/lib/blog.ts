@@ -18,7 +18,14 @@ export interface BlogPost {
 // Get all blog posts
 export async function getAllPosts(): Promise<BlogPost[]> {
   const contentDir = join(process.cwd(), 'app', 'content')
-  const files = await readdir(contentDir)
+  let files: string[]
+  try {
+    files = await readdir(contentDir)
+  } catch (err) {
+    const e = err as NodeJS.ErrnoException
+    if (e.code === 'ENOENT') return []
+    throw err
+  }
   
   const posts: BlogPost[] = []
   

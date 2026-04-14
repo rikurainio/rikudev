@@ -99,7 +99,7 @@ export default async function Portfolio() {
                         {job.period.split(' – ')[0]}
                       </span>
                     </div>
-                    <p className="text-base md:text-lg text-stone-400 leading-relaxed font-light line-clamp-3">
+                    <p className="text-base md:text-lg text-stone-400 leading-relaxed font-light">
                       {job.description}
                     </p>
                   </div>
