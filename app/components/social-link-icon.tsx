@@ -1,6 +1,15 @@
 const iconClass =
   "h-5 w-5 shrink-0 text-zinc-500 transition-colors group-hover/link:text-zinc-300 sm:h-[1.35rem] sm:w-[1.35rem]"
 
+type IconKind =
+  | "email"
+  | "resume"
+  | "github"
+  | "linkedin"
+  | "instagram"
+  | "external"
+  | "file"
+
 function resolveKind(linkKey: string, url: string): IconKind {
   const k = linkKey.toLowerCase()
   const u = url.toLowerCase()
