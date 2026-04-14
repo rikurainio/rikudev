@@ -65,7 +65,7 @@ export default async function BlogPostPage({
 
         {/* Header */}
         <header className="mb-16">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-8">
+          <h1 className="text-4xl md:text-5xl tracking-tighter text-white mb-8">
             {post.metadata.title}
           </h1>
 

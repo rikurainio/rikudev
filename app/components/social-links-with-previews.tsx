@@ -1,103 +1,71 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { LinkPreview } from './link-preview'
+import type { ReactNode } from 'react'
 import { CopyButton } from './copy'
-import { SmartPopover } from './smart-popover'
+import { SocialLinkIcon } from './social-link-icon'
 
 interface Props {
   links: Record<string, string>
   linkClassName?: string
 }
 
-interface PreviewData {
-  title?: string
-  description?: string
-  image?: string
-  url: string
+/* Popover previews (LinkPreview, Instagram/LinkedIn cards, /api/link-preview preload) disabled for now. */
+
+function CopyGlyph({ className }: { className?: string }) {
+  /* Offset “two sheets” copy mark (Feather / Lucide style) */
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+    </svg>
+  )
 }
 
-type SocialKey = 'instagram' | 'linkedin'
+function LinkRow({
+  linkKey,
+  url,
+  children,
+  end = 'arrow',
+}: {
+  linkKey: string
+  url: string
+  children: ReactNode
+  end?: 'arrow' | 'copy'
+}) {
+  const endClass =
+    'shrink-0 text-zinc-600 transition-colors group-hover/link:text-zinc-400'
 
-const SOCIAL_PREVIEWS: Record<SocialKey, { title: string; subtitle: string; image: string }> = {
-  instagram: {
-    title: 'Instagram – @rikurainio',
-    subtitle: 'Calisthenics, Gym',
-    image: 'instagram_preview.png', // add this screenshot to /public
-  },
-  linkedin: {
-    title: 'LinkedIn – Riku Rainio',
-    subtitle: 'Experience, projects and professional background.',
-    image: 'linkedin_preview.png', // add this screenshot to /public
-  },
+  return (
+    <>
+      <span className="flex min-w-0 items-center gap-3">
+        <SocialLinkIcon linkKey={linkKey} url={url} />
+        <span className="truncate">{children}</span>
+      </span>
+      {end === 'arrow' ? (
+        <span className={endClass} aria-hidden>
+          →
+        </span>
+      ) : (
+        <CopyGlyph className={`${endClass} h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]`} />
+      )}
+    </>
+  )
 }
 
 export function SocialLinksWithPreviews({ links, linkClassName }: Props) {
-  const [isDesktop, setIsDesktop] = useState(false)
-  const [previews, setPreviews] = useState<Record<string, PreviewData>>({})
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const mq = window.matchMedia('(pointer: fine) and (min-width: 768px)')
-    const update = () => setIsDesktop(mq.matches)
-
-    update()
-    mq.addEventListener('change', update)
-
-    return () => mq.removeEventListener('change', update)
-  }, [])
-
-  useEffect(() => {
-    if (!isDesktop) return
-
-    const controller = new AbortController()
-
-    const externalUrls = Object.values(links).filter(
-      (url) => {
-        const isSocialStatic = url.includes('instagram.com') || url.includes('linkedin.com');
-        return (url.startsWith('http://') || url.startsWith('https://')) && !isSocialStatic;
-      }
-    )
-
-    async function preload() {
-      const results: Record<string, PreviewData> = {}
-
-      await Promise.all(
-        externalUrls.map(async (url) => {
-          try {
-            const res = await fetch(`/api/link-preview?url=${encodeURIComponent(url)}`, {
-              signal: controller.signal,
-            })
-            if (!res.ok) return
-            const data = (await res.json()) as PreviewData
-            results[url] = data
-          } catch {
-            // ignore failures; hover will just fetch on demand
-          }
-        }),
-      )
-
-      // Only update if we still care
-      if (!controller.signal.aborted && Object.keys(results).length) {
-        setPreviews((prev) => ({ ...prev, ...results }))
-      }
-    }
-
-    preload()
-
-    return () => {
-      controller.abort()
-    }
-  }, [isDesktop, links])
-
   return (
     <>
       {Object.entries(links).map(([key, url]) => {
         const isEmail = url.startsWith('mailto:') || key.toLowerCase() === 'email'
-        const isResumeLink = url.endsWith('.pdf') || key.toLowerCase() === 'resume'
-        const isInstagram = url.includes('instagram.com')
-        const isLinkedIn = url.includes('linkedin.com')
 
         if (isEmail) {
           const emailAddress = url.replace(/^mailto:/, '')
@@ -108,137 +76,27 @@ export function SocialLinksWithPreviews({ links, linkClassName }: Props) {
               contentName="Email address"
               className={linkClassName}
             >
-              {key}
+              <LinkRow linkKey={key} url={url} end="copy">
+                {key}
+              </LinkRow>
             </CopyButton>
           )
         }
 
-        // Custom static preview cards for Instagram / LinkedIn (no metadata fetch)
-        if (isInstagram || isLinkedIn) {
-          return (
-            <SocialStaticPreview
-              key={key}
-              href={url}
-              label={key}
-              className={linkClassName}
-              socialKey={isInstagram ? 'instagram' : 'linkedin'}
-              isDesktop={isDesktop}
-            />
-          )
-        }
-
-        if (isResumeLink) {
-          return (
-            <a
-              key={key}
-              href={url}
-              className={linkClassName}
-            >
-              {key}
-            </a>
-          )
-        }
-
+        const isHttp = url.startsWith('http://') || url.startsWith('https://')
         return (
-          <LinkPreview
+          <a
             key={key}
             href={url}
             className={linkClassName}
-            previewText={key}
-            initialPreviewData={previews[url]}
+            {...(isHttp ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
-            {key}
-          </LinkPreview>
+            <LinkRow linkKey={key} url={url}>
+              {key}
+            </LinkRow>
+          </a>
         )
       })}
     </>
   )
 }
-
-interface SocialStaticPreviewProps {
-  href: string
-  label: string
-  className?: string
-  socialKey: SocialKey
-  isDesktop: boolean
-}
-
-function SocialStaticPreview({
-  href,
-  label,
-  className,
-  socialKey,
-  isDesktop,
-}: SocialStaticPreviewProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const triggerRef = useRef<HTMLAnchorElement | null>(null)
-
-  const cleanedUrl = href.replace(/^https?:\/\//, '').replace(/\/$/, '')
-  const data = SOCIAL_PREVIEWS[socialKey]
-
-  if (!isDesktop) {
-    return (
-      <a
-        href={href}
-        className={className}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      >
-        {label}
-      </a>
-    )
-  }
-
-  return (
-    <>
-      <a
-        ref={triggerRef}
-        href={href}
-        className={className}
-        target={href.startsWith('http') ? '_blank' : undefined}
-        rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
-      >
-        {label}
-      </a>
-
-      {isOpen && triggerRef.current && data && (
-        <SmartPopover anchorRef={triggerRef} isOpen={isOpen}>
-          {({ placement }) => (
-            <div className="animate-in fade-in zoom-in-95 duration-200 flex flex-col">
-              {placement === 'bottom' && (
-                <div className="w-full flex justify-center mb-1">
-                  <div className="w-3 h-3 bg-white border-t border-l border-zinc-200 transform rotate-45 translate-y-[50%]" />
-                </div>
-              )}
-
-              <div className="bg-white rounded-sm shadow-xl border border-zinc-200 w-[240px] overflow-hidden">
-                <div className="relative w-full h-24 bg-zinc-100">
-                  <img
-                    src={data.image}
-                    alt={data.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-3 flex flex-col gap-1">
-                  <span className="text-sm font-semibold text-zinc-900 truncate">{data.title}</span>
-                  <span className="text-xs text-zinc-500 line-clamp-2">{data.subtitle}</span>
-                  <span className="text-[11px] text-zinc-400 truncate font-mono">{cleanedUrl}</span>
-                </div>
-              </div>
-
-              {placement === 'top' && (
-                <div className="w-full flex justify-center -mt-1">
-                  <div className="w-3 h-3 bg-white border-b border-r border-zinc-200 transform rotate-45 translate-y-[-50%]" />
-                </div>
-              )}
-            </div>
-          )}
-        </SmartPopover>
-      )}
-    </>
-  )
-}
-

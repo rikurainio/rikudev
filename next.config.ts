@@ -5,6 +5,14 @@ import rehypeShiki from '@shikijs/rehype';
 const nextConfig: NextConfig = {
   // Configure pageExtensions to include md and mdx
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({

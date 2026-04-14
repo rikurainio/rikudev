@@ -18,6 +18,25 @@ body {
   color: var(--foreground);
 }
 
+/* Snappy UI: no transition easing; no time-based motion except tiny status cues */
+html {
+  scroll-behavior: auto;
+}
+
+*,
+*::before,
+*::after {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+*:not(.animate-spin):not([class*="music-wave"]),
+*:not(.animate-spin):not([class*="music-wave"])::before,
+*:not(.animate-spin):not([class*="music-wave"])::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
 /* Hide scrollbar for cleaner look */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -45,7 +64,6 @@ body {
 
 .prose pre {
   margin: 2.5rem 0;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .prose pre:hover {

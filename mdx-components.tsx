@@ -18,22 +18,22 @@ const YouTube = ({ id }: { id: string }) => (
 const components: MDXComponents = {
   // Headings
   h1: ({ children }) => (
-    <h1 className="text-4xl font-bold tracking-tight mt-12 mb-6 first:mt-0 text-white">
+    <h1 className="text-4xl tracking-tight mt-12 mb-6 first:mt-0 text-white">
       {children}
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-3xl font-bold tracking-tight mt-10 mb-4 text-zinc-100">
+    <h2 className="text-3xl tracking-tight mt-10 mb-4 text-zinc-100">
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-2xl font-semibold tracking-tight mt-8 mb-3 text-zinc-200">
+    <h3 className="text-2xl tracking-tight mt-8 mb-3 text-zinc-200">
       {children}
     </h3>
   ),
   h4: ({ children }) => (
-    <h4 className="text-xl font-semibold tracking-tight mt-6 mb-2 text-zinc-200">
+    <h4 className="text-xl tracking-tight mt-6 mb-2 text-zinc-200">
       {children}
     </h4>
   ),

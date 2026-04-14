@@ -1,6 +1,6 @@
 export const DATA = {
   name: "Riku Rainio",
-  role: "Software Developer",
+  role: "",
   about: "Building stuff with code",
   links: {
     Email: "mailto:rainioriku@gmail.com",
@@ -37,16 +37,16 @@ export const DATA = {
     {
       title: "Drafter.lol",
       slug: "drafter-lol",
-      description: "A real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
+      description: "real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
       tech: ["Next.js", "Socket.io", "Polar", "TypeScript", "PostgreSQL"],
       link: "https://drafter.lol",
       image: "drafter.jpg",
       accentColor: "emerald",
     },
     {
-      title: "Warehouse Jiu Jitsu app",
+      title: "Warehouse Jiu Jitsu",
       slug: "warehousejiujitsu",
-      description: "A mobile application for warehouse jiu-jitsu betting with fake credits",
+      description: "web application for warehouse jiu-jitsu betting with fake credits",
       tech: ["Next.js", "Socket.io", "Oauth", "TypeScript"],
       link: "https://definitelynotgambling.online",
       image: "warehousejj2.png",
@@ -55,7 +55,7 @@ export const DATA = {
     {
       title: "Mennää Game",
       slug: "mennaa",
-      description: "A Godot game project",
+      description: "godot game project",
       tech: ["Godot", "GDScript"],
       link: "",
       image: "mennaa.png",
@@ -65,7 +65,7 @@ export const DATA = {
     {
       title: "Sasken CV Database",
       slug: "sasken-cv-database",
-      description: "A CV database application for Sasken",
+      description: "cv database application for Sasken",
       tech: ["React", "Django", "PostgreSQL"],
       link: "",
       image: "sasken.png",
@@ -73,9 +73,9 @@ export const DATA = {
     },
 
     {
-      title: "LinkedInsanity job applier",
+      title: "LinkedInsanity",
       slug: "linkedinsanity",
-      description: "Automated LinkedIn Easy Applier with customazible settings",
+      description: "automated LinkedIn job posting easy applier with customazible settings",
       tech: ["JavaScript", "Browser Automation"],
       link: "",
       image: "linkedinsanity.png",
@@ -91,7 +91,7 @@ export const DATA = {
         "Scaled self-architected platform to over 14,000 monthly users and 2.5 million ad impressions, maintaining 99.9% uptime on a single VPS. Engineered the end-to-end architecture (frontend, backend, database), slashing operational costs by 80% by deploying self-managed Docker containers. Orchestrated the PostgreSQL and Redis infrastructure within a monorepo, optimizing the CI/CD build pipeline to cut deployment times by 40%.",
     },
     {
-      company: "DataAnnotation & Outlier",
+      company: "DataAnnotation",
       role: "Technical AI Annotator",
       period: "March 2024 – February 2026",
       description:

@@ -58,7 +58,7 @@ export function SpotifyNowPlaying() {
 
   return (
     <>
-      <h2 className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Currently Playing</h2>
+      <h2 className="text-[10px] text-zinc-600 uppercase tracking-widest">Currently Playing</h2>
       <div className="w-full mt-2">
         <a
           href={data.songUrl}

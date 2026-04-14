@@ -6,9 +6,9 @@ import { DATA } from "../../lib/data";
 
 const PROJECT_DETAILS: Record<string, ReactNode> = {
   warehousejiujitsu: (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -28,7 +28,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           My role & scope
         </h3>
         <p>
@@ -58,34 +58,34 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <span className="font-medium text-zinc-300">
+            <span className="font-medium text-stone-300">
               Next.js (App Router) + React
             </span>{" "}
             for the main application shell and betting UI, using client
             components where low‑latency interaction is critical.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Socket.IO</span> as the
+            <span className="font-medium text-stone-300">Socket.IO</span> as the
             real-time backbone for broadcasting game state and user info,
             handling bet submissions and keeping balances and odds in sync.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">TypeScript</span> for
+            <span className="font-medium text-stone-300">TypeScript</span> for
             strongly-typed UI state, including animated percentage tracking and
             a dedicated bettingState object.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">PostgreSQL</span> as the
+            <span className="font-medium text-stone-300">PostgreSQL</span> as the
             relational store for matches, contenders, user accounts, and
             historical bets.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">UX Polish</span> via
+            <span className="font-medium text-stone-300">UX Polish</span> via
             skeleton loaders, “no active match” handling, winner banners, and
             dynamic confetti effects.
           </li>
@@ -93,21 +93,21 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Interesting challenges
         </h3>
         <div className="space-y-4">
           <div>
-            <h4 className="font-medium text-zinc-200 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
               Synchronizing UI with real-time state
             </h4>
             <p>
               The UI listens to live{" "}
-              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
                 update-game-state
               </code>{" "}
               and{" "}
-              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
                 update-user-info
               </code>{" "}
               events. I had to ensure the component could mount in several
@@ -117,16 +117,16 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             </p>
           </div>
           <div>
-            <h4 className="font-medium text-zinc-200 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
               Managing concurrent user actions
             </h4>
             <p>
               I built a{" "}
-              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
                 clampAmount
               </code>{" "}
               utility and a{" "}
-              <code className="text-sm bg-zinc-900 px-1.5 py-0.5 rounded text-zinc-300 border border-zinc-800">
+              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
                 bettingState
               </code>{" "}
               object to guard against invalid bets on the client before the
@@ -134,7 +134,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             </p>
           </div>
           <div>
-            <h4 className="font-medium text-zinc-200 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
               Making percentages feel “alive”
             </h4>
             <p>
@@ -147,30 +147,30 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I’d improve next
         </h3>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <span className="font-medium text-zinc-300">
+            <span className="font-medium text-stone-300">
               Stronger end-to-end typing
             </span>{" "}
             between Socket.IO events and the backend payloads using a shared
             schema (like Zod or DTOs).
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Deeper analytics</span>{" "}
+            <span className="font-medium text-stone-300">Deeper analytics</span>{" "}
             including per‑user win rates and match-level stats.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">
+            <span className="font-medium text-stone-300">
               Harden risk management
             </span>{" "}
             with more sophisticated rate limiting and edge-case constraints on
             the backend.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Test coverage</span> for
+            <span className="font-medium text-stone-300">Test coverage</span> for
             critical flows like reconnecting mid‑match and race conditions
             between concurrent bets.
           </li>
@@ -179,9 +179,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "drafter-lol": (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -193,7 +193,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           My role & scope
         </h3>
         <p>
@@ -205,33 +205,33 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-zinc-300">Next.js 15 + React 19</span> for the main web
+            <span className="font-medium text-stone-300">Next.js 15 + React 19</span> for the main web
             app, using the app router for SEO-friendly marketing pages and
             room/analytics views.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Socket.IO + Express</span> in a separate
+            <span className="font-medium text-stone-300">Socket.IO + Express</span> in a separate
             service to handle low-latency draft rooms, user connections and event
             streams.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">PostgreSQL + Drizzle</span> as the shared
+            <span className="font-medium text-stone-300">PostgreSQL + Drizzle</span> as the shared
             relational store for drafts, users and analytics queries.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Redis + rate limiting</span> to protect custom
+            <span className="font-medium text-stone-300">Redis + rate limiting</span> to protect custom
             analytics endpoints, especially expensive, ad‑hoc queries.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Interesting challenges
         </h3>
         <p>
@@ -244,7 +244,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I’d improve next
         </h3>
         <p>
@@ -256,9 +256,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   ideastorm: (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -270,7 +270,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           My role & scope
         </h3>
         <p>
@@ -281,26 +281,26 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-zinc-300">Next.js (app router)</span> for the marketing
+            <span className="font-medium text-stone-300">Next.js (app router)</span> for the marketing
             site and authenticated dashboard, mixing server components for data fetching
             with client components for rich UI and animation.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">PostgreSQL + Drizzle ORM</span> to model
+            <span className="font-medium text-stone-300">PostgreSQL + Drizzle ORM</span> to model
             ideas, scores and metadata as typed schemas with jsonb fields for structured
             AI output.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">NextAuth + Drizzle adapter</span> to secure
+            <span className="font-medium text-stone-300">NextAuth + Drizzle adapter</span> to secure
             the dashboard and keep sessions tied to the same schema the analytics uses.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">OpenRouter LLM API</span> in a separate
+            <span className="font-medium text-stone-300">OpenRouter LLM API</span> in a separate
             scraper project that turns raw community posts into structured business
             intelligence (scores, SWOT, suggested tech stack, MVP features, and more).
           </li>
@@ -308,7 +308,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Interesting challenges
         </h3>
         <p>
@@ -321,7 +321,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I’d improve next
         </h3>
         <p>
@@ -335,9 +335,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   mennaa: (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -354,7 +354,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Download
         </h3>
         <p>
@@ -362,7 +362,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             href="https://drive.google.com/file/d/1O0ektc_0tjkeyghO7lGYMpI8UhmLWCwM/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white border-b border-zinc-700 pb-0.5 hover:border-white transition-colors"
+            className="text-white border-b border-stone-700 pb-0.5 hover:border-white transition-colors"
           >
             Download mennää.exe
           </a>
@@ -370,7 +370,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Getting started with Godot
         </h3>
         <p>
@@ -383,7 +383,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Scenes, nodes & modular structure
         </h3>
         <p>
@@ -401,7 +401,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Building the core gameplay
         </h3>
         <p>
@@ -420,7 +420,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Adding polish
         </h3>
         <p>
@@ -437,7 +437,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I learned
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -456,7 +456,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Why it&apos;s in my portfolio
         </h3>
         <p>
@@ -470,9 +470,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   linkedinsanity: (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -484,7 +484,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           My role & scope
         </h3>
         <p>
@@ -495,21 +495,21 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-zinc-300">Node.js + Playwright</span> to control a real
+            <span className="font-medium text-stone-300">Node.js + Playwright</span> to control a real
             Chromium instance, navigate LinkedIn, and behave like a human: scrolling,
             waiting, and interacting with job cards.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Electron + React + TypeScript</span> to ship a
+            <span className="font-medium text-stone-300">Electron + React + TypeScript</span> to ship a
             cross‑platform desktop app that wraps the automation in a friendly UI.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">SQLite</span> for lightweight persistence of
+            <span className="font-medium text-stone-300">SQLite</span> for lightweight persistence of
             job IDs and application history, making sure the tool never re‑applies to
             the same position twice.
           </li>
@@ -517,7 +517,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Interesting challenges
         </h3>
         <p>
@@ -531,7 +531,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I’d improve next
         </h3>
         <p>
@@ -543,9 +543,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "sasken-cv-database": (
-    <div className="space-y-8 text-lg leading-relaxed text-zinc-400">
+    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
           Overview
         </h2>
         <p>
@@ -557,7 +557,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           My role & scope
         </h3>
         <p>
@@ -568,28 +568,28 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-zinc-300">React + TypeScript</span> (with modern
+            <span className="font-medium text-stone-300">React + TypeScript</span> (with modern
             tooling) for a fast, type‑safe SPA with role‑aware navigation and route
             guards.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">Django + Django REST Framework</span> split
+            <span className="font-medium text-stone-300">Django + Django REST Framework</span> split
             into focused apps for employees, experience, statistics and reminders.
           </li>
           <li>
-            <span className="font-medium text-zinc-300">PostgreSQL + Celery</span> for relational data
+            <span className="font-medium text-stone-300">PostgreSQL + Celery</span> for relational data
             and background jobs that send reminder emails and keep profiles up to date.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           Interesting challenges
         </h3>
         <p>
@@ -603,7 +603,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-lg font-semibold tracking-tight text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
           What I’d improve next
         </h3>
         <p>
@@ -645,26 +645,26 @@ export default async function ProjectPage({
   const details = PROJECT_DETAILS[slug];
 
   return (
-    <main className="min-h-screen selection:bg-white selection:text-black">
-      <article className="max-w-4xl mx-auto px-6 py-20 md:py-32">
+    <main className="min-h-screen selection:bg-white selection:text-black bg-stone-950 text-stone-400 font-sans overflow-x-hidden w-full">
+      <article className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-24 w-full min-w-0">
         {/* Back link */}
         <Link
           href="/"
-          className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors mb-12 inline-block"
+          className="text-sm font-medium text-stone-500 hover:text-white transition-colors uppercase tracking-tight mb-8 md:mb-12 inline-block"
         >
           ← Back
         </Link>
 
         {/* Project Header */}
-        <header className="mb-12">
-          <h1 className="text-4xl font-semibold tracking-tighter text-white mb-6">
+        <header className="mb-8 md:mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl tracking-tighter text-white font-medium mb-4 md:mb-6 break-words">
             {project.title}
           </h1>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
             {project.tech.map((t) => (
               <span
                 key={t}
-                className="text-sm text-zinc-600 border-b border-zinc-900 pb-0.5 font-mono"
+                className="text-xs font-medium text-stone-500 border border-stone-800 bg-stone-900/40 px-2 py-0.5 rounded-lg font-mono uppercase tracking-tight"
               >
                 {t}
               </span>
@@ -673,35 +673,39 @@ export default async function ProjectPage({
         </header>
 
         {/* Project Image */}
-        <div className="mb-12 aspect-video bg-zinc-900 overflow-hidden rounded-sm border border-zinc-800">
+        <div className="mb-8 md:mb-12 aspect-video overflow-hidden rounded-xl bg-stone-800">
           <img
             src={`/${project.image}`}
             alt={`Preview of ${project.title}`}
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]"
           />
         </div>
 
         {/* Short description */}
-        <section className="mb-10">
-          <p className="text-2xl leading-relaxed max-w-2xl text-zinc-400 font-light">
+        <section className="mb-8 md:mb-10">
+          <p className="text-lg md:text-xl leading-relaxed max-w-2xl text-stone-400 font-light">
             {project.description}
           </p>
         </section>
 
         {/* Detailed write-up (if available) */}
-        {details && <section className="mb-12">{details}</section>}
+        {details && (
+          <section className="mb-8 md:mb-12 rounded-xl bg-stone-800/50 border border-stone-800 p-6 md:p-10">
+            {details}
+          </section>
+        )}
 
         {/* External Link */}
         {project.link && (
-          <section className="mt-8 border-t border-zinc-900 pt-8">
+          <section className="mt-12 md:mt-16 border-t border-stone-800 pt-8 md:pt-12">
             <Link
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-base font-bold text-zinc-100 hover:text-zinc-300 transition-colors uppercase tracking-widest flex items-center gap-2"
+              className="text-sm font-medium text-stone-500 hover:text-white transition-colors uppercase tracking-tight inline-flex items-center gap-2"
             >
               visit site
-              <span>→</span>
+              <span aria-hidden>→</span>
             </Link>
           </section>
         )}
