@@ -3,7 +3,7 @@ import type { MDXComponents } from 'mdx/types'
 import Link from 'next/link'
 
 const YouTube = ({ id }: { id: string }) => (
-  <div className="my-10 aspect-video w-full rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-zinc-200/50">
+  <div className="my-10 aspect-video w-full rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-neutral-200">
     <iframe
       className="w-full h-full"
       src={`https://www.youtube.com/embed/${id}`}
@@ -18,29 +18,29 @@ const YouTube = ({ id }: { id: string }) => (
 const components: MDXComponents = {
   // Headings
   h1: ({ children }) => (
-    <h1 className="text-4xl tracking-tight mt-12 mb-6 first:mt-0 text-white">
+    <h1 className="text-4xl tracking-tight mt-12 mb-6 first:mt-0 text-neutral-900 font-semibold">
       {children}
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-3xl tracking-tight mt-10 mb-4 text-zinc-100">
+    <h2 className="text-3xl tracking-tight mt-10 mb-4 text-neutral-900 font-semibold">
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-2xl tracking-tight mt-8 mb-3 text-zinc-200">
+    <h3 className="text-2xl tracking-tight mt-8 mb-3 text-neutral-800 font-semibold">
       {children}
     </h3>
   ),
   h4: ({ children }) => (
-    <h4 className="text-xl tracking-tight mt-6 mb-2 text-zinc-200">
+    <h4 className="text-xl tracking-tight mt-6 mb-2 text-neutral-800 font-semibold">
       {children}
     </h4>
   ),
 
   // Paragraphs
   p: ({ children }) => (
-    <p className="text-zinc-400 leading-relaxed mb-6 last:mb-0">
+    <p className="text-neutral-600 leading-relaxed mb-6 last:mb-0">
       {children}
     </p>
   ),
@@ -55,7 +55,7 @@ const components: MDXComponents = {
         href={href || '#'}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        className="text-white border-b border-zinc-700 pb-0.5 hover:border-white transition-colors"
+        className="text-emerald-600 border-b border-emerald-200 pb-0.5 hover:border-emerald-600 transition-colors"
       >
         {children}
       </Component>
@@ -64,12 +64,12 @@ const components: MDXComponents = {
 
   // Lists
   ul: ({ children }) => (
-    <ul className="list-disc list-inside mb-4 space-y-2 text-zinc-400">
+    <ul className="list-disc list-inside mb-4 space-y-2 text-neutral-600">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal list-inside mb-4 space-y-2 text-zinc-400">
+    <ol className="list-decimal list-inside mb-4 space-y-2 text-neutral-600">
       {children}
     </ol>
   ),
@@ -87,7 +87,7 @@ const components: MDXComponents = {
   pre: ({ children, ...props }) => (
     <pre
       {...props}
-      className="p-6 rounded-xl overflow-x-auto my-8 text-base md:text-lg font-mono border border-zinc-800/50 shadow-2xl bg-[#0c0c0e]/50 backdrop-blur-sm"
+      className="p-6 rounded-xl overflow-x-auto my-8 text-base md:text-lg font-mono border border-neutral-200 shadow-sm bg-neutral-50"
     >
       {children}
     </pre>
@@ -96,14 +96,14 @@ const components: MDXComponents = {
 
   // Blockquotes
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-zinc-800 pl-4 italic text-zinc-500 my-6">
+    <blockquote className="border-l-4 border-emerald-300 pl-4 italic text-neutral-500 my-6">
       {children}
     </blockquote>
   ),
 
   // Horizontal rule
   hr: () => (
-    <hr className="my-12 border-0 h-px bg-linear-to-r from-transparent via-zinc-800/50 to-transparent" />
+    <hr className="my-12 border-0 h-px bg-linear-to-r from-transparent via-neutral-200 to-transparent" />
   ),
 
   // Images
@@ -118,19 +118,19 @@ const components: MDXComponents = {
 
   // Tables
   table: ({ children }) => (
-    <div className="overflow-x-auto my-6 rounded-lg border border-zinc-800">
+    <div className="overflow-x-auto my-6 rounded-lg border border-neutral-200">
       <table className="min-w-full border-collapse">
         {children}
       </table>
     </div>
   ),
   thead: ({ children }) => (
-    <thead className="bg-zinc-900/50">
+    <thead className="bg-neutral-50">
       {children}
     </thead>
   ),
   tbody: ({ children }) => (
-    <tbody className="divide-y divide-zinc-900">
+    <tbody className="divide-y divide-neutral-200">
       {children}
     </tbody>
   ),
@@ -140,19 +140,19 @@ const components: MDXComponents = {
     </tr>
   ),
   th: ({ children }) => (
-    <th className="px-4 py-3 text-left font-semibold text-zinc-200 text-sm">
+    <th className="px-4 py-3 text-left font-semibold text-neutral-800 text-sm">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="px-4 py-3 text-zinc-400 text-sm">
+    <td className="px-4 py-3 text-neutral-600 text-sm">
       {children}
     </td>
   ),
 
   // Strong and emphasis
   strong: ({ children }) => (
-    <strong className="font-semibold text-zinc-200">
+    <strong className="font-semibold text-neutral-900">
       {children}
     </strong>
   ),

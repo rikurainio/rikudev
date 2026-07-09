@@ -5,10 +5,159 @@ import type { ReactNode } from "react";
 import { DATA } from "../../lib/data";
 
 const PROJECT_DETAILS: Record<string, ReactNode> = {
-  warehousejiujitsu: (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+  bindermap: (
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-4">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
+          Overview
+        </h2>
+        <p>
+          Bindermap is a production full-stack app for Pokemon TCG collectors who
+          want to plan physical card binders before moving cards around by hand.
+          It turns a binder into an interactive visual workspace where users can
+          build pages, search a large card catalog, experiment with layouts, track
+          missing cards, and share polished public binder pages.
+        </p>
+        <p>
+          The product is built around a real collector workflow: search cards,
+          place them into realistic binder slots, auto-fill layouts from owned
+          cards, randomize pages, review what is missing, and publish the finished
+          layout with social-ready previews.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
+          My role & scope
+        </h3>
+        <p>
+          I built the product end to end: the Solid.js frontend, Go API, protobuf
+          contract, PostgreSQL schema, card ingestion pipeline, production
+          deployment, monitoring, and internal admin tooling for catalog quality.
+        </p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Designed the binder model around pages, slots, layouts, cards, ownership, missing cards, and public sharing.</li>
+          <li>Built the visual editor with 3x3, 4x4, 2x2, and 1x1 page grids plus drag-and-drop card swapping.</li>
+          <li>Implemented collection tracking, bulk imports, auto-fill tools, randomization, Discover, public profiles, hearts, and share flows.</li>
+          <li>Created admin workflows for duplicate review, image overrides, set coverage, Pokemon browsing, SQL tools, and catalog health checks.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
+          Product features
+        </h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <span className="font-medium text-neutral-800">Binder editor</span>{" "}
+            with realistic page layouts, card placement, page randomization,
+            roulette reveal animations, and exportable share images.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">Card catalog search</span>{" "}
+            with filters for sets, Pokemon names, rarities, energy types,
+            languages, and typo-tolerant matching for searches like
+            &quot;charizrd&quot;.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">Collection tools</span>{" "}
+            for tracking owned cards, importing pasted lists, auto-filling
+            binders, building set master binders, and copying/exporting missing
+            card lists.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">Public sharing</span>{" "}
+            through Discover, public profiles, hearts, tags, QR codes, cinema
+            mode, generated Open Graph pages, and PNG preview images.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
+          Under the hood
+        </h3>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>
+            <span className="font-medium text-neutral-800">Solid.js + Vite + TypeScript</span>{" "}
+            on the frontend, styled with Tailwind CSS v4 and served by nginx in
+            production.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">Go + Connect RPC</span>{" "}
+            for the backend API, using protobuf as the shared contract so Go and
+            TypeScript clients stay in sync.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">PostgreSQL + Redis</span>{" "}
+            for application data, sessions, catalog metadata, public binder
+            state, and production rate limiting.
+          </li>
+          <li>
+            <span className="font-medium text-neutral-800">Dockerized infrastructure</span>{" "}
+            with Traefik, Let&apos;s Encrypt TLS, GitHub Actions deployment over SSH,
+            Prometheus metrics, Grafana dashboards, and Dozzle logs.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
+          Interesting challenges
+        </h3>
+        <div className="space-y-4">
+          <div>
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
+              Modeling a real binder digitally
+            </h4>
+            <p>
+              A physical binder is simple, but the app needed editable pages,
+              slot coordinates, multiple grid sizes, card references, ownership
+              status, missing-card state, public read-only access, and shareable
+              previews without making the editor feel heavy.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
+              Maintaining a large card catalog
+            </h4>
+            <p>
+              Catalog ingestion pulls and normalizes data from sources like
+              TCGdex, PokemonTCG.io, and TCGCSV. Search quality, duplicate cards,
+              variants, missing images, and set coverage all became real product
+              and admin-tooling problems.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
+              Making shared binders look good everywhere
+            </h4>
+            <p>
+              Bindermap includes crawler-friendly embed routes and generated PNG
+              previews so public binder links render cleanly across social apps,
+              direct messages, and link unfurlers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
+          Why it&apos;s in my portfolio
+        </h3>
+        <p>
+          Bindermap is one of my most complete full-stack projects. It is not just
+          a UI demo: it has a real niche workflow, typed API contracts,
+          authentication, persistence, catalog ingestion, public sharing,
+          deployment automation, observability, and internal operations tooling.
+        </p>
+      </section>
+    </div>
+  ),
+  warehousejiujitsu: (
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
+      <section className="space-y-4">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -28,7 +177,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           My role & scope
         </h3>
         <p>
@@ -58,34 +207,34 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <span className="font-medium text-stone-300">
+            <span className="font-medium text-neutral-800">
               Next.js (App Router) + React
             </span>{" "}
             for the main application shell and betting UI, using client
             components where low‑latency interaction is critical.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Socket.IO</span> as the
+            <span className="font-medium text-neutral-800">Socket.IO</span> as the
             real-time backbone for broadcasting game state and user info,
             handling bet submissions and keeping balances and odds in sync.
           </li>
           <li>
-            <span className="font-medium text-stone-300">TypeScript</span> for
+            <span className="font-medium text-neutral-800">TypeScript</span> for
             strongly-typed UI state, including animated percentage tracking and
             a dedicated bettingState object.
           </li>
           <li>
-            <span className="font-medium text-stone-300">PostgreSQL</span> as the
+            <span className="font-medium text-neutral-800">PostgreSQL</span> as the
             relational store for matches, contenders, user accounts, and
             historical bets.
           </li>
           <li>
-            <span className="font-medium text-stone-300">UX Polish</span> via
+            <span className="font-medium text-neutral-800">UX Polish</span> via
             skeleton loaders, “no active match” handling, winner banners, and
             dynamic confetti effects.
           </li>
@@ -93,21 +242,21 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Interesting challenges
         </h3>
         <div className="space-y-4">
           <div>
-            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
               Synchronizing UI with real-time state
             </h4>
             <p>
               The UI listens to live{" "}
-              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
+              <code className="text-sm bg-neutral-100 px-1.5 py-0.5 rounded text-emerald-700">
                 update-game-state
               </code>{" "}
               and{" "}
-              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
+              <code className="text-sm bg-neutral-100 px-1.5 py-0.5 rounded text-emerald-700">
                 update-user-info
               </code>{" "}
               events. I had to ensure the component could mount in several
@@ -117,16 +266,16 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             </p>
           </div>
           <div>
-            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
               Managing concurrent user actions
             </h4>
             <p>
               I built a{" "}
-              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
+              <code className="text-sm bg-neutral-100 px-1.5 py-0.5 rounded text-emerald-700">
                 clampAmount
               </code>{" "}
               utility and a{" "}
-              <code className="text-sm bg-stone-900 px-1.5 py-0.5 rounded text-stone-300 border border-stone-800">
+              <code className="text-sm bg-neutral-100 px-1.5 py-0.5 rounded text-emerald-700">
                 bettingState
               </code>{" "}
               object to guard against invalid bets on the client before the
@@ -134,7 +283,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             </p>
           </div>
           <div>
-            <h4 className="text-lg tracking-tighter font-medium text-stone-300 mb-2">
+            <h4 className="text-lg tracking-tighter font-medium text-neutral-800 mb-2">
               Making percentages feel “alive”
             </h4>
             <p>
@@ -147,30 +296,30 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-4">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I’d improve next
         </h3>
         <ul className="list-disc pl-5 space-y-2">
           <li>
-            <span className="font-medium text-stone-300">
+            <span className="font-medium text-neutral-800">
               Stronger end-to-end typing
             </span>{" "}
             between Socket.IO events and the backend payloads using a shared
             schema (like Zod or DTOs).
           </li>
           <li>
-            <span className="font-medium text-stone-300">Deeper analytics</span>{" "}
+            <span className="font-medium text-neutral-800">Deeper analytics</span>{" "}
             including per‑user win rates and match-level stats.
           </li>
           <li>
-            <span className="font-medium text-stone-300">
+            <span className="font-medium text-neutral-800">
               Harden risk management
             </span>{" "}
             with more sophisticated rate limiting and edge-case constraints on
             the backend.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Test coverage</span> for
+            <span className="font-medium text-neutral-800">Test coverage</span> for
             critical flows like reconnecting mid‑match and race conditions
             between concurrent bets.
           </li>
@@ -179,9 +328,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "drafter-lol": (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -193,7 +342,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           My role & scope
         </h3>
         <p>
@@ -205,33 +354,33 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-stone-300">Next.js 15 + React 19</span> for the main web
+            <span className="font-medium text-neutral-800">Next.js 15 + React 19</span> for the main web
             app, using the app router for SEO-friendly marketing pages and
             room/analytics views.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Socket.IO + Express</span> in a separate
+            <span className="font-medium text-neutral-800">Socket.IO + Express</span> in a separate
             service to handle low-latency draft rooms, user connections and event
             streams.
           </li>
           <li>
-            <span className="font-medium text-stone-300">PostgreSQL + Drizzle</span> as the shared
+            <span className="font-medium text-neutral-800">PostgreSQL + Drizzle</span> as the shared
             relational store for drafts, users and analytics queries.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Redis + rate limiting</span> to protect custom
+            <span className="font-medium text-neutral-800">Redis + rate limiting</span> to protect custom
             analytics endpoints, especially expensive, ad‑hoc queries.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Interesting challenges
         </h3>
         <p>
@@ -244,7 +393,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I’d improve next
         </h3>
         <p>
@@ -256,9 +405,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   ideastorm: (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -270,7 +419,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           My role & scope
         </h3>
         <p>
@@ -281,26 +430,26 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-stone-300">Next.js (app router)</span> for the marketing
+            <span className="font-medium text-neutral-800">Next.js (app router)</span> for the marketing
             site and authenticated dashboard, mixing server components for data fetching
             with client components for rich UI and animation.
           </li>
           <li>
-            <span className="font-medium text-stone-300">PostgreSQL + Drizzle ORM</span> to model
+            <span className="font-medium text-neutral-800">PostgreSQL + Drizzle ORM</span> to model
             ideas, scores and metadata as typed schemas with jsonb fields for structured
             AI output.
           </li>
           <li>
-            <span className="font-medium text-stone-300">NextAuth + Drizzle adapter</span> to secure
+            <span className="font-medium text-neutral-800">NextAuth + Drizzle adapter</span> to secure
             the dashboard and keep sessions tied to the same schema the analytics uses.
           </li>
           <li>
-            <span className="font-medium text-stone-300">OpenRouter LLM API</span> in a separate
+            <span className="font-medium text-neutral-800">OpenRouter LLM API</span> in a separate
             scraper project that turns raw community posts into structured business
             intelligence (scores, SWOT, suggested tech stack, MVP features, and more).
           </li>
@@ -308,7 +457,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Interesting challenges
         </h3>
         <p>
@@ -321,7 +470,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I’d improve next
         </h3>
         <p>
@@ -335,9 +484,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   mennaa: (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -354,7 +503,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Download
         </h3>
         <p>
@@ -362,7 +511,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
             href="https://drive.google.com/file/d/1O0ektc_0tjkeyghO7lGYMpI8UhmLWCwM/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white border-b border-stone-700 pb-0.5 hover:border-white transition-colors"
+            className="text-neutral-900 border-b border-neutral-300 pb-0.5 hover:border-emerald-500 transition-colors"
           >
             Download mennää.exe
           </a>
@@ -370,7 +519,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Getting started with Godot
         </h3>
         <p>
@@ -383,7 +532,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Scenes, nodes & modular structure
         </h3>
         <p>
@@ -401,7 +550,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Building the core gameplay
         </h3>
         <p>
@@ -420,7 +569,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Adding polish
         </h3>
         <p>
@@ -437,7 +586,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I learned
         </h3>
         <ul className="list-disc pl-5 space-y-1">
@@ -456,7 +605,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Why it&apos;s in my portfolio
         </h3>
         <p>
@@ -470,9 +619,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   linkedinsanity: (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -484,7 +633,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           My role & scope
         </h3>
         <p>
@@ -495,21 +644,21 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-stone-300">Node.js + Playwright</span> to control a real
+            <span className="font-medium text-neutral-800">Node.js + Playwright</span> to control a real
             Chromium instance, navigate LinkedIn, and behave like a human: scrolling,
             waiting, and interacting with job cards.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Electron + React + TypeScript</span> to ship a
+            <span className="font-medium text-neutral-800">Electron + React + TypeScript</span> to ship a
             cross‑platform desktop app that wraps the automation in a friendly UI.
           </li>
           <li>
-            <span className="font-medium text-stone-300">SQLite</span> for lightweight persistence of
+            <span className="font-medium text-neutral-800">SQLite</span> for lightweight persistence of
             job IDs and application history, making sure the tool never re‑applies to
             the same position twice.
           </li>
@@ -517,7 +666,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Interesting challenges
         </h3>
         <p>
@@ -531,7 +680,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I’d improve next
         </h3>
         <p>
@@ -543,9 +692,9 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
     </div>
   ),
   "sasken-cv-database": (
-    <div className="space-y-8 text-lg leading-relaxed text-stone-400 font-light">
+    <div className="space-y-8 text-lg leading-relaxed text-neutral-600 font-light">
       <section className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-white">
+        <h2 className="text-2xl sm:text-3xl tracking-tighter font-normal text-neutral-900">
           Overview
         </h2>
         <p>
@@ -557,7 +706,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           My role & scope
         </h3>
         <p>
@@ -568,28 +717,28 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Under the hood
         </h3>
         <ul className="list-disc pl-5 space-y-1">
           <li>
-            <span className="font-medium text-stone-300">React + TypeScript</span> (with modern
+            <span className="font-medium text-neutral-800">React + TypeScript</span> (with modern
             tooling) for a fast, type‑safe SPA with role‑aware navigation and route
             guards.
           </li>
           <li>
-            <span className="font-medium text-stone-300">Django + Django REST Framework</span> split
+            <span className="font-medium text-neutral-800">Django + Django REST Framework</span> split
             into focused apps for employees, experience, statistics and reminders.
           </li>
           <li>
-            <span className="font-medium text-stone-300">PostgreSQL + Celery</span> for relational data
+            <span className="font-medium text-neutral-800">PostgreSQL + Celery</span> for relational data
             and background jobs that send reminder emails and keep profiles up to date.
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           Interesting challenges
         </h3>
         <p>
@@ -603,7 +752,7 @@ const PROJECT_DETAILS: Record<string, ReactNode> = {
       </section>
 
       <section className="space-y-2">
-        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-white">
+        <h3 className="text-xl sm:text-2xl tracking-tighter font-normal text-neutral-900">
           What I’d improve next
         </h3>
         <p>
@@ -645,66 +794,55 @@ export default async function ProjectPage({
   const details = PROJECT_DETAILS[slug];
 
   return (
-    <main className="min-h-screen selection:bg-white selection:text-black bg-stone-950 text-stone-400 font-sans overflow-x-hidden w-full">
-      <article className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-24 w-full min-w-0">
+    <main className="min-h-screen bg-white text-neutral-600 font-sans selection:bg-emerald-500 selection:text-white">
+      <article className="max-w-3xl mx-auto px-6 py-16 md:py-24 w-full min-w-0">
         {/* Back link */}
         <Link
           href="/"
-          className="text-sm font-medium text-stone-500 hover:text-white transition-colors uppercase tracking-tight mb-8 md:mb-12 inline-block"
+          className="text-xs uppercase tracking-widest text-neutral-400 hover:text-emerald-600 mb-16 inline-block"
         >
           ← Back
         </Link>
 
         {/* Project Header */}
-        <header className="mb-8 md:mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl tracking-tighter text-white font-medium mb-4 md:mb-6 break-words">
+        <header className="mb-10 md:mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-neutral-900 font-medium mb-5 break-words">
             {project.title}
           </h1>
-          <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
-            {project.tech.map((t) => (
-              <span
-                key={t}
-                className="text-xs font-medium text-stone-500 border border-stone-800 bg-stone-900/40 px-2 py-0.5 rounded-lg font-mono uppercase tracking-tight"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+          <p className="text-xs uppercase tracking-widest text-neutral-400">
+            {project.tech.join(" · ")}
+          </p>
         </header>
 
         {/* Project Image */}
-        <div className="mb-8 md:mb-12 aspect-video overflow-hidden rounded-xl bg-stone-800">
+        <div className="mb-12 md:mb-16 aspect-video overflow-hidden rounded-lg bg-neutral-50">
           <img
             src={`/${project.image}`}
             alt={`Preview of ${project.title}`}
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+            className="w-full h-full object-cover"
           />
         </div>
 
         {/* Short description */}
-        <section className="mb-8 md:mb-10">
-          <p className="text-lg md:text-xl leading-relaxed max-w-2xl text-stone-400 font-light">
+        <section className="mb-12">
+          <p className="text-xl md:text-2xl leading-relaxed max-w-2xl text-neutral-500 font-light">
             {project.description}
           </p>
         </section>
 
         {/* Detailed write-up (if available) */}
-        {details && (
-          <section className="mb-8 md:mb-12 rounded-xl bg-stone-800/50 border border-stone-800 p-6 md:p-10">
-            {details}
-          </section>
-        )}
+        {details && <section className="mb-12 md:mb-16">{details}</section>}
 
         {/* External Link */}
         {project.link && (
-          <section className="mt-12 md:mt-16 border-t border-stone-800 pt-8 md:pt-12">
+          <section className="mt-16 border-t border-neutral-200 pt-8">
             <Link
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-stone-500 hover:text-white transition-colors uppercase tracking-tight inline-flex items-center gap-2"
+              className="text-xs uppercase tracking-widest text-neutral-500 hover:text-emerald-600 inline-flex items-center gap-2"
             >
-              visit site
+              Visit site
               <span aria-hidden>→</span>
             </Link>
           </section>

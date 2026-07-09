@@ -35,6 +35,16 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Bindermap",
+      slug: "bindermap",
+      description:
+        "full-stack Pokemon TCG binder planner for designing, organizing, sharing, and showcasing card binders digitally",
+      tech: ["Solid.js", "Go", "PostgreSQL", "Connect RPC", "Docker"],
+      link: "https://bindermap.xyz",
+      image: "bindermapp.png",
+      accentColor: "teal",
+    },
+    {
       title: "Drafter.lol",
       slug: "drafter-lol",
       description: "real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
@@ -44,15 +54,6 @@ export const DATA = {
       accentColor: "emerald",
     },
     {
-      title: "Warehouse Jiu Jitsu",
-      slug: "warehousejiujitsu",
-      description: "web application for warehouse jiu-jitsu betting with fake credits",
-      tech: ["Next.js", "Socket.io", "Oauth", "TypeScript"],
-      link: "https://definitelynotgambling.online",
-      image: "warehousejj2.png",
-      accentColor: "violet",
-    },
-    {
       title: "Mennää Game",
       slug: "mennaa",
       description: "godot game project",
@@ -60,26 +61,6 @@ export const DATA = {
       link: "",
       image: "mennaa.png",
       accentColor: "sky",
-    },
-
-    {
-      title: "Sasken CV Database",
-      slug: "sasken-cv-database",
-      description: "cv database application for Sasken",
-      tech: ["React", "Django", "PostgreSQL"],
-      link: "",
-      image: "sasken.png",
-      accentColor: "amber",
-    },
-
-    {
-      title: "LinkedInsanity",
-      slug: "linkedinsanity",
-      description: "automated LinkedIn job posting easy applier with customazible settings",
-      tech: ["JavaScript", "Browser Automation"],
-      link: "",
-      image: "linkedinsanity.png",
-      accentColor: "rose",
     },
   ],
   jobs: [
@@ -91,9 +72,25 @@ export const DATA = {
         "Scaled self-architected platform to over 14,000 monthly users and 2.5 million ad impressions, maintaining 99.9% uptime on a single VPS. Engineered the end-to-end architecture (frontend, backend, database), slashing operational costs by 80% by deploying self-managed Docker containers. Orchestrated the PostgreSQL and Redis infrastructure within a monorepo, optimizing the CI/CD build pipeline to cut deployment times by 40%.",
     },
     {
+      company: "Bindermap",
+      role: "Founder & Engineer",
+      period: "2024 – Present",
+      description:
+        "Solo-building a full-stack Pokemon TCG binder planner end to end — Solid.js frontend, Go + Connect RPC API, PostgreSQL, and a Dockerized production deployment with Traefik, Prometheus, and Grafana. Designed the visual binder editor, card catalog ingestion pipeline, public sharing, and internal admin tooling.",
+    },
+    {
+      company: "Soldem",
+      role: "Customer Service & Sales",
+      period: "March 2026 – May 2026",
+      logo: "/logos/soldem.jpeg",
+      description:
+        "Helped Fortum's customers resolve issues with their contracts and general account matters over the phone, and sold Fortum's products and services on outbound and inbound calls.",
+    },
+    {
       company: "DataAnnotation",
       role: "Technical AI Annotator",
       period: "March 2024 – February 2026",
+      logo: "/logos/dataannotation.jpeg",
       description:
         "Enhanced LLM code generation accuracy by 30% through rigorous debugging and validation of TypeScript and Python outputs. Evaluated model outputs across critical axes including truthfulness, safety, and instruction following, contributing directly to RLHF (Reinforcement Learning from Human Feedback) pipelines. Designed complex system prompts and adversarial test cases to rigorously test model capabilities and reduce AI hallucinations.",
     },
@@ -101,6 +98,7 @@ export const DATA = {
       company: "Buutti",
       role: "Full-Stack Developer",
       period: "April 2024 – October 2024",
+      logo: "/logos/buutti.jpeg",
       description:
         "Maintained and expanded a client e-commerce application using Next.js, implementing responsive UI components based on precise design requirements. Developed 5+ REST API endpoints to handle product data, successfully bridging the frontend client with the backend logic.",
     },
@@ -108,6 +106,7 @@ export const DATA = {
       company: "Knowit",
       role: "Frontend Developer",
       period: "August 2022 – March 2024",
+      logo: "/logos/knowit.jpeg",
       description:
         "Developed core frontend modules for a Media Asset Management (MAM) system using React, enabling users to efficiently upload, organize, and retrieve digital assets. Integrated UI components with a Python backend, utilizing AWS S3 for file storage and DynamoDB for metadata management. Delivered 15+ major feature updates, including advanced search filters and file previewers, ensuring a seamless user experience for managing complex data.",
     },

@@ -42,7 +42,7 @@ function LinkRow({
   end?: 'arrow' | 'copy'
 }) {
   const endClass =
-    'shrink-0 text-zinc-600 transition-colors group-hover/link:text-zinc-400'
+    'shrink-0 text-neutral-400 transition-colors group-hover/link:text-emerald-600'
 
   return (
     <>

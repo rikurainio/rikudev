@@ -53,23 +53,23 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main className="min-h-screen selection:bg-white selection:text-black">
-      <article className="max-w-4xl mx-auto px-6 py-12 md:py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <main className="min-h-screen bg-white text-neutral-600 font-sans selection:bg-emerald-500 selection:text-white">
+      <article className="max-w-3xl mx-auto px-6 py-16 md:py-24">
         {/* Back Link */}
         <Link
           href="/blog"
-          className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors mb-12 inline-block"
+          className="text-xs uppercase tracking-widest text-neutral-400 hover:text-emerald-600 transition-colors mb-16 inline-block"
         >
           ← Back
         </Link>
 
         {/* Header */}
         <header className="mb-16">
-          <h1 className="text-4xl md:text-5xl tracking-tighter text-white mb-8">
+          <h1 className="text-4xl md:text-5xl tracking-tight text-neutral-900 font-medium mb-6">
             {post.metadata.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-xs font-mono uppercase tracking-tight text-zinc-600 mb-8 pb-8 border-b border-zinc-900">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs uppercase tracking-widest text-neutral-400">
             <time dateTime={post.metadata.date}>
               {new Date(post.metadata.date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -77,34 +77,23 @@ export default async function BlogPostPage({
                 day: 'numeric',
               })}
             </time>
-            <span>•</span>
+            <span>·</span>
             <span>{post.metadata.readTime}</span>
-            <span>•</span>
-            <span>{post.metadata.author}</span>
-          </div>
-
-          <div className="flex flex-wrap gap-1.5">
-            {post.metadata.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs font-medium text-zinc-600 border border-zinc-900 bg-zinc-950 px-2 py-0.5 rounded-sm"
-              >
-                {tag}
-              </span>
-            ))}
+            <span>·</span>
+            <span>{post.metadata.tags.join(', ')}</span>
           </div>
         </header>
 
         {/* Content */}
-        <div className="prose prose-lg prose-invert prose-zinc max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-zinc-200 prose-code:text-zinc-200">
+        <div className="prose prose-lg prose-neutral max-w-none prose-headings:text-neutral-900 prose-p:text-neutral-600 prose-strong:text-neutral-800 prose-code:text-emerald-600">
           <PostContent />
         </div>
 
         {/* Footer */}
-        <footer className="mt-20 pt-12 border-t border-zinc-900">
+        <footer className="mt-20 pt-8 border-t border-neutral-200">
           <Link
             href="/blog"
-            className="text-sm font-bold uppercase tracking-widest text-zinc-600 hover:text-white transition-colors inline-block"
+            className="text-xs uppercase tracking-widest text-neutral-400 hover:text-emerald-600 transition-colors inline-block"
           >
             ← Back to all posts
           </Link>

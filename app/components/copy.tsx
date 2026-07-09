@@ -43,7 +43,7 @@ export function CopyButton({
       aria-label={copied ? "Copied" : `Copy ${contentName}`}
     >
       {copied ? (
-        <span className="block w-full text-left text-zinc-500" aria-live="polite">
+        <span className="block w-full text-left text-emerald-600" aria-live="polite">
           Copied
         </span>
       ) : (

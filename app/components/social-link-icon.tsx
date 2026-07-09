@@ -1,5 +1,5 @@
 const iconClass =
-  "h-5 w-5 shrink-0 text-zinc-500 transition-colors group-hover/link:text-zinc-300 sm:h-[1.35rem] sm:w-[1.35rem]"
+  "h-5 w-5 shrink-0 text-neutral-400 transition-colors group-hover/link:text-emerald-600 sm:h-[1.35rem] sm:w-[1.35rem]"
 
 type IconKind =
   | "email"

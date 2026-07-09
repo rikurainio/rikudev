@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Background } from "./components/background";
 import { SiteNav } from "./components/site-nav";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-});
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -52,9 +47,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${geist.variable} ${geistMono.variable} antialiased bg-zinc-950 text-zinc-400 selection:bg-white selection:text-black relative font-sans`}
+        className={`${geistMono.variable} antialiased bg-white text-neutral-600 selection:bg-emerald-500 selection:text-white relative font-sans`}
       >
         <Background />
         <SiteNav />

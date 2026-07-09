@@ -23,7 +23,7 @@ const withMDX = createMDX({
       [
         rehypeShiki,
         {
-          theme: 'vitesse-dark',
+          theme: 'vitesse-light',
         },
       ],
     ],
