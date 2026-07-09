@@ -68,13 +68,15 @@ export const DATA = {
       company: "Drafter.lol",
       role: "Founder & Lead Engineer",
       period: "December 2023 – Present",
+      logo: "/logos/drafter.png",
       description:
         "Scaled self-architected platform to over 14,000 monthly users and 2.5 million ad impressions, maintaining 99.9% uptime on a single VPS. Engineered the end-to-end architecture (frontend, backend, database), slashing operational costs by 80% by deploying self-managed Docker containers. Orchestrated the PostgreSQL and Redis infrastructure within a monorepo, optimizing the CI/CD build pipeline to cut deployment times by 40%.",
     },
     {
       company: "Bindermap",
       role: "Founder & Engineer",
-      period: "2024 – Present",
+      period: "June 2026 – Present",
+      logo: "/logos/bindermap-b-1000.png",
       description:
         "Solo-building a full-stack Pokemon TCG binder planner end to end — Solid.js frontend, Go + Connect RPC API, PostgreSQL, and a Dockerized production deployment with Traefik, Prometheus, and Grafana. Designed the visual binder editor, card catalog ingestion pipeline, public sharing, and internal admin tooling.",
     },
@@ -114,6 +116,7 @@ export const DATA = {
       company: "Teknikum Oy",
       role: "Production Worker",
       period: "January 2017 – July 2017",
+      logo: "/logos/teknikum_group_ltd_logo.jpeg",
       description:
         "Manufacturing of various rubber parts with machinery. Process work in a factory. Three-shift-work. Helped clients by manufacturing batches of orders for them in time.",
     },
