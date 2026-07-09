@@ -41,7 +41,7 @@ export const DATA = {
         "full-stack Pokemon TCG binder planner for designing, organizing, sharing, and showcasing card binders digitally",
       tech: ["Solid.js", "Go", "PostgreSQL", "Connect RPC", "Docker"],
       link: "https://bindermap.xyz",
-      image: "bindermapp.png",
+      image: "Frame 4.png",
       accentColor: "teal",
     },
     {
@@ -50,7 +50,7 @@ export const DATA = {
       description: "real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
       tech: ["Next.js", "Socket.io", "Polar", "TypeScript", "PostgreSQL"],
       link: "https://drafter.lol",
-      image: "drafter.jpg",
+      image: "Frame 5.png",
       accentColor: "emerald",
     },
     {
