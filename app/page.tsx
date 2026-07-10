@@ -12,71 +12,54 @@ export default async function Portfolio() {
   return (
     <main className="min-h-screen bg-white text-neutral-600 font-sans selection:bg-emerald-500 selection:text-white">
 
-      {/* --- HERO: SWIRL-CLIPPED PROJECT MURAL --- */}
-      <h1 className="sr-only">Selected work</h1>
+      {/* --- SELECTED WORK --- */}
+      <section className="mx-auto max-w-[1360px] px-6 pt-16 md:pt-24">
+        <h1 className="mb-8 text-xs uppercase tracking-[0.2em] text-neutral-400 md:mb-10">
+          Selected work
+        </h1>
 
-      {/* SVG clip-path definition (scales with the element via objectBoundingBox) */}
-      <svg width="0" height="0" className="absolute" aria-hidden="true">
-        <defs>
-          <clipPath id="project-swirl" clipPathUnits="objectBoundingBox">
-            <path d="M0,0.28 C0.12,0.06 0.30,0.05 0.42,0.20 C0.55,0.36 0.70,0.40 0.82,0.24 C0.90,0.13 0.96,0.12 1,0.16 L1,0.84 C0.90,0.70 0.78,0.66 0.66,0.80 C0.52,0.96 0.36,0.96 0.24,0.82 C0.15,0.71 0.07,0.72 0,0.78 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-
-      <section className="pt-6 md:pt-10">
-        {/* Clipped mural band */}
-        <div
-          className="relative h-[42vh] w-full sm:h-[54vh]"
-          style={{ clipPath: "url(#project-swirl)" }}
-        >
-          <div className="flex h-full w-full">
-            {DATA.projects.map((project) => (
-              <Link
-                key={project.title}
-                href={`/projects/${project.slug}`}
-                className="group relative flex-1 overflow-hidden bg-neutral-100"
-              >
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
+          {DATA.projects.map((project) => (
+            <Link
+              key={project.title}
+              href={`/projects/${project.slug}`}
+              className="group flex flex-col overflow-hidden rounded-2xl bg-white transition duration-200 hover:-translate-y-1"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
                 <Image
                   src={`/${project.image}`}
                   alt={project.title}
                   fill
-                  sizes="33vw"
+                  sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover:bg-black/40">
-                  <span className="text-lg font-medium tracking-tight text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:text-2xl">
-                    {project.title}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+              </div>
 
-        {/* Captions */}
-        <div className="mx-auto mt-10 max-w-[1360px] px-6">
-          <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-3">
-            {DATA.projects.map((project) => (
-              <Link
-                key={project.title}
-                href={`/projects/${project.slug}`}
-                className="group block"
-              >
+              <div className="flex flex-1 flex-col pt-4">
                 <div className="flex items-baseline justify-between gap-3">
                   <h2 className="text-lg font-medium tracking-tight text-neutral-900 group-hover:text-emerald-600">
                     {project.title}
                   </h2>
-                  <span className="shrink-0 text-neutral-300 group-hover:text-emerald-600">
+                  <span className="shrink-0 text-neutral-300 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-emerald-600">
                     →
                   </span>
                 </div>
-                <p className="mt-1.5 text-sm font-light leading-relaxed text-neutral-500">
+                <p className="mt-2 text-sm font-light leading-relaxed text-neutral-500">
                   {project.description}
                 </p>
-              </Link>
-            ))}
-          </div>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {project.tech.slice(0, 4).map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-medium tracking-tight text-neutral-500"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 

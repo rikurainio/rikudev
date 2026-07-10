@@ -50,7 +50,7 @@ export const DATA = {
       description: "real-time drafting and analytics platform for League of Legends teams, coaches, and broadcasters",
       tech: ["Next.js", "Socket.io", "Polar", "TypeScript", "PostgreSQL"],
       link: "https://drafter.lol",
-      image: "Frame 5.png",
+      image: "drafter2.png",
       accentColor: "emerald",
     },
     {
